@@ -18,7 +18,7 @@ class ModelUser extends CI_Model
         return $this->db->get('user_role');
     }
 
-    public function simpanData($data = null)
+    public function simpanDataUser($data = null)
     {
         $this->db->insert('user', $data);
     }
@@ -28,9 +28,9 @@ class ModelUser extends CI_Model
         $this->db->delete('user', $where);
     }
 
-    public function cekData($where = null)
+    public function cekDataUser($where = null)
     {
-        return $this->db->get_where('user', $where);
+        return $this->db->get_where('user', $where)->row_array();
     }
 
     public function getUserWhere($where = null)

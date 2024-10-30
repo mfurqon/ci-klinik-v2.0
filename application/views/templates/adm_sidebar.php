@@ -15,78 +15,30 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- QUERY MENU -->
-    <?php
-    $role_id = $this->session->userdata('role_id');
+    <div class="sidebar-heading">
+        Master Data
+    </div>
 
-    $queryMenu = "
-            SELECT `user_menu`.`id`, `menu`
-            FROM `user_menu` JOIN `user_access_menu`
-            ON `user_menu`.`id` = `user_access_menu`.`menu_id`
-            WHERE `user_access_menu`.`role_id` = $role_id
-            ORDER BY `user_access_menu`.`menu_id` ASC
-        ";
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <!-- Nav Item - Dashboard -->
 
-    $menu = $this->db->query($queryMenu)->result_array();
-    ?>
-
-    <!-- LOOPING MENU -->
-    <!-- Heading -->
-    <?php foreach ($menu as $m) : ?>
-        <div class="sidebar-heading">
-            <?= $m['menu']; ?>
-        </div>
-
-        <!-- SIAPKAN SUB-MENU SESUAI MENU -->
-        <?php
-        $menuId = $m['id'];
-        $querySubMenu = "
-            SELECT * FROM `user_sub_menu`
-            WHERE `menu_id` = $menuId
-            AND is_active = 1
-        ";
-        $subMenu = $this->db->query($querySubMenu)->result_array();
-        ?>
-        <?php foreach ($subMenu as $sm) : ?>
-            <?php if ($judul == $sm['judul']) : ?>
-                <!-- Nav Item - Dashboard -->
-                <li class="nav-item active">
-                <?php else : ?>
-                <li class="nav-item">
-                <?php endif ?>
-                <a class="nav-link pb-0" href="<?= base_url($sm['url']); ?>">
-                    <i class="<?= $sm['icon']; ?>"></i>
-                    <span><?= $sm['judul']; ?></span>
-                </a>
-                </li>
-            <?php endforeach; ?>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider mt-3">
-
-        <?php endforeach; ?>
-
-
-        <!-- Nav Item - Logout -->
+    <?php if ($user['role_id'] == 1) : ?>
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('autentifikasi/logout'); ?>">
-                <i class="fas fa-fw fa-sign-out-alt"></i>
-                <span>Logout</span></a>
+            <a href="<?= base_url('admin'); ?>" class="nav-link pb-0">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
         </li>
+    <?php endif; ?>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
+<!-- Divider -->
+<hr class="sidebar-divider d-none d-md-block">
 
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
 
 </ul>
 <!-- End of Sidebar -->
-
-<!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
-
-    <!-- Main Content -->
-    <div id="content">

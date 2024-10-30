@@ -5,8 +5,8 @@ class Autentifikasi extends CI_Controller
 {
     public function index()
     {
+        cek_sudah_login();
 
-        cek_login();
         $data['judul'] = 'Login';
 
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
@@ -23,54 +23,58 @@ class Autentifikasi extends CI_Controller
 
     private function _login()
     {
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
+        $email = htmlspecialchars($this->input->post('email', true));
+        $password = $this->input->post('password', true);
 
-        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+        $user = $this->ModelUser->cekDataUser(['email' => $email]);
 
         // Jika usernya ada
         if ($user) {
-            // Jika usernya aktif
-            //if ($user['is_active'] == 1) {
-            // cek password
-            if (password_verify($password, $user['password'])) {
-                $data = [
-                    'email' => $user['email'],
-                    'role_id' => $user['role_id']
-                ];
+            // Jika usernya sudah aktif
+            if ($user['is_active'] == 1) {
+                // cek password
+                if (password_verify($password, $user['password'])) {
+                    $data = [
+                        'email' => $user['email'],
+                        'role_id' => $user['role_id']
+                    ];
 
-                $this->session->set_userdata($data);
+                    $this->session->set_userdata($data);
 
-                if ($user['role_id'] == 1) {
-                    redirect('admin');
-                } else if ($user['role_id'] == 3) {
-                    redirect('user');
+                    if ($user['role_id'] == 1) {
+                        redirect('admin');
+                    } else {
+                        if ($user['image'] == 'default.jpg') {
+                            $this->session->set_flashdata(
+                                'pesan',
+                                '<div class="alert alert-info alert-message" role="alert">Silakan Ubah Foto Profil Anda</div>'
+                            );
+                        }
+                        redirect('user');
+                    }
                 } else {
-                    redirect('home');
+                    $this->session->set_flashdata(
+                        'pesan',
+                        '<div class="alert alert-danger" role="alert">
+                        Password anda salah &#128542;
+                    </div>'
+                    );
+                    redirect('autentifikasi');
                 }
             } else {
                 $this->session->set_flashdata('pesan', '
                     <div class="alert alert-danger" role="alert">
-                        Password anda salah &#128542;
+                        Email anda belum diaktivasi &#128542;
                     </div>
                 ');
                 redirect('autentifikasi');
             }
-            //}
-            // else {
-            //     $this->session->set_flashdata('pesan', '
-            //         <div class="alert alert-danger" role="alert">
-            //             Email anda belum diaktivasi &#128542;
-            //         </div>
-            //     ');
-            //     redirect('autentifikasi');
-            // }
         } else {
-            $this->session->set_flashdata('pesan', '
-                <div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('pesan', 
+                '<div class="alert alert-danger" role="alert">
                     Email anda belum terdaftar &#128542;
-                </div>
-            ');
+                </div>'
+            );
             redirect('autentifikasi');
         }
     }
@@ -78,12 +82,13 @@ class Autentifikasi extends CI_Controller
 
     public function registrasi()
     {
-        cek_login();
+        cek_sudah_login();
 
         $data['judul'] = 'Halaman Registrasi';
 
-        $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|trim|matches[password1]');
 
@@ -95,17 +100,19 @@ class Autentifikasi extends CI_Controller
             $data = [
                 'nama' => htmlspecialchars($this->input->post('nama', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
+                'alamat' => htmlspecialchars($this->input->post('alamat', true)),
                 'gambar' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => 2,
-                'is_active' => 2,
-                'tanggal_dibuat' => date('Y-m-d')
+                'is_active' => 0,
+                'tanggal_dibuat' => date('d-m-Y')
             ];
 
-            $this->db->insert('user', $data);
-            $this->session->set_flashdata('pesan', '
-                <div class="alert alert-success" role="alert">
-                &#129395; Selamat!! akun anda berhasil ditambahkan. Silahkan login
+            $this->ModelUser->simpanDataUser($data);
+            $this->session->set_flashdata(
+                'pesan', 
+                '<div class="alert alert-success" role="alert">
+                    &#129395; Selamat!! akun anda sudah berhasil ditambahkan. Silakan login
                 </div>
             ');
             redirect('autentifikasi');
@@ -117,16 +124,21 @@ class Autentifikasi extends CI_Controller
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
 
-        $this->session->set_flashdata('pesan', '
-                <div class="alert alert-success" role="alert">
+        $this->session->set_flashdata('pesan',
+            '<div class="alert alert-success" role="alert">
                 &#129395; Anda berhasil logout
-                </div>
-            ');
+            </div>'
+        );
         redirect('autentifikasi');
     }
 
     public function blok()
     {
         $this->load->view('auth/blok');
+    }
+
+    public function gagal()
+    {
+        $this->load->view('auth/gagal');
     }
 }
