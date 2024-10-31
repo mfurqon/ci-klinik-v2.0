@@ -25,7 +25,6 @@ class User extends CI_Controller
     {
         $data['judul'] = 'Data Anggota';
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        // $data['anggota'] = $this->ModelUser->getAllUser();
         $data['role'] = $this->ModelUser->getAllRole();
         $data['anggota'] = $this->ModelUser->getJoinUserRole();
 
@@ -85,8 +84,7 @@ class User extends CI_Controller
         $data['anggota'] = $this->ModelUser->getJoinRoleIdById(['user_id' => $this->uri->segment(3)]);
         $data['role'] = $this->ModelUser->getAllRole();
 
-        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
-        $this->form_validation->set_rules('role_id', 'Role', 'required');
+        $this->ModelUser->form_validation_ubah_anggota();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/adm_header', $data);

@@ -6,7 +6,7 @@ class Obat extends CI_Controller
     public function index()
     {
         $data['judul'] = "Obat";
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['role_id'] = $this->session->userdata('role_id');
         $data['obat'] = $this->ModelObat->getAllObat();
 
@@ -22,7 +22,7 @@ class Obat extends CI_Controller
 
         $data['judul'] = "Data Obat";
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['obat'] = $this->ModelObat->getAllObat();
+        $data['obat'] = $this->ModelObat->getJoinObatJenisObat();
         $data['jenis_obat'] = $this->ModelObat->getAllJenisObat();
 
         $this->ModelObat->form_validation_tambah_obat();
@@ -40,7 +40,7 @@ class Obat extends CI_Controller
                 // Konfigurasi Sebelum Gambar Di-Upload
                 $config['upload_path'] = './assets/img/upload-obat/';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg|webp';
-                // $config['max_size'] = '3000';
+                $config['max_size'] = '3000';
                 $config['file_name'] = 'obat-' . time();
 
                 // Memuat atau memanggil library upload
@@ -48,31 +48,23 @@ class Obat extends CI_Controller
 
                 if ($this->upload->do_upload('gambar_obat')) {
                     $gambar_obat = $this->upload->data();
-                    $gambar = $gambar_obat['file_name'];
+                    $gambar = $gambar_obat['file_name']; //digunakan untuk parameter tambahDataObat
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
-                    redirect('obat/obatAdmin');
+                    redirect('obat/manage');
                 }
             }
 
-            $data = [
-                'nama_obat' => $this->input->post('nama_obat', true),
-                'id_jenis_obat' => $this->input->post('id_jenis_obat', true),
-                'harga' => $this->input->post('harga', true),
-                'deskripsi' => $this->input->post('deskripsi', true),
-                'stok' => $this->input->post('stok', true),
-                'tanggal_kadaluwarsa' => $this->input->post('tanggal_kadaluwarsa', true),
-                'gambar_obat' => $gambar
-            ];
+            
 
-            $this->ModelObat->tambahDataObat($data);
+            $this->ModelObat->tambahDataObat($gambar); //didapatkan dari variable file_name di atas
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message">
                     &#129395; Data Obat Berhasil ditambah
                 </div>'
             );
-            redirect('obat/obatAdmin');
+            redirect('obat/manage');
         }
     }
 
@@ -111,7 +103,7 @@ class Obat extends CI_Controller
         cek_akses();
 
         $data['judul'] = 'Ubah Jenis Obat';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->input->post('email')]);
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['jenis_obat'] = $this->ModelObat->getJenisObatById(['jenis_obat.id' => $this->uri->segment(3)]);
 
         $this->ModelObat->form_validation_jenis_obat();
@@ -139,7 +131,7 @@ class Obat extends CI_Controller
         cek_login();
         cek_akses();
 
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->input->post('email')]);
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
 
         $this->ModelObat->hapusJenisObat($this->uri->segment(3));
         $this->session->set_flashdata(
@@ -151,14 +143,14 @@ class Obat extends CI_Controller
         redirect('obat/jenis_obat');
     }
 
-    public function detailObat()
+    public function detail_obat()
     {
-        cek_masuk();
+        cek_login();
+        cek_akses();
 
         $data['judul'] = 'Detail Obat';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['role_id'] = $this->session->userdata('role_id');
-        $data['obat'] = $this->ModelObat->obatWhere(['obat.id' => $this->uri->segment(3)]);
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['obat'] = $this->ModelObat->getObatJenisObatById(['obat.id' => $this->uri->segment(3)]);
 
         $this->load->view('templates/adm_header', $data);
         $this->load->view('templates/adm_sidebar', $data);
@@ -167,14 +159,14 @@ class Obat extends CI_Controller
         $this->load->view('templates/adm_footer');
     }
 
-    public function ubahObat()
+    public function ubah_obat()
     {
-        cek_masuk();
+        cek_login();
+        cek_akses();
 
         $data['judul'] = 'Ubah Obat';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['role_id'] = $this->session->userdata('role_id');
-        $data['obat'] = $this->ModelObat->obatWhere(['obat.id' => $this->uri->segment(3)]);
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['obat'] = $this->ModelObat->getObatJenisObatById(['obat.id' => $this->uri->segment(3)]);
         $data['jenis_obat'] = $this->ModelObat->getAllJenisObat();
 
         $this->ModelObat->form_validation_ubah_obat();
@@ -192,7 +184,7 @@ class Obat extends CI_Controller
             $harga = $this->input->post('harga', true);
             $deskripsi = $this->input->post('deskripsi', true);
             $stok = $this->input->post('stok', true);
-            $tanggal_kadaluwarsa = $this->input->post('tanggal_kadaluwarsa', true);
+            $tanggal_kedaluwarsa = $this->input->post('tanggal_kedaluwarsa', true);
 
             $upload_image = $_FILES['gambar_obat'];
 
@@ -216,12 +208,12 @@ class Obat extends CI_Controller
             }
 
             // $this->ModelObat->ubahDataObat();
-            $this->db->set('nama_obat', $nama_obat);
+            $this->db->set('nama', $nama_obat);
             $this->db->set('id_jenis_obat', $id_jenis_obat);
             $this->db->set('harga', $harga);
             $this->db->set('deskripsi', $deskripsi);
             $this->db->set('stok', $stok);
-            $this->db->set('tanggal_kadaluwarsa', $tanggal_kadaluwarsa);
+            $this->db->set('tanggal_kedaluwarsa', $tanggal_kedaluwarsa);
 
             $this->db->where('id', $id);
             $this->db->update('obat');
@@ -232,30 +224,31 @@ class Obat extends CI_Controller
                     &#129395; Data Obat Berhasil diubah
                 </div>'
             );
-            redirect('obat/obatAdmin');
+            redirect('obat/manage');
         }
     }
 
-    public function hapusObat($id)
+    public function hapus_obat()
     {
-        cek_masuk();
+        cek_login();
+        cek_akses();
 
         $data['judul'] = 'Hapus Obat';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['role_id'] = $this->session->userdata('role_id');
-        $data['obat'] = $this->ModelObat->obatWhere(['obat.id' => $this->uri->segment(3)]);
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['obat'] = $this->ModelObat->getObatJenisObatById(['obat.id' => $this->uri->segment(3)]);
 
-        $gambar_obat = $data['obat']['gambar_obat'];
+        $gambar_obat = $data['obat']['gambar'];
+        echo
         unlink(FCPATH . 'assets/img/upload-obat/' . $gambar_obat);
 
-        $this->ModelObat->hapusDataObat($id);
+        $this->ModelObat->hapusDataObat($this->uri->segment(3));
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">
-                Data Obat Berhasil dihapus
+                &#129395; Data Obat Berhasil dihapus
             </div>'
         );
-        redirect('obat/obatAdmin');
+        redirect('obat/manage');
     }
 
     public function beliObat($id)

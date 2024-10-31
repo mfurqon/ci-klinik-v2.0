@@ -120,6 +120,12 @@ class ModelUser extends CI_Model
         $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|trim|min_length[3]|matches[password1]');
     }
 
+    public function form_validation_ubah_anggota()
+    {
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
+        $this->form_validation->set_rules('role_id', 'Role', 'required');
+    }
+
     public function form_validation_ubah_password()
     {
         $this->form_validation->set_rules('password_lama', 'Password Saat Ini', 'required|trim');

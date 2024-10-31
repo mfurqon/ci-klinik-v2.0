@@ -22,9 +22,9 @@
                         <th scope="col" class="text-center">#</th>
                         <th scope="col" class="text-center">Nama Obat</th>
                         <th scope="col" class="text-center">Jenis Obat</th>
-                        <th scope="col" class="text-center">Harga</th>
+                        <th scope="col" class="text-center">Harga (Rp)</th>
                         <th scope="col" class="text-center">Stok</th>
-                        <th scope="col" class="text-center">Kadaluwarsa</th>
+                        <th scope="col" class="text-center">Tanggal Kedaluwarsa</th>
                         <th scope="col" class="text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -36,17 +36,17 @@
                             <th scope="row" class="text-center"><?= $a++; ?></th>
                             <td class="text-center"><?= $o['nama_obat']; ?></td>
                             <td class="text-center"><?= $o['nama_jenis_obat']; ?></td>
-                            <td class="text-center"><?= $o['harga']; ?></td>
+                            <td class="text-center"><?= number_format($o['harga']); ?></td>
                             <td class="text-center"><?= $o['stok']; ?></td>
-                            <td class="text-center"><?= date('d-m-Y', strtotime($o['tanggal_kadaluwarsa'])); ?></td>
+                            <td class="text-center"><?= date('d-m-Y', strtotime($o['tanggal_kedaluwarsa'])); ?></td>
                             <td class="text-center">
-                                <a href="<?= base_url('obat/detailObat/') . $o['id']; ?>" class="badge bg-gradient-light p-2" title="Lihat">
+                                <a href="<?= base_url('obat/detail_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light p-2" title="Lihat">
                                     <i class="fas fa-fw fa-search"></i>
                                 </a>
-                                <a href="<?= base_url('obat/ubahObat/') . $o['id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
+                                <a href="<?= base_url('obat/ubah_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
                                     <i class="fas fa-fw fa-pen"></i>
                                 </a>
-                                <a href="<?= base_url('obat/hapusObat/') . $o['id']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Kamu yakin akan menghapus <?= $o['nama_obat']; ?> ?');">
+                                <a href="<?= base_url('obat/hapus_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Kamu yakin akan menghapus <?= $o['nama_obat']; ?> ?');">
                                     <i class="fas fa-fw fa-trash"></i>
                                 </a>
                             </td>
@@ -89,7 +89,7 @@
                         <select name="id_jenis_obat" id="id_jenis_obat" class="form-control">
                             <option value="">Pilih Jenis Obat</option>
                             <?php foreach ($jenis_obat as $jo) : ?>
-                                <option value="<?= $jo['id']; ?>"><?= $jo['nama_jenis_obat']; ?></option>
+                                <option value="<?= $jo['id']; ?>"><?= $jo['nama']; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -110,8 +110,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="tanggal_kadaluwarsa" class="form-label">Tanggal Kadaluwarsa</label>
-                        <input type="date" class="form-control" id="tanggal_kadaluwarsa" name="tanggal_kadaluwarsa">
+                        <label for="tanggal_kedaluwarsa" class="form-label">Tanggal Kedaluwarsa</label>
+                        <input type="date" class="form-control" id="tanggal_kedaluwarsa" name="tanggal_kedaluwarsa">
                     </div>
 
                     <div class="custom-file">

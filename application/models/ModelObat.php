@@ -13,9 +13,18 @@ class ModelObat extends CI_Model
         return $this->db->get()->result_array();
     }
 
-    public function obatWhere($where)
+    public function getJoinObatJenisObat()
     {
-        $this->db->select('obat.*, jenis_obat.nama_jenis_obat');
+        $this->db->select('obat.id AS id_obat, obat.nama AS nama_obat, obat.harga, obat.deskripsi, obat.stok, obat.tanggal_kedaluwarsa, obat.gambar, jenis_obat.id AS id_jenis_obat, jenis_obat.nama AS nama_jenis_obat');
+        $this->db->from('obat');
+        $this->db->join('jenis_obat', 'obat.id_jenis_obat = jenis_obat.id');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getObatJenisObatById($where)
+    {
+        $this->db->select('obat.id AS id_obat, obat.nama AS nama_obat, obat.harga, obat.deskripsi, obat.stok, obat.tanggal_kedaluwarsa, obat.gambar, jenis_obat.id AS id_jenis_obat, jenis_obat.nama AS nama_jenis_obat');
         $this->db->from('obat');
         $this->db->join('jenis_obat', 'obat.id_jenis_obat = jenis_obat.id');
         $this->db->where($where);
@@ -32,24 +41,19 @@ class ModelObat extends CI_Model
         return $this->db->get('obat')->num_rows();
     }
     
-    public function tambahDataObat($data)
-    {
-        $this->db->insert('obat', $data);
-    }
-
-    public function ubahDataObat()
+    public function tambahDataObat($gambar)
     {
         $data = [
-            "nama_obat" => $this->input->post('nama_obat', true),
-            "harga" => $this->input->post('harga', true),
-            "deskripsi" => $this->input->post('deskripsi', true),
-            "stok" => $this->input->post('stok', true),
-            "tanggal_kadaluwarsa" => $this->input->post('tanggal_kadaluwarsa', true),
-            "gambar_obat" => $this->input->post('gambar_obat', true),
+            'nama' => $this->input->post('nama_obat', true),
+            'id_jenis_obat' => $this->input->post('id_jenis_obat', true),
+            'harga' => $this->input->post('harga', true),
+            'deskripsi' => $this->input->post('deskripsi', true),
+            'stok' => $this->input->post('stok', true),
+            'tanggal_kedaluwarsa' => $this->input->post('tanggal_kedaluwarsa', true),
+            'gambar' => $gambar
         ];
 
-        $this->db->where('id', $this->input->post('id'));
-        $this->db->update('obat', $data);
+        $this->db->insert('obat', $data);
     }
 
     public function hapusDataObat($id)
@@ -69,14 +73,6 @@ class ModelObat extends CI_Model
         $data = ['stok' => $new_stok];
         $this->db->where('id', $id);
         return $this->db->update('obat', $data);
-    }
-
-    public function joinObatJenisObat()
-    {
-        $this->db->select('obat.*, jenis_obat.nama_jenis_obat');
-        $this->db->from('obat');
-        $this->db->join('jenis_obat', 'obat.id_jenis_obat = jenis_obat.id');
-        return $this->db->get()->result_array();
     }
 
 
@@ -167,7 +163,7 @@ class ModelObat extends CI_Model
         $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric');
         $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim');
         $this->form_validation->set_rules('stok', 'Stok', 'required|trim|numeric');
-        $this->form_validation->set_rules('tanggal_kadaluwarsa', 'Tanggal Kadaluwarsa', 'required');
+        $this->form_validation->set_rules('tanggal_kedaluwarsa', 'Tanggal Kadaluwarsa', 'required');
     }
 
     public function form_validation_ubah_obat()
@@ -177,7 +173,7 @@ class ModelObat extends CI_Model
         $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric');
         $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim');
         $this->form_validation->set_rules('stok', 'Stok', 'required|trim|numeric');
-        $this->form_validation->set_rules('tanggal_kadaluwarsa', 'Tanggal Kadaluwarsa', 'required');
+        $this->form_validation->set_rules('tanggal_kedaluwarsa', 'Tanggal Kadaluwarsa', 'required');
     }
 
     public function form_validation_beli_obat()
