@@ -24,10 +24,40 @@
         <!-- Nav Item - Dashboard -->
 
     <?php if ($user['role_id'] == 1) : ?>
-        <li class="nav-item">
+        <li class="nav-item <?= ($judul == "Dashboard") ? 'active' : ''; ?>">
             <a href="<?= base_url('admin'); ?>" class="nav-link pb-0">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item <?= ($judul == "Data Obat") ? 'active' : ''; ?>">
+            <a href="<?= base_url('obat/manage'); ?>" class="nav-link pb-0">
+                <i class="fas fa-fw fa-pills"></i>
+                <span>Data Obat</span>
+            </a>
+        </li>
+        <li class="nav-item <?= ($judul == "Data Jenis Obat") ? 'active' : ''; ?>">
+            <a href="<?= base_url('obat/jenis_obat'); ?>" class="nav-link pb-0">
+                <i class="fas fa-fw fa-pills"></i>
+                <span>Data Jenis Obat</span>
+            </a>
+        </li>
+        <li class="nav-item <?= ($judul == "Data Dokter") ? 'active' : ''; ?>">
+            <a href="<?= base_url('dokter/manage'); ?>" class="nav-link pb-0">
+                <i class="fas fa-fw fa-user-doctor"></i>
+                <span>Data Dokter</span>
+            </a>
+        </li>
+        <li class="nav-item <?= ($judul == "Data Anggota") ? 'active' : ''; ?>">
+            <a href="<?= base_url('user/manage'); ?>" class="nav-link pb-0">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Data Anggota</span>
+            </a>
+        </li>
+        <li class="nav-item <?= ($judul == "Data Role") ? 'active' : ''; ?>">
+            <a href="<?= base_url('user/role'); ?>" class="nav-link pb-0">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Data Role</span>
             </a>
         </li>
     <?php endif; ?>

@@ -13,8 +13,8 @@
             <?= $this->session->flashdata('pesan'); ?>
 
             <a href="" class="btn btn-primary mb-4" data-toggle="modal" data-target="#anggotaBaruModal">
-                <i class="fas fa-file-alt"></i>
-                Anggota Baru
+                <i class="fas fa-fw fa-circle-plus"></i>
+                Tambah Anggota
             </a>
 
             <table class="table table-hover table-responsive">
@@ -37,7 +37,7 @@
                             <th scope="row"><?= $n++; ?></th>
                             <td><?= $a['nama']; ?></td>
                             <td><?= $a['email']; ?></td>
-                            <td><?= $a['role_id']; ?></td>
+                            <td><?= $a['role_nama']; ?></td>
                             <td><?= date('d-m-Y', strtotime($a['tanggal_dibuat'])); ?></td>
                             <td>
                                 <picture>
@@ -46,10 +46,10 @@
                                 </picture>
                             </td>
                             <td>
-                                <a href="<?= base_url('admin/ubahAnggota/') . $a['id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
+                                <a href="<?= base_url('user/ubah_anggota/') . $a['user_id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
                                     <i class="fas fa-pen"></i>
                                 </a>
-                                <a href="<?= base_url('admin/hapusAnggota/') . $a['id']; ?>" onclick="return confirm('Kamu yakin akan menghapus <?= 'anggota' . ' ' . $a['nama']; ?> ?');" class="badge bg-gradient-light text-danger p-2" title="Hapus">
+                                <a href="<?= base_url('user/hapus_anggota/') . $a['user_id']; ?>" onclick="return confirm('Kamu yakin akan menghapus <?= 'anggota' . ' ' . $a['nama']; ?> ?');" class="badge bg-gradient-light text-danger p-2" title="Hapus">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>
@@ -77,7 +77,7 @@
                 </button>
             </div>
 
-            <form action="<?= base_url('admin/anggota'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('user/manage'); ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Masukkan Nama Anggota" value="<?= set_value('nama'); ?>">
@@ -101,8 +101,18 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Masukkan Password" value="<?= set_value('password'); ?>">
-                        <?= form_error('password', '<small class="text-danger pl-3>', '</small>') ?>
+                        <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="Masukkan Alamat" value="<?= set_value('alamat'); ?>">
+                        <?= form_error('alamat', '<small class="text-danger pl-3>', '</small>') ?>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control form-control-user" id="password1" name="password1" placeholder="Masukkan Password" value="<?= set_value('password1'); ?>">
+                        <?= form_error('password1', '<small class="text-danger pl-3>', '</small>') ?>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Konfirmasi Password" value="<?= set_value('password2'); ?>">
+                        <?= form_error('password2', '<small class="text-danger pl-3>', '</small>') ?>
                     </div>
                 </div>
 

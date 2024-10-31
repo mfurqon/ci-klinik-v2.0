@@ -4,22 +4,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class ModelObat extends CI_Model
 {
+    // Pengolahan data pada table obat
     public function getAllObat()
     {
-        $this->db->select('obat.*, jenis_obat.nama_jenis_obat');
+        $this->db->select('obat.*, jenis_obat.nama');
         $this->db->from('obat');
         $this->db->join('jenis_obat', 'obat.id_jenis_obat = jenis_obat.id');
         return $this->db->get()->result_array();
-    }
-
-    public function getAllJenisObat()
-    {
-        return $this->db->get('jenis_obat')->result_array();
-    }
-
-    public function getAllPemesananObat()
-    {
-        return $this->db->get('pemesanan_obat')->result_array();
     }
 
     public function obatWhere($where)
@@ -31,41 +22,19 @@ class ModelObat extends CI_Model
         return $this->db->get()->row_array();
     }
 
-    public function pemesananObatWhere($where)
+    public function getObatById($id)
     {
-        return $this->db->get_where('pemesanan_obat', $where)->row_array();
+        return $this->db->get_where('obat', ['id' => $id])->row_array();
     }
 
     public function hitungObat()
     {
         return $this->db->get('obat')->num_rows();
     }
-
+    
     public function tambahDataObat($data)
     {
         $this->db->insert('obat', $data);
-    }
-
-    public function hapusDataObat($id)
-    {
-        $this->db->delete('obat', ['id' => $id]);
-    }
-
-    public function hapusPemesananObat($id)
-    {
-        $this->db->delete('pemesanan_obat', ['id' => $id]);
-    }
-
-    public function getObatById($id)
-    {
-        return $this->db->get_where('obat', ['id' => $id])->row_array();
-    }
-
-    public function updateStokObat($id, $new_stok)
-    {
-        $data = ['stok' => $new_stok];
-        $this->db->where('id', $id);
-        return $this->db->update('obat', $data);
     }
 
     public function ubahDataObat()
@@ -83,11 +52,23 @@ class ModelObat extends CI_Model
         $this->db->update('obat', $data);
     }
 
+    public function hapusDataObat($id)
+    {
+        $this->db->delete('obat', ['id' => $id]);
+    }
+
     public function cariDataObat()
     {
         $keyword = $this->input->post('keyword', true);
         $this->db->like('nama_obat', $keyword);
         return $this->db->get('obat')->result_array();
+    }
+
+    public function updateStokObat($id, $new_stok)
+    {
+        $data = ['stok' => $new_stok];
+        $this->db->where('id', $id);
+        return $this->db->update('obat', $data);
     }
 
     public function joinObatJenisObat()
@@ -96,6 +77,59 @@ class ModelObat extends CI_Model
         $this->db->from('obat');
         $this->db->join('jenis_obat', 'obat.id_jenis_obat = jenis_obat.id');
         return $this->db->get()->result_array();
+    }
+
+
+    // Pengolahan data pada table jenis_obat
+    public function getAllJenisObat()
+    {
+        return $this->db->get('jenis_obat')->result_array();
+    }
+
+    public function getJenisObatById($where)
+    {
+        $this->db->from('jenis_obat');
+        $this->db->where($where);
+        return $this->db->get()->row_array();
+    }
+
+    public function tambahJenisObat()
+    {
+        $data = ['nama' => $this->input->post('jenis_obat', true)];
+        $this->db->insert('jenis_obat', $data);
+    }
+
+    public function ubahJenisObat()
+    {
+        $data = [
+            "nama" => $this->input->post('jenis_obat', true)
+        ];
+
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('jenis_obat', $data);
+    }
+
+    public function hapusJenisObat($id)
+    {
+        $this->db->delete('jenis_obat', ['id' => $id]);
+    }
+
+
+
+    // Pengolahan data pada table pemesanan_obat
+    public function getAllPemesananObat()
+    {
+        return $this->db->get('pemesanan_obat')->result_array();
+    }
+
+    public function pemesananObatWhere($where)
+    {
+        return $this->db->get_where('pemesanan_obat', $where)->row_array();
+    }
+
+    public function hapusPemesananObat($id)
+    {
+        $this->db->delete('pemesanan_obat', ['id' => $id]);
     }
 
     public function tambahPemesananObat()
@@ -115,6 +149,17 @@ class ModelObat extends CI_Model
         $this->db->insert('pemesanan_obat', $data);
     }
 
+
+    // Kumpulan kode form_validation
+
+    // Kumpulan kode form_validation jenis_obat
+    public function form_validation_jenis_obat()
+    {
+        $this->form_validation->set_rules('jenis_obat', 'Jenis Obat', 'required|trim');
+    }
+
+
+    // Kumpulan kode form_validation obat
     public function form_validation_tambah_obat()
     {
         $this->form_validation->set_rules('nama_obat', 'Nama Obat', 'required|trim');

@@ -3,12 +3,12 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-9">
-            <?= form_open_multipart('admin/ubahAnggota/' . $anggota['id']); ?>
-            <input type="hidden" name="id" value="<?= $anggota['id']; ?>">
+            <?= form_open_multipart('user/ubah_anggota/' . $anggota['user_id']); ?>
+            <input type="hidden" name="id" value="<?= $anggota['user_id']; ?>">
 
             <div class="card shadow mt-3">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary"><?= $judul; ?></h6>
+                    <h6 class="m-0 font-weight-bold text-primary"><?= $anggota['nama']; ?></h6>
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
@@ -27,10 +27,9 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="role_id" class="col-sm-3 col-form-label">Ubah Role ID</label>
+                        <label for="role_id" class="col-sm-3 col-form-label">Ubah Role</label>
                         <div class="col-sm-9">
                             <select name="role_id" id="role_id" class="form-control">
-                                <!-- <option value="">Pilih Role</option> -->
                                 <?php foreach ($role as $r) : ?>
                                     <option value="<?= $r['id']; ?>"><?= $r['role']; ?></option>
                                 <?php endforeach; ?>

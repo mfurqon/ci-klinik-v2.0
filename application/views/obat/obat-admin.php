@@ -77,7 +77,7 @@
                 </button>
             </div>
 
-            <form action="<?= base_url('obat/obatAdmin'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('obat/manage'); ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama_obat" class="form-label">Nama Obat</label>

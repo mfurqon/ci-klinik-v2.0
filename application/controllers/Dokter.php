@@ -16,13 +16,13 @@ class Dokter extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function dokterAdmin()
+    public function manage()
     {
-        cek_masuk();
+        cek_login();
+        cek_akses();
 
         $data['judul'] = "Data Dokter";
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['role_id'] = $this->session->userdata('role_id');
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->ModelDokter->getAllDokter();
 
         $this->ModelDokter->form_validation_tambah_dokter();
@@ -81,7 +81,7 @@ class Dokter extends CI_Controller
                     &#129395; Data Dokter Berhasil ditambah
                 </div>'
             );
-            redirect('dokter/dokterAdmin');
+            redirect('dokter/manage');
         }
     }
 

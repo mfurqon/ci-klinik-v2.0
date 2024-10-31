@@ -77,7 +77,7 @@
                 </button>
             </div>
 
-            <form action="<?= base_url('dokter/dokterAdmin'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('dokter/manage'); ?>" method="post" enctype="multipart/form-data">
                 <?php
                 $date = date('Y-m-d'); ?>
                 <input type="date" class="form-control" id="tanggal_ditambahkan" name="tanggal_ditambahkan" value="<?= $date; ?>" hidden>
