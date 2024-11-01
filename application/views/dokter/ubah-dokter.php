@@ -3,8 +3,8 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-9">
-            <?= form_open_multipart('dokter/ubahDokter/' . $dokter['id']); ?>
-            <input type="hidden" name="id" value="<?= $dokter['id']; ?>">
+            <?= form_open_multipart('dokter/ubah_dokter/' . $dokter['id_dokter']); ?>
+            <input type="hidden" name="id" value="<?= $dokter['id_dokter']; ?>">
 
             <div class="card shadow mt-3">
                 <div class="card-header py-3">
@@ -28,14 +28,15 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="spesialisasi" class="col-sm-3 col-form-label">Spesialisasi</label>
+                        <label for="spesialis" class="col-sm-3 col-form-label">Spesialis</label>
                         <div class="col-sm-9">
-                            <select name="spesialisasi" id="spesialisasi" class="form-control">
-                                <option value="">Pilih Spesialisasi</option>
-                                <option value="Umum">Umum</option>
-                                <option value="Gigi">Gigi</option>
+                            <select name="spesialis" id="spesialis" class="form-control">
+                                <option value="">Pilih Spesialis</option>
+                                <?php foreach ($spesialis as $s) : ?>
+                                    <option value="<?= $s['id']; ?>"><?= $s['gelar_spesialis']; ?></option>
+                                <?php endforeach; ?>
                             </select>
-                            <?= form_error('spesialisasi', '<small class="text-danger pl-3">', '</small>'); ?>
+                            <?= form_error('spesialis', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
 
@@ -96,13 +97,13 @@
                         <div class="col-sm-9">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <img src="<?= base_url('assets/img/upload-dokter/') . $dokter['gambar_dokter']; ?>" alt="gambar dokter" class="img-thumbnail">
+                                    <img src="<?= base_url('assets/img/upload-dokter/') . $dokter['gambar']; ?>" alt="gambar dokter" class="img-thumbnail">
                                 </div>
 
                                 <div class="col-sm-9">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="gambar_dokter" name="gambar_dokter">
-                                        <label for="gambar_dokter" class="custom-file-label">Pilih File</label>
+                                        <label for="gambar_dokter" class="custom-file-label">Pilih Gambar</label>
                                     </div>
                                 </div>
                             </div>

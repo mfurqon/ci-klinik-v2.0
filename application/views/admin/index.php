@@ -1,6 +1,27 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
+    <!-- Welcome Message -->
+    <div class="row mb-4">
+        <div class="col-lg-12 py-3">
+            <div class="card shadow">
+                <div class="card-body d-flex align-items-center">
+                    <div class="col text-center">
+                        <img src="<?= base_url('assets/img/logo-klinik-biru-remove-bg.webp'); ?>" alt="Klinik Icon" class="img-fluid mb-3" style="max-width: 150px;">
+                        <h2 class="h3 text-gray-800">Selamat Datang <span class="text-primary"><?= $user['nama']; ?></span></h2>
+                        <h3 class="h4 text-gray-800">Ini adalah Halaman Dashboard Administrator CI Klinik</h3>
+
+                        <div class="row justify-content-center">
+                            <div class="col-sm-7">
+                                <p class="text-muted">Kelola data obat, data dokter, data user, data janji temu, data pemeriksaan, data pemesanan obat Anda dengan mudah dan efisien.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Content Row -->
     <div class="row">
 
@@ -74,27 +95,6 @@
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user fa-2x text-warning"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Welcome Message -->
-    <div class="row mb-4">
-        <div class="col-lg-12 py-3">
-            <div class="card shadow">
-                <div class="card-body d-flex align-items-center">
-                    <div class="col text-center">
-                        <img src="<?= base_url('assets/img/logo-klinik-biru-remove-bg.webp'); ?>" alt="Klinik Icon" class="img-fluid mb-3" style="max-width: 150px;">
-                        <h2 class="h3 text-gray-800">Selamat Datang <span class="text-primary"><?= $user['nama']; ?></span></h2>
-                        <h3 class="h4 text-gray-800">Ini adalah Halaman Dashboard Administrator CI Klinik</h3>
-
-                        <div class="row justify-content-center">
-                            <div class="col-sm-7">
-                                <p class="text-muted">Kelola data obat, data dokter, data user, data janji temu, data pemeriksaan, data pemesanan obat Anda dengan mudah dan efisien.</p>
-                            </div>
                         </div>
                     </div>
                 </div>

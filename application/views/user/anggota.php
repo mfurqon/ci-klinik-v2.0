@@ -49,7 +49,7 @@
                                 <a href="<?= base_url('user/ubah_anggota/') . $a['user_id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
                                     <i class="fas fa-pen"></i>
                                 </a>
-                                <a href="<?= base_url('user/hapus_anggota/') . $a['user_id']; ?>" onclick="return confirm('Kamu yakin akan menghapus <?= 'anggota' . ' ' . $a['nama']; ?> ?');" class="badge bg-gradient-light text-danger p-2" title="Hapus">
+                                <a href="<?= base_url('user/hapus_anggota/') . $a['user_id']; ?>" onclick="return confirm('Apakah kamu yakin akan menghapus <?= 'anggota' . ' ' . $a['nama']; ?> ?');" class="badge bg-gradient-light text-danger p-2" title="Hapus">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>

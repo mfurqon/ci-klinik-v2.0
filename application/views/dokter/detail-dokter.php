@@ -12,12 +12,12 @@
                 </div>
                 <div class="row g-0 align-items-center pl-5">
                     <div class="col-md-4">
-                        <img src="<?= base_url('assets/img/upload-dokter/') . $dokter['gambar_dokter']; ?>" class="img-fluid rounded-start" alt="gambar dokter" style="max-height: 100%;">
+                        <img src="<?= base_url('assets/img/upload-dokter/') . $dokter['gambar']; ?>" class="img-fluid rounded-start" alt="gambar dokter" style="max-height: 100%;">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <p class="card-text"><strong>NIP :</strong> <?= $dokter['nip']; ?></p>
-                            <p class="card-text"><strong>Spesialisasi :</strong> <?= $dokter['spesialisasi']; ?></p>
+                            <p class="card-text"><strong>Spesialis :</strong> <?= $dokter['gelar_spesialis']; ?></p>
                             <p class="card-text"><strong>Jenis Kelamin :</strong> <?= $dokter['jenis_kelamin']; ?></p>
                             <p class="card-text"><strong>Telepon :</strong> <?= $dokter['telepon']; ?></p>
                             <p class="card-text"><strong>Email :</strong> <?= $dokter['email']; ?></p>

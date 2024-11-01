@@ -40,7 +40,9 @@ class Obat extends CI_Controller
                 // Konfigurasi Sebelum Gambar Di-Upload
                 $config['upload_path'] = './assets/img/upload-obat/';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg|webp';
-                $config['max_size'] = '3000';
+                $config['max_size'] = '5120';
+                $config['max_width'] = '1920';
+                $config['max_height'] = '1080';
                 $config['file_name'] = 'obat-' . time();
 
                 // Memuat atau memanggil library upload
@@ -54,8 +56,6 @@ class Obat extends CI_Controller
                     redirect('obat/manage');
                 }
             }
-
-            
 
             $this->ModelObat->tambahDataObat($gambar); //didapatkan dari variable file_name di atas
             $this->session->set_flashdata(
@@ -191,7 +191,9 @@ class Obat extends CI_Controller
             if ($upload_image) {
                 $config['upload_path'] = './assets/img/upload-obat/';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg|webp';
-                $config['max_size'] = '3000';
+                $config['max_size'] = '5120';
+                $config['max_width'] = '1920';
+                $config['max_height'] = '1080';
                 $config['file_name'] = 'obat-' . time();
 
                 $this->load->library('upload', $config);

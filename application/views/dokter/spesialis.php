@@ -11,31 +11,31 @@
 
             <?= $this->session->flashdata('pesan'); ?>
 
-            <a href="" class="btn btn-primary mb-4" data-toggle="modal" data-target="#tambahJenisObatModal">
+            <a href="" class="btn btn-primary mb-4" data-toggle="modal" data-target="#tambahSpesialisModal">
                 <i class="fas fa-fw fa-circle-plus"></i>
-                Tambah Jenis Obat
+                Tambah Spesialis Dokter
             </a>
 
             <table class="table table-hover table-responsive">
                 <thead class="bg-gradient-primary text-white">
                     <tr>
                         <th scope="col" class="text-center">#</th>
-                        <th scope="col" class="text-center">Jenis Obat</th>
+                        <th scope="col" class="text-center">Spesialis Dokter</th>
                         <th scope="col" class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     $a = 1;
-                    foreach ($jenis_obat as $jo) : ?>
+                    foreach ($spesialis as $s) : ?>
                         <tr>
                             <th scope="row" class="text-center"><?= $a++; ?></th>
-                            <td class="text-center"><?= $jo['nama']; ?></td>
+                            <td class="text-center"><?= $s['gelar_spesialis']; ?></td>
                             <td class="text-center">
-                                <a href="<?= base_url('obat/ubah_jenis_obat/') . $jo['id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
+                                <a href="<?= base_url('dokter/ubah_spesialis/') . $s['id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
                                     <i class="fas fa-fw fa-pen"></i>
                                 </a>
-                                <a href="<?= base_url('obat/hapus_jenis_obat/') . $jo['id']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus jenis obat <?= $jo['nama']; ?> ?');">
+                                <a href="<?= base_url('dokter/hapus_spesialis/') . $s['id']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus spesialis <?= $s['gelar_spesialis']; ?> ?');">
                                     <i class="fas fa-fw fa-trash"></i>
                                 </a>
                             </td>
@@ -56,21 +56,21 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="tambahJenisObatModal" tabindex="-1" role="dialog" aria-labelledby="tambahObatModalLabel" aria-hidden="true">
+<div class="modal fade" id="tambahSpesialisModal" tabindex="-1" role="dialog" aria-labelledby="tambahSpesialisModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahObatModalLabel">Tambah Jenis Obat Baru</h5>
+                <h5 class="modal-title" id="tambahSpesialisModalLabel">Tambah Spesialis Dokter</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
-            <form action="<?= base_url('obat/jenis_obat'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('dokter/spesialis'); ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="jenis_obat" class="form-label">Jenis Obat</label>
-                        <input type="text" class="form-control" id="jenis_obat" name="jenis_obat" value="<?= set_value('jenis_obat'); ?>">
+                        <label for="spesialis" class="form-label">Spesialis</label>
+                        <input type="text" class="form-control" id="spesialis" name="spesialis" value="<?= set_value('gelar_spesialis'); ?>">
                     </div>
                 </div>
                 <div class="modal-footer">

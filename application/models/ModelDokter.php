@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class ModelDokter extends CI_Model
 {
+    // Pengolahan data pada table dokter
     public function getAllDokter()
     {
         return $this->db->get('dokter')->result_array();
@@ -25,18 +26,20 @@ class ModelDokter extends CI_Model
         return $this->db->get_where('dokter', $where);
     }
 
-    public function tambahDataDokter()
+    public function tambahDokter($gambar)
     {
         $data = [
+            "nama" => $this->input->post('nama_dokter', true),
             "nip" => $this->input->post('nip', true),
-            "nama_dokter" => $this->input->post('nama_dokter', true),
-            "spesialisasi" => $this->input->post('spesialisasi', true),
+            "id_spesialis" => $this->input->post('spesialis', true),
+            "jenis_kelamin" => $this->input->post('jenis_kelamin', true),
             "telepon" => $this->input->post('telepon', true),
             "email" => $this->input->post('email', true),
             "alamat" => $this->input->post('alamat', true),
             "jam_masuk" => $this->input->post('jam_masuk', true),
             "jam_keluar" => $this->input->post('jam_keluar', true),
             "tanggal_ditambahkan" => $this->input->post('tanggal_ditambahkan', true),
+            "gambar" => $gambar
         ];
 
         $this->db->insert('dokter', $data);
@@ -53,24 +56,6 @@ class ModelDokter extends CI_Model
         return $this->db->get_where('dokter', ['id' => $id])->row_array();
     }
 
-    public function ubahDataDokter()
-    {
-        $data = [
-            "nama_dokter" => $this->input->post('nama_dokter', true),
-            "spesialisasi" => $this->input->post('spesialisasi', true),
-            "telepon" => $this->input->post('telepon', true),
-            "email" => $this->input->post('email', true),
-            "alamat" => $this->input->post('alamat', true),
-            "jam_masuk" => $this->input->post('jam_masuk', true),
-            "jam_keluar" => $this->input->post('jam_keluar', true),
-            "tanggal_ditambahkan" => $this->input->post('tanggal_ditambahkan', true),
-            "gambar_dokter" => $this->input->post('gambar_dokter', true),
-        ];
-
-        $this->db->where('id', $this->input->post('id'));
-        $this->db->update('dokter', $data);
-    }
-
     public function cariDataDokter()
     {
         $keyword = $this->input->post('keyword', true);
@@ -78,16 +63,89 @@ class ModelDokter extends CI_Model
         return $this->db->get('dokter')->result_array();
     }
 
+
+    // Pengolahan data pada table spesialis
+    public function getAllSpesialis()
+    {
+        return $this->db->get('spesialis')->result_array();
+    }
+
+    public function getSpesialisById($where)
+    {
+        $this->db->from('spesialis');
+        $this->db->where($where);
+        return $this->db->get()->row_array();
+    }
+
+    public function tambahSpesialis()
+    {
+        $data = ['gelar_spesialis' => $this->input->post('spesialis', true)];
+        $this->db->insert('spesialis', $data);
+    }
+
+    public function ubahSpesialis()
+    {
+        $data = [
+            "gelar_spesialis" => $this->input->post('spesialis', true)
+        ];
+
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('spesialis', $data);
+    }
+
+    public function hapusSpesialis($id)
+    {
+        $this->db->delete('spesialis', ['id' => $id]);
+    }
+
+    public function getJoinDokterSpesialis()
+    {
+        $this->db->select('dokter.id AS id_dokter, dokter.nip, dokter.nama AS nama_dokter, dokter.jenis_kelamin, dokter.telepon, dokter.email, dokter.alamat, dokter.jam_masuk, dokter.jam_keluar, dokter.tanggal_ditambahkan, dokter.gambar, spesialis.id AS id_spesialis, spesialis.gelar_spesialis');
+        $this->db->from('dokter');
+        $this->db->join('spesialis', 'dokter.id_spesialis = spesialis.id');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getJoinDokterSpesialisById($where)
+    {
+        $this->db->select('dokter.id AS id_dokter, dokter.nip, dokter.nama AS nama_dokter, dokter.jenis_kelamin, dokter.telepon, dokter.email, dokter.alamat, dokter.jam_masuk, dokter.jam_keluar, dokter.tanggal_ditambahkan, dokter.gambar, spesialis.id AS id_spesialis, spesialis.gelar_spesialis');
+        $this->db->from('dokter');
+        $this->db->join('spesialis', 'dokter.id_spesialis = spesialis.id');
+        $this->db->where($where);
+        return $this->db->get()->row_array();
+    }
+
+
+    // Kumpulan kode form_validation dokter
     public function form_validation_tambah_dokter()
     {
         $this->form_validation->set_rules('nip', 'NIP', 'required|trim|numeric|is_unique[dokter.nip]|min_length[8]');
         $this->form_validation->set_rules('nama_dokter', 'Nama Dokter', 'required|trim');
-        $this->form_validation->set_rules('spesialisasi', 'Spesialisasi', 'required|trim');
+        $this->form_validation->set_rules('spesialis', 'Spesialis', 'required|trim');
         $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
         $this->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
         $this->form_validation->set_rules('jam_masuk', 'Jam Masuk', 'required');
         $this->form_validation->set_rules('jam_keluar', 'Jam Keluar', 'required');
+    }
+
+    public function form_validation_ubah_dokter()
+    {
+        $this->form_validation->set_rules('nama_dokter', 'Nama Dokter', 'required|trim');
+        $this->form_validation->set_rules('spesialis', 'Spesialis', 'required|trim');
+        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
+        $this->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $this->form_validation->set_rules('jam_masuk', 'Jam Masuk', 'required');
+        $this->form_validation->set_rules('jam_keluar', 'Jam Keluar', 'required');
+    }
+
+    // Kumpulan kode form_validation spesialis
+    public function form_validation_spesialis()
+    {
+        $this->form_validation->set_rules('spesialis', 'Spesialis', 'required|trim');
     }
 }

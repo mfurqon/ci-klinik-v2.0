@@ -22,7 +22,7 @@
                         <th scope="col">#</th>
                         <th scope="col">NIP</th>
                         <th scope="col">Nama Dokter</th>
-                        <th scope="col">Spesialisasi</th>
+                        <th scope="col">Spesialis</th>
                         <th scope="col">Jenis Kelamin</th>
                         <th scope="col">Tanggal Ditambahkan</th>
                         <th scope="col">Aksi</th>
@@ -36,17 +36,17 @@
                             <th scope="row"><?= $a++; ?></th>
                             <td><?= $d['nip']; ?></td>
                             <td><?= $d['nama_dokter']; ?></td>
-                            <td><?= $d['spesialisasi']; ?></td>
+                            <td><?= $d['gelar_spesialis']; ?></td>
                             <td><?= $d['jenis_kelamin']; ?></td>
                             <td><?= date('d-m-Y', strtotime($d['tanggal_ditambahkan'])); ?></td>
                             <td>
-                                <a href="<?= base_url('dokter/detailDokter/') . $d['id']; ?>" class="badge bg-gradient-light p-2" title="Lihat">
+                                <a href="<?= base_url('dokter/detail_dokter/') . $d['id_dokter']; ?>" class="badge bg-gradient-light p-2" title="Lihat">
                                     <i class="fas fa-fw fa-search"></i>
                                 </a>
-                                <a href="<?= base_url('dokter/ubahDokter/') . $d['id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
+                                <a href="<?= base_url('dokter/ubah_dokter/') . $d['id_dokter']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
                                     <i class="fas fa-fw fa-pen"></i>
                                 </a>
-                                <a href="<?= base_url('dokter/hapusDokter/') . $d['id']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Kamu yakin akan menghapus <?= $d['nama_dokter']; ?> ?');">
+                                <a href="<?= base_url('dokter/hapus_dokter/') . $d['id_dokter']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus dokter <?= $d['nama_dokter']; ?> ?');">
                                     <i class="fas fa-fw fa-trash"></i>
                                 </a>
                             </td>
@@ -94,11 +94,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="spesialisasi" class="form-label">Spesialisasi</label>
-                        <select name="spesialisasi" id="spesialisasi" class="form-control">
-                            <option value="">Pilih Spesialisasi</option>
-                            <option value="Umum">Umum</option>
-                            <option value="Gigi">Gigi</option>
+                        <label for="spesialis" class="form-label">Spesialis</label>
+                        <select name="spesialis" id="spesialis" class="form-control">
+                            <option value="">Pilih Spesialis</option>
+                            <?php foreach ($spesialis as $s) : ?>
+                                <option value="<?= $s['id']; ?>"><?= $s['gelar_spesialis']; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
 

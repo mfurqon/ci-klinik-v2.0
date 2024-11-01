@@ -46,7 +46,7 @@
                                 <a href="<?= base_url('obat/ubah_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
                                     <i class="fas fa-fw fa-pen"></i>
                                 </a>
-                                <a href="<?= base_url('obat/hapus_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Kamu yakin akan menghapus <?= $o['nama_obat']; ?> ?');">
+                                <a href="<?= base_url('obat/hapus_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus obat <?= $o['nama_obat']; ?> ?');">
                                     <i class="fas fa-fw fa-trash"></i>
                                 </a>
                             </td>

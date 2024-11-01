@@ -36,7 +36,7 @@
                                 <a href="<?= base_url('user/ubah_role/') . $r['id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
                                     <i class="fas fa-pen"></i>
                                 </a>
-                                <a href="<?= base_url('user/hapus_role/') . $r['id']; ?>" onclick="return confirm('Kamu yakin akan menghapus <?= 'role' . ' ' . $r['role']; ?> ?');" class="badge bg-gradient-light text-danger p-2" title="Hapus">
+                                <a href="<?= base_url('user/hapus_role/') . $r['id']; ?>" onclick="return confirm('Apakah kamu yakin akan menghapus <?= 'role' . ' ' . $r['role']; ?> ?');" class="badge bg-gradient-light text-danger p-2" title="Hapus">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>
