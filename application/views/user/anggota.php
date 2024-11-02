@@ -41,7 +41,6 @@
                             <td><?= date('d-m-Y', strtotime($a['tanggal_dibuat'])); ?></td>
                             <td>
                                 <picture>
-                                    <source srcset="" type="image/svg+xml">
                                     <img src="<?= base_url('assets/img/profile/') . $a['gambar']; ?>" class="img-fluid img-thumbnail" alt="profile image" style="max-width: 100px;">
                                 </picture>
                             </td>

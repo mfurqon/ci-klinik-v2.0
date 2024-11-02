@@ -6,18 +6,6 @@ class Dokter extends CI_Controller
 {
     public function index()
     {
-        $data['judul'] = "Dokter";
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['role_id'] = $this->session->userdata('role_id');
-        $data['dokter'] = $this->ModelDokter->getAllDokter();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('dokter/index', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function manage()
-    {
         cek_login();
         cek_akses();
 
@@ -51,7 +39,7 @@ class Dokter extends CI_Controller
                 $gambar = $gambar_obat['file_name']; //digunakan untuk parameter tambahDokter
             } else {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
-                redirect('dokter/manage');
+                redirect('dokter');
             }
 
             $this->ModelDokter->tambahDokter($gambar);
@@ -61,83 +49,8 @@ class Dokter extends CI_Controller
                     &#129395; Data Dokter Berhasil ditambah
                 </div>'
             );
-            redirect('dokter/manage');
+            redirect('dokter');
         }
-    }
-
-    public function spesialis()
-    {
-        cek_login();
-        cek_akses();
-
-        $data['judul'] = "Data Spesialis Dokter";
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['spesialis'] = $this->ModelDokter->getAllSpesialis();
-
-        $this->ModelDokter->form_validation_spesialis();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/adm_header', $data);
-            $this->load->view('templates/adm_sidebar', $data);
-            $this->load->view('templates/adm_topbar', $data);
-            $this->load->view('dokter/spesialis', $data);
-            $this->load->view('templates/adm_footer');
-        } else {
-            $this->ModelDokter->tambahSpesialis();
-            $this->session->set_flashdata(
-                'pesan',
-                '<div class="alert alert-success alert-message">
-                    &#129395; Data Spesialis Dokter Berhasil ditambah
-                </div>'
-            );
-            redirect('dokter/spesialis');
-        }
-    }
-
-    public function ubah_spesialis()
-    {
-        cek_login();
-        cek_akses();
-
-        $data['judul'] = 'Ubah Spesialis Dokter';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['spesialis'] = $this->ModelDokter->getSpesialisById(['spesialis.id' => $this->uri->segment(3)]);
-
-        $this->ModelDokter->form_validation_spesialis();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/adm_header', $data);
-            $this->load->view('templates/adm_sidebar', $data);
-            $this->load->view('templates/adm_topbar', $data);
-            $this->load->view('dokter/ubah-spesialis', $data);
-            $this->load->view('templates/adm_footer');
-        } else {
-            $this->ModelDokter->ubahSpesialis();
-            $this->session->set_flashdata(
-                'pesan',
-                '<div class="alert alert-success alert-message">
-                    &#129395; Data Spesialis Dokter Berhasil diubah
-                </div>'
-            );
-            redirect('dokter/spesialis');
-        }
-    }
-
-    public function hapus_spesialis()
-    {
-        cek_login();
-        cek_akses();
-
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-
-        $this->ModelDokter->hapusSpesialis($this->uri->segment(3));
-        $this->session->set_flashdata(
-            'pesan',
-            '<div class="alert alert-success alert-message">
-                &#129395; Data Spesialis Dokter Berhasil dihapus
-            </div>'
-        );
-        redirect('dokter/spesialis');
     }
 
     public function detail_dokter()
@@ -233,7 +146,7 @@ class Dokter extends CI_Controller
                     &#129395; Data Dokter Berhasil diubah
                 </div>'
             );
-            redirect('dokter/manage');
+            redirect('dokter');
         }
     }
 
@@ -255,10 +168,85 @@ class Dokter extends CI_Controller
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">
-                Data Dokter Berhasil dihapus
+                &#129395; Data Dokter Berhasil dihapus
             </div>'
         );
-        redirect('dokter/manage');
+        redirect('dokter');
+    }
+
+    public function spesialis()
+    {
+        cek_login();
+        cek_akses();
+
+        $data['judul'] = "Data Spesialis Dokter";
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['spesialis'] = $this->ModelDokter->getAllSpesialis();
+
+        $this->ModelDokter->form_validation_spesialis();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/adm_header', $data);
+            $this->load->view('templates/adm_sidebar', $data);
+            $this->load->view('templates/adm_topbar', $data);
+            $this->load->view('dokter/spesialis', $data);
+            $this->load->view('templates/adm_footer');
+        } else {
+            $this->ModelDokter->tambahSpesialis();
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-success alert-message">
+                    &#129395; Data Spesialis Dokter Berhasil ditambah
+                </div>'
+            );
+            redirect('dokter/spesialis');
+        }
+    }
+
+    public function ubah_spesialis()
+    {
+        cek_login();
+        cek_akses();
+
+        $data['judul'] = 'Ubah Spesialis Dokter';
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['spesialis'] = $this->ModelDokter->getSpesialisById(['spesialis.id' => $this->uri->segment(3)]);
+
+        $this->ModelDokter->form_validation_spesialis();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/adm_header', $data);
+            $this->load->view('templates/adm_sidebar', $data);
+            $this->load->view('templates/adm_topbar', $data);
+            $this->load->view('dokter/ubah-spesialis', $data);
+            $this->load->view('templates/adm_footer');
+        } else {
+            $this->ModelDokter->ubahSpesialis();
+            $this->session->set_flashdata(
+                'pesan',
+                '<div class="alert alert-success alert-message">
+                    &#129395; Data Spesialis Dokter Berhasil diubah
+                </div>'
+            );
+            redirect('dokter/spesialis');
+        }
+    }
+
+    public function hapus_spesialis()
+    {
+        cek_login();
+        cek_akses();
+
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
+
+        $this->ModelDokter->hapusSpesialis($this->uri->segment(3));
+        $this->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-success alert-message">
+                &#129395; Data Spesialis Dokter Berhasil dihapus
+            </div>'
+        );
+        redirect('dokter/spesialis');
     }
 
     public function lihatDokter($id)

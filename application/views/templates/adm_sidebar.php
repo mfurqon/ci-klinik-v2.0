@@ -31,7 +31,7 @@
             </a>
         </li>
         <li class="nav-item <?= ($judul == "Data Obat") ? 'active' : ''; ?>">
-            <a href="<?= base_url('obat/manage'); ?>" class="nav-link pb-0">
+            <a href="<?= base_url('obat'); ?>" class="nav-link pb-0">
                 <i class="fas fa-fw fa-pills"></i>
                 <span>Data Obat</span>
             </a>
@@ -43,7 +43,7 @@
             </a>
         </li>
         <li class="nav-item <?= ($judul == "Data Dokter") ? 'active' : ''; ?>">
-            <a href="<?= base_url('dokter/manage'); ?>" class="nav-link pb-0">
+            <a href="<?= base_url('dokter'); ?>" class="nav-link pb-0">
                 <i class="fas fa-fw fa-user-doctor"></i>
                 <span>Data Dokter</span>
             </a>
@@ -72,6 +72,58 @@
     <hr class="sidebar-divider mt-3">
 
     <div class="sidebar-heading">
+        Transaksi
+    </div>
+
+    <li class="nav-item <?= ($judul == "Data Janji Temu") ? 'active' : ''; ?>">
+        <a href="<?= base_url('janji_temu'); ?>" class="nav-link pb-0">
+            <i class="fa-fw fa-regular fa-clipboard"></i>
+            <span>Data Janji Temu</span>
+        </a>
+    </li>
+    <li class="nav-item <?= ($judul == "Data Pemesanan Obat") ? 'active' : ''; ?>">
+        <a href="<?= base_url('obat/pemesanan_obat'); ?>" class="nav-link pb-0">
+            <i class="fas fa-fw fa-receipt"></i>
+            <span>Data Pemesanan Obat</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider mt-3">
+
+    <div class="sidebar-heading">
+        Laporan
+    </div>
+
+    <li class="nav-item <?= ($judul == "Laporan Data Obat") ? 'active' : ''; ?>">
+        <a href="<?= base_url('laporan/obat'); ?>" class="nav-link pb-0">
+            <i class="fa-fw fa-solid fa-clipboard"></i>
+            <span>Laporan Data Obat</span>
+        </a>
+    </li>
+    <li class="nav-item <?= ($judul == "Laporan Data Dokter") ? 'active' : ''; ?>">
+        <a href="<?= base_url('laporan/dokter'); ?>" class="nav-link pb-0">
+            <i class="fa-fw fa-solid fa-clipboard"></i>
+            <span>Laporan Data Dokter</span>
+        </a>
+    </li>
+    <li class="nav-item <?= ($judul == "Laporan Janji Temu") ? 'active' : ''; ?>">
+        <a href="<?= base_url('laporan/janji_temu'); ?>" class="nav-link pb-0">
+            <i class="fa-fw fa-solid fa-clipboard"></i>
+            <span>Laporan Janji Temu</span>
+        </a>
+    </li>
+    <li class="nav-item <?= ($judul == "Laporan Pemesanan Obat") ? 'active' : ''; ?>">
+        <a href="<?= base_url('laporan/pemesanan_obat'); ?>" class="nav-link pb-0">
+            <i class="fa-fw fa-solid fa-clipboard"></i>
+            <span>Laporan Pemesanan Obat</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider mt-3">
+
+    <div class="sidebar-heading">
         User
     </div>
 
@@ -79,24 +131,6 @@
         <a href="<?= base_url('home'); ?>" class="nav-link pb-0">
             <i class="fas fa-fw fa-home"></i>
             <span>Beranda</span>
-        </a>
-    </li>
-    <li class="nav-item <?= ($judul == "Profil Saya") ? 'active' : ''; ?>">
-        <a href="<?= base_url('user'); ?>" class="nav-link pb-0">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Profil Saya</span>
-        </a>
-    </li>
-    <li class="nav-item <?= ($judul == "Ubah Profil") ? 'active' : ''; ?>">
-        <a href="<?= base_url('user/ubah_profil'); ?>" class="nav-link pb-0">
-            <i class="fas fa-fw fa-user-edit"></i>
-            <span>Ubah Profil</span>
-        </a>
-    </li>
-    <li class="nav-item <?= ($judul == "Ubah Password") ? 'active' : ''; ?>">
-        <a href="<?= base_url('user/ubah_password'); ?>" class="nav-link pb-0">
-            <i class="fas fa-fw fa-key"></i>
-            <span>Ubah Password</span>
         </a>
     </li>
     <li class="nav-item <?= ($judul == "Logout") ? 'active' : ''; ?>">

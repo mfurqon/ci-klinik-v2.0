@@ -1,12 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class JanjiTemu extends CI_Controller
+class Janji_Temu extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        cek_masuk();
+        cek_login();
+        cek_akses();
     }
 
     public function index()
