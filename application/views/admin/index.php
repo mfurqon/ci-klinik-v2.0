@@ -7,7 +7,7 @@
             <div class="card shadow">
                 <div class="card-body d-flex align-items-center">
                     <div class="col text-center">
-                        <img src="<?= base_url('assets/img/logo-klinik-biru-remove-bg.webp'); ?>" alt="Klinik Icon" class="img-fluid mb-3" style="max-width: 150px;">
+                        <img src="<?= base_url('assets/img/klinik/logo-klinik-biru-remove-bg.webp'); ?>" alt="Klinik Icon" class="img-fluid mb-3" style="max-width: 150px;">
                         <h2 class="h3 text-gray-800">Selamat Datang <span class="text-primary"><?= $user['nama']; ?></span></h2>
                         <h3 class="h4 text-gray-800">Ini adalah Halaman Dashboard Administrator CI Klinik</h3>
 

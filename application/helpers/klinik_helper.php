@@ -30,11 +30,26 @@ function cek_sudah_login()
     if ($ci->session->userdata('email')) {
         $ci->session->set_flashdata(
             'pesan',
-            '<div class="alert alert-message aler-danger" role="alert">
+            '<div class="alert alert-danger" role="alert">
                 Anda sudah login!!
             </div>'
         );
         redirect('user');
+    }
+}
+
+function cek_sudah_login_member()
+{
+    $ci = get_instance();
+
+    if ($ci->session->userdata('email')) {
+        $ci->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-message alert-danger" role="alert">
+                Anda sudah login!!
+            </div>'
+        );
+        redirect('home');
     }
 }
 

@@ -23,19 +23,8 @@ class ModelUser extends CI_Model
         return $this->db->get('user')->num_rows();
     }
 
-    public function simpanDataUser()
+    public function simpanDataUser($data)
     {
-        $data = [
-            'nama' => htmlspecialchars($this->input->post('nama', true)),
-            'email' => htmlspecialchars($this->input->post('email', true)),
-            'gambar' => 'default.jpg',
-            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-            'alamat' => htmlspecialchars($this->input->post('alamat', true)),
-            'role_id' => $this->input->post('role'),
-            'is_active' => 1,
-            'tanggal_dibuat' => date('d-m-Y')
-        ];
-
         $this->db->insert('user', $data);
     }
 

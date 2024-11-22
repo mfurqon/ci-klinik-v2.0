@@ -1,5 +1,19 @@
         <div class="container-fluid bg-primary p-0 mb-5">
 
+            <?php if ($this->session->flashdata('pesan')) : ?>
+                <script>
+                    Swal.fire({
+                        title: 'Berhasil!',
+                        text: '<?= $this->session->flashdata('pesan') ?>',
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                        customClass: {
+                            confirmButton: 'btn btn-primary'
+                        }
+                    });
+                </script>
+            <?php endif; ?>
+
             <!-- Start Header -->
             <div class="row align-items-center flex-column-reverse flex-lg-row m-0">
                 <div class="col-lg-6 p-5">
@@ -44,7 +58,7 @@
                 <div class="col-lg-6 p-0">
                     <div class="owl-item active">
                         <div class="owl-carousel-item position-relative">
-                            <img src="<?= base_url('assets/img/ruang-klinik.jpg'); ?>" alt="gambar ruang klinik" class="img-fluid">
+                            <img src="<?= base_url('assets/img/klinik/ruang-klinik.jpg'); ?>" alt="gambar ruang klinik" class="img-fluid">
                         </div>
                     </div>
                 </div>

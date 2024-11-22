@@ -18,6 +18,9 @@
 
     <title><?= $judul ?></title>
 
+    <!-- Include the Bootstrap 4 Sweet Alert theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function confirmSubmissionJanjiTemu(event) {
             var isConfirmed = confirm('Apakah anda sudah yakin buat janji temu? Data yang sudah dikirim tidak dapat diubah!!');
@@ -42,7 +45,7 @@
         <div class="container">
             <a class="navbar-brand" href="<?= base_url(); ?>">
                 <h1 class="m-0 text-primary">
-                    <img class="img" src="<?= base_url('assets/img/logo-klinik-biru-remove-bg.webp'); ?>" alt="logo-klinik">
+                    <img class="img" src="<?= base_url('assets/img/klinik/logo-klinik-biru-remove-bg.webp'); ?>" alt="logo-klinik">
                     CI Klinik
                 </h1>
             </a>
@@ -57,9 +60,9 @@
                     <a href="<?= base_url('home/obat'); ?>" class="nav-item nav-link <?= ($judul == 'Obat') ? 'text-primary' : ''; ?> ">Obat</a>
                     <a href="<?= base_url('home/tentang'); ?>" class="nav-item nav-link <?= ($judul == 'Tentang') ? 'text-primary' : ''; ?>">Tentang</a>
                     <?php if ($user) : ?>
-                        <a href="<?= base_url('autentifikasi/logout'); ?>" class="nav-item nav-link">Logout</a>
+                        <a href="<?= base_url('member/logout'); ?>" class="nav-item nav-link">Logout</a>
                     <?php else : ?>
-                        <a href="<?= base_url('autentifikasi'); ?>" class="nav-item nav-link">Login</a>
+                        <a href="<?= base_url('member'); ?>" class="nav-item nav-link">Login</a>
                     <?php endif; ?>
                 </div>
                 <!-- <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Janji Temu<i class="fa fa-arrow-right ms-3"></i></a> -->

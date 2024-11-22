@@ -37,7 +37,18 @@ class User extends CI_Controller
             $this->load->view('user/anggota', $data);
             $this->load->view('templates/adm_footer');
         } else {
-            $this->ModelUser->simpanDataUser(); //Menggunakan Model
+            $data = [
+                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'email' => htmlspecialchars($this->input->post('email', true)),
+                'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+                'gambar' => 'default.jpg',
+                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'role_id' => htmlspecialchars($this->input->post('role', true)),
+                'is_active' => 1,
+                'tanggal_dibuat' => date('d-m-Y')
+            ];
+
+            $this->ModelUser->simpanDataUser($data);
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message" role="alert">

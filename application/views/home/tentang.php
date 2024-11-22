@@ -1,6 +1,6 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style="visibility: visible;         animation-delay: 0.1s; animation-name: fadeIn;
-    background: url(../../../../ci-klinik/assets/img/suntik.jpg) center no-repeat;
+    background: url(../../../../ci-klinik-v2.0/assets/img/klinik/suntik.jpg) center no-repeat;
     background-size: cover;
     text-shadow: 0 0 30px rgba(0, 0, 0, 1);
 ">
@@ -16,8 +16,8 @@
         <div class="row g-5">
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                 <div class="d-flex flex-column">
-                    <img class="img-fluid rounded w-75 align-self-end" src="<?= base_url('assets/img/ruang-klinik-3.jpg'); ?>" alt="gambar ruang klinik">
-                    <img class="img-fluid rounded w-50 bg-white pt-3 pe-3" src="<?= base_url('assets/img/gambar-alat-medis.jpeg'); ?>" alt="gambar alat medis" style="margin-top: -25%;">
+                    <img class="img-fluid rounded w-75 align-self-end" src="<?= base_url('assets/img/klinik/ruang-klinik-3.jpg'); ?>" alt="gambar ruang klinik">
+                    <img class="img-fluid rounded w-50 bg-white pt-3 pe-3" src="<?= base_url('assets/img/klinik/gambar-alat-medis.jpeg'); ?>" alt="gambar alat medis" style="margin-top: -25%;">
                 </div>
             </div>
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
@@ -94,7 +94,7 @@
             </div>
             <div class="col-lg-6 pe-lg-0 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute img-fluid w-100 h-100" src="<?= base_url('assets/img/ruang-klinik.jpg'); ?>" style="object-fit: cover;" alt="gambar ruang klinik">
+                    <img class="position-absolute img-fluid w-100 h-100" src="<?= base_url('assets/img/klinik/ruang-klinik.jpg'); ?>" style="object-fit: cover;" alt="gambar ruang klinik">
                 </div>
             </div>
         </div>
