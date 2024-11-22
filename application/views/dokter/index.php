@@ -24,13 +24,13 @@
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
                     <div class="team-item position-relative rounded shadow overflow-hidden">
                         <div class="overflow-hidden">
-                            <img class="img-fluid" src="<?= base_url('assets/img/upload-dokter/') . $d['gambar_dokter']; ?>" alt="gambar dokter">
+                            <img class="img-fluid" src="<?= base_url('assets/img/upload-dokter/') . $d['gambar']; ?>" alt="gambar dokter">
                         </div>
                         <div class="team-text bg-light text-center p-4">
                             <h5><?= $d['nama_dokter']; ?></h5>
-                            <p class="text-primary">Spesialisasi <?= $d['spesialisasi']; ?></p>
+                            <p class="text-primary">Spesialis <?= $d['gelar_spesialis']; ?></p>
                             <div class="team-social text-center">
-                                <a href="<?= base_url('dokter/lihatDokter/') . $d['id']; ?>" class="btn btn-primary">
+                                <a href="<?= base_url('dokter/lihat_dokter/') . $d['id_dokter']; ?>" class="btn btn-primary">
                                     <i class="fas fa-eye"></i>
                                     Lihat
                                 </a>

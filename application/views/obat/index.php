@@ -24,10 +24,10 @@
                 <div class="col-lg-3 col-md-4 col-6 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
                     <div class="team-item position-relative rounded shadow overflow-hidden">
                         <div class="overflow-hidden">
-                            <img class="img-fluid" src="<?= base_url('assets/img/upload-obat/') . $o['gambar_obat']; ?>" alt="gambar obat">
+                            <img class="img-fluid" src="<?= base_url('assets/img/upload-obat/') . $o['gambar']; ?>" alt="gambar obat">
                         </div>
                         <div class="team-text bg-light text-center p-4">
-                            <h5><?= $o['nama_obat']; ?></h5>
+                            <h5><?= $o['nama']; ?></h5>
                             <p class="text-primary">Rp <?= $o['harga']; ?></p>
                             <div class="team-social text-center">
                                 <a href="<?= base_url('obat/beliObat/') . $o['id']; ?>" class="btn btn-primary">

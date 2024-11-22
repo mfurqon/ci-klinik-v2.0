@@ -1,6 +1,5 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
     <div class="row justify-content-center">
         <div class="col-lg-8">
 
@@ -10,15 +9,15 @@
             <div class="card mb-4 shadow-sm border-0">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="<?= base_url('assets/img/upload-dokter/') . $dokter['gambar_dokter']; ?>" class="img-fluid rounded-start" alt="gambar dokter" style="object-fit: cover; height: 100%;">
+                        <img src="<?= base_url('assets/img/upload-dokter/') . $dokter['gambar']; ?>" class="img-fluid rounded-start" alt="gambar-dokter" style="object-fit: cover; height: 100%;">
                     </div>
                     <div class="col-md-8 bg-light">
                         <div class="card-body p-4">
                             <h5 class="card-title text-primary"><?= $dokter['nama_dokter']; ?></h5>
-                            <p class="card-text"><strong>Spesialisasi:</strong> <?= $dokter['spesialisasi']; ?></p>
+                            <p class="card-text"><strong>Spesialis:</strong> <?= $dokter['gelar_spesialis']; ?></p>
                             <p class="card-text"><strong>Jam Operasional:</strong> <?= $dokter['jam_masuk'] . ' - ' . $dokter['jam_keluar']; ?></p>
 
-                            <a href="<?= base_url('dokter'); ?>" class="btn btn-outline-primary mt-3">Kembali</a>
+                            <button class="btn btn-outline-primary mt-3" onclick="window.history.back()">Kembali</button>
                         </div>
                     </div>
                 </div>

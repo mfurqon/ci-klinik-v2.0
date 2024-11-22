@@ -49,7 +49,7 @@ class Home extends CI_Controller
     {
         $data['judul'] = "Dokter";
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->ModelDokter->getAllDokter();
+        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialis();
 
         $this->load->view('templates/header', $data);
         $this->load->view('dokter/index', $data);

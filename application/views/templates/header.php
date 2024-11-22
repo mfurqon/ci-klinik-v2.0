@@ -53,8 +53,8 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="<?= base_url(); ?>" class="nav-item nav-link <?= ($judul == 'Beranda') ? 'text-primary' : ''; ?>">Beranda</a>
-                    <a href="<?= base_url('dokter'); ?>" class="nav-item nav-link <?= ($judul == 'Dokter') ? 'text-primary' : ''; ?>">Dokter</a>
-                    <a href="<?= base_url('obat'); ?>" class="nav-item nav-link <?= ($judul == 'Obat') ? 'text-primary' : ''; ?> ">Obat</a>
+                    <a href="<?= base_url('home/dokter'); ?>" class="nav-item nav-link <?= ($judul == 'Dokter') ? 'text-primary' : ''; ?>">Dokter</a>
+                    <a href="<?= base_url('home/obat'); ?>" class="nav-item nav-link <?= ($judul == 'Obat') ? 'text-primary' : ''; ?> ">Obat</a>
                     <a href="<?= base_url('home/tentang'); ?>" class="nav-item nav-link <?= ($judul == 'Tentang') ? 'text-primary' : ''; ?>">Tentang</a>
                     <?php if ($user) : ?>
                         <a href="<?= base_url('autentifikasi/logout'); ?>" class="nav-item nav-link">Logout</a>

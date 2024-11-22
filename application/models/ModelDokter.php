@@ -13,7 +13,11 @@ class ModelDokter extends CI_Model
     public function getDokterLimit($limit = 4)
     {
         $this->db->limit($limit);
-        return $this->db->get('dokter', $limit)->result_array();
+        $this->db->select('dokter.id AS id_dokter, dokter.nip, dokter.nama AS nama_dokter, dokter.jenis_kelamin, dokter.telepon, dokter.email, dokter.alamat, dokter.jam_masuk, dokter.jam_keluar, dokter.tanggal_ditambahkan, dokter.gambar, spesialis.id AS id_spesialis, spesialis.gelar_spesialis');
+        $this->db->from('dokter');
+        $this->db->join('spesialis', 'dokter.id_spesialis = spesialis.id');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function hitungDokter()

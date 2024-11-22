@@ -23,18 +23,18 @@
                                 </div>
                                 <div class="m-2">
                                         <i class="fa-solid fa-angle-right me-1"></i>
-                                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="<?= base_url('obat#beli-obat'); ?>">Beli Obat</a>
+                                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="<?= base_url('home/obat#beli-obat'); ?>">Beli Obat</a>
                                 </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
                                 <h5 class="text-light mb-4">Quick Links</h5>
                                 <div class="m-2">
                                         <i class="fa-solid fa-angle-right me-1"></i>
-                                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="<?= base_url('dokter'); ?>">Dokter</a>
+                                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="<?= base_url('home/dokter'); ?>">Dokter</a>
                                 </div>
                                 <div class="m-2">
                                         <i class="fa-solid fa-angle-right me-1"></i>
-                                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="<?= base_url('obat'); ?>">Obat</a>
+                                        <a class="link-offset-2 link-underline link-underline-opacity-0" href="<?= base_url('home/obat'); ?>">Obat</a>
                                 </div>
                                 <div class="m-2">
                                         <i class="fa-solid fa-angle-right me-1"></i>

@@ -249,12 +249,11 @@ class Dokter extends CI_Controller
         redirect('dokter/spesialis');
     }
 
-    public function lihatDokter($id)
+    public function lihat_dokter()
     {
         $data['judul'] = 'Detail Dokter';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['role_id'] = $this->session->userdata('role_id');
-        $data['dokter'] = $this->ModelDokter->getDokterById($id);
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisById(['dokter.id' => $this->uri->segment(3)]);
 
         $this->load->view('templates/header', $data);
         $this->load->view('dokter/lihat-dokter', $data);

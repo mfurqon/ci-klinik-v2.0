@@ -67,12 +67,12 @@
                         <div class="col-lg-3 col-md-6 mb-4">
                             <div class="team-item position-relative rounded overflow-hidden shadow">
                                 <div class="overflow-hidden">
-                                    <img src="<?= base_url('assets/img/upload-dokter/') . $dl['gambar_dokter']; ?>" alt="gambar_dokter" title="gambar dokter" class="img-fluid">
+                                    <img src="<?= base_url('assets/img/upload-dokter/') . $dl['gambar']; ?>" alt="gambar_dokter" title="gambar dokter" class="img-fluid">
                                 </div>
 
                                 <div class="team-text bg-light text-center p-4">
                                     <h5><?= $dl['nama_dokter']; ?></h5>
-                                    <p class="text-primary">Spesialisasi <?= $dl['spesialisasi']; ?></p>
+                                    <p class="text-primary">Spesialis <?= $dl['gelar_spesialis']; ?></p>
                                 </div>
                             </div>
                         </div>
