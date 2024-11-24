@@ -14,14 +14,14 @@
 <!-- Obat Start -->
 <div class="container-xxl py-5">
     <div class="container">
-        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px; visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
             <p class="d-inline-block border rounded-pill py-1 px-4">Obat</p>
             <h1>Obat Kami</h1>
         </div>
 
         <div class="row g-4" id="beli-obat">
             <?php foreach ($obat as $o) : ?>
-                <div class="col-lg-3 col-md-4 col-6 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                <div class="col-lg-3 col-md-4 col-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="team-item position-relative rounded shadow overflow-hidden">
                         <div class="overflow-hidden">
                             <img class="img-fluid" src="<?= base_url('assets/img/upload-obat/') . $o['gambar']; ?>" alt="gambar obat">
@@ -32,7 +32,6 @@
                             <div class="team-social text-center">
                                 <a href="<?= base_url('obat/beliObat/') . $o['id']; ?>" class="btn btn-primary">
                                     <i class="fas fa-shopping-cart"></i>
-                                    Beli
                                 </a>
                             </div>
                         </div>
