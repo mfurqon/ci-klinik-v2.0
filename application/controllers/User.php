@@ -41,6 +41,7 @@ class User extends CI_Controller
                 'nama' => htmlspecialchars($this->input->post('nama', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+                'telepon' => htmlspecialchars($this->input->post('telepon', true)),
                 'gambar' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => htmlspecialchars($this->input->post('role', true)),
@@ -88,14 +89,13 @@ class User extends CI_Controller
     public function ubah_anggota()
     {
         cek_login();
-        cek_akses();
 
         $data['judul'] = 'Ubah Data Anggota';
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['anggota'] = $this->ModelUser->getJoinRoleIdById(['user_id' => $this->uri->segment(3)]);
         $data['role'] = $this->ModelUser->getAllRole();
 
-        $this->ModelUser->form_validation_ubah_anggota();
+        $this->ModelUser->form_validation_ubah_data_user();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/adm_header', $data);
@@ -106,6 +106,8 @@ class User extends CI_Controller
         } else {
             $nama = $this->input->post('nama', true);
             $id = $this->input->post('id', true);
+            $telepon = $this->input->post('telepon', true);
+            $alamat = $this->input->post('alamat', true);
             $role = $this->input->post('role_id', true);
 
             // Jika ada gambar yang akan di-upload
@@ -132,6 +134,8 @@ class User extends CI_Controller
 
             $this->db->set('role_id', $role);
             $this->db->set('nama', $nama);
+            $this->db->set('telepon', $telepon);
+            $this->db->set('alamat', $alamat);
             $this->db->where('id', $id);
             $this->db->update('user');
 
@@ -148,7 +152,6 @@ class User extends CI_Controller
     public function hapus_anggota()
     {
         cek_login();
-        cek_akses();
 
         $where = ['id' => $this->uri->segment(3)];
         $this->ModelUser->hapusAnggota($where);
@@ -168,7 +171,6 @@ class User extends CI_Controller
     public function ubah_role()
     {
         cek_login();
-        cek_akses();
 
         $data['judul'] = 'Ubah Role';
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->input->post('email')]);
@@ -197,7 +199,6 @@ class User extends CI_Controller
     public function hapus_role()
     {
         cek_login();
-        cek_akses();
 
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->input->post('email')]);
 
@@ -214,12 +215,11 @@ class User extends CI_Controller
     public function ubah_profil()
     {
         cek_login();
-        cek_akses();
 
         $data['judul'] = 'Ubah Profil';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
+        $this->ModelUser->form_validation_ubah_data_user();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/adm_header', $data);
@@ -230,6 +230,8 @@ class User extends CI_Controller
         } else {
             $nama = $this->input->post('nama');
             $email = $this->input->post('email');
+            $telepon = $this->input->post('telepon');
+            $alamat = $this->input->post('alamat');
 
             // cek jika ada gambar yang akan diupload
             $upload_image = $_FILES['gambar'];
@@ -253,6 +255,8 @@ class User extends CI_Controller
             }
 
             $this->db->set('nama', $nama);
+            $this->db->set('telepon', $telepon);
+            $this->db->set('alamat', $alamat);
             $this->db->where('email', $email);
             $this->db->update('user');
 
@@ -268,7 +272,6 @@ class User extends CI_Controller
     public function ubah_password()
     {
         cek_login();
-        cek_akses();
 
         $data['judul'] = 'Ubah Password';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();

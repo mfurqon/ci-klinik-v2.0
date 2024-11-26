@@ -10,7 +10,7 @@
             <div class="col-lg-6">
 
                 <div class="bg-light rounded d-flex align-items-center p-5 shadow">
-                    <form action="<?= base_url('obat/beliObat/' . $obat['id']); ?>" method="post" onsubmit="confirmSubmissionPesanObat(event)">
+                    <form action="<?= base_url('obat/beli_obat/' . $obat['id']); ?>" method="post" onsubmit="confirmSubmissionPesanObat(event)">
                         <?php
                         $date = date('Y-m-d H:i:s', time()); ?>
                         <input type="datetime" class="form-control" id="waktu_pesan" name="waktu_pesan" value="<?= $date; ?>" hidden>

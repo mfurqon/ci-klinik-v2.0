@@ -113,3 +113,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Assets Gambar
+/assets/img/upload-dokter/
+/assets/img/upload-obat/
+/assets/img/profile/

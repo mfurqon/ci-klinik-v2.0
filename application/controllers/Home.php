@@ -11,26 +11,29 @@ class Home extends CI_Controller
         $data['dokter'] = $this->ModelDokter->getAllDokter();
         $data['dokter_limit'] = $this->ModelDokter->getDokterLimit();
 
-        $this->form_validation->set_rules('nama', 'Nama', 'required|trim|min_length[3]');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-        $this->form_validation->set_rules('telepon', 'Nomor Handphone', 'required|trim|numeric');
-        $this->form_validation->set_rules('dokter', 'Dokter', 'required');
-        $this->form_validation->set_rules('tanggal_temu', 'Tanggal Temu', 'required');
-        $this->form_validation->set_rules('jam_temu', 'Jam Temu', 'required');
+        $this->load->view('templates/header', $data);
+        $this->load->view('home/index', $data);
+        $this->load->view('templates/footer');
+    }
 
-        if ($this->form_validation->run() == false) {
+    public function janji_temu()
+    {
+        cek_belum_login();
+
+        $data['judul'] = "Janji Temu";
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['dokter'] = $this->ModelDokter->getAllDokter();
+
+        $this->ModelJanjiTemu->form_validation_buat_janji_temu();
+
+        if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
-            $this->load->view('home/index', $data);
+            $this->load->view('home/janji-temu', $data);
             $this->load->view('templates/footer');
         } else {
-            cek_login();
-
             $this->ModelJanjiTemu->tambahJanjiTemu($data);
-            echo "<script>
-                    alert('Janji Temu berhasil dibuat');
-                    window.location.href='" . base_url('home') . "';
-                </script>";
-            exit;
+            $this->session->set_flashdata('pesan', '🥳 Janji Temu berhasil dibuat');
+            redirect('home');
         }
     }
 
@@ -63,6 +66,17 @@ class Home extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('home/tentang');
+        $this->load->view('templates/footer');
+    }
+
+    public function riwayat_janji_temu()
+    {
+        $data['judul'] = 'Riwayat Janji Temu';
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['janji_temu'] = $this->ModelJanjiTemu->getJanjiTemuById($data['user']['id']);
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('home/riwayat-janji-temu', $data);
         $this->load->view('templates/footer');
     }
 }

@@ -100,6 +100,11 @@
                     </div>
 
                     <div class="form-group">
+                        <input type="text" class="form-control form-control-user" id="telepon" name="telepon" placeholder="Masukkan Nomor Telepon" value="<?= set_value('telepon'); ?>">
+                        <?= form_error('telepon', '<small class="text-danger pl-3>', '</small>') ?>
+                    </div>
+
+                    <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="Masukkan Alamat" value="<?= set_value('alamat'); ?>">
                         <?= form_error('alamat', '<small class="text-danger pl-3>', '</small>') ?>
                     </div>

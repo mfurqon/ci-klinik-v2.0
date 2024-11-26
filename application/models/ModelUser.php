@@ -60,7 +60,7 @@ class ModelUser extends CI_Model
 
     public function getJoinRoleIdById($userId)
     {
-        $this->db->select('user.id AS user_id, user.nama, user.email, user.tanggal_dibuat, user.gambar, user.role_id, role.id AS role_id, role.role AS role_nama');
+        $this->db->select('user.id AS user_id, user.nama, user.email, user.telepon, user.alamat, user.tanggal_dibuat, user.gambar, user.role_id, role.id AS role_id, role.role AS role_nama');
         $this->db->from('user');
         $this->db->join('role', 'user.role_id = role.id');
         $query = $this->db->where('user.id', $userId['user_id']);
@@ -104,15 +104,17 @@ class ModelUser extends CI_Model
         $this->form_validation->set_rules('nama', 'Nama Anggota', 'required|trim');
         $this->form_validation->set_rules('email', 'Alamat Email', 'required|trim|valid_email|is_unique[user.email]');
         $this->form_validation->set_rules('role', 'Role', 'required');
+        $this->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric|min_length[5]');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|trim|min_length[3]|matches[password1]');
     }
 
-    public function form_validation_ubah_anggota()
+    public function form_validation_ubah_data_user()
     {
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
-        $this->form_validation->set_rules('role_id', 'Role', 'required');
+        $this->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric|min_length[5]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim|min_length[7]');
     }
 
     public function form_validation_ubah_password()

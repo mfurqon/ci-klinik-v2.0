@@ -27,6 +27,22 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="telepon" class="col-sm-3 col-form-label">Nomor Telepon</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="telepon" name="telepon" value="<?= $anggota['telepon']; ?>">
+                            <?= form_error('telepon', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="alamat" class="col-sm-3 col-form-label">Alamat Lengkap</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $anggota['alamat']; ?>">
+                            <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="role_id" class="col-sm-3 col-form-label">Ubah Role</label>
                         <div class="col-sm-9">
                             <select name="role_id" id="role_id" class="form-control">

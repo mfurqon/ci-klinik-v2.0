@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <form action="<?= base_url('user/ubahPassword'); ?>" method="post">
+            <form action="<?= base_url('user/ubah_password'); ?>" method="post">
                 <div class="form-group">
                     <label for="password_lama">Password Saat Ini</label>
                     <input type="password" class="form-control" id="password_lama" name="password_lama">

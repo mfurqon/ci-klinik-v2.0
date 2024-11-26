@@ -241,7 +241,7 @@ class Obat extends CI_Controller
         redirect('obat/jenis_obat');
     }
 
-    public function beliObat($id)
+    public function beli_obat($id)
     {
         cek_belum_login();
 

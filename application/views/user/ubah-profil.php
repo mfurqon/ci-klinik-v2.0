@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-9">
 
-            <?= form_open_multipart('user/ubahProfil'); ?>
+            <?= form_open_multipart('user/ubah_profil'); ?>
 
             <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
@@ -18,6 +18,22 @@
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="nama" name="nama" value="<?= $user['nama']; ?>">
                     <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="telepon" class="col-sm-2 col-form-label">Nomor Telepon</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="telepon" name="telepon" value="<?= $user['telepon']; ?>">
+                    <?= form_error('telepon', '<small class="text-danger pl-3">', '</small>'); ?>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="alamat" class="col-sm-2 col-form-label">Alamat Lengkap</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $user['alamat']; ?>">
+                    <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
             </div>
 

@@ -23,6 +23,17 @@ function cek_login()
     }
 }
 
+// jika user belum login, maka user akan di-redirect ke halaman login
+function cek_belum_login()
+{
+    $ci = get_instance();
+
+    if(!$ci->session->userdata('email')) {
+        redirect('member');
+    }
+}
+
+// jika user sudah login, maka halaman login dan registrasi akan diblok
 function cek_sudah_login()
 {
     $ci = get_instance();
@@ -38,6 +49,7 @@ function cek_sudah_login()
     }
 }
 
+// jika user sudah login, maka halaman login dan daftar akan diblok
 function cek_sudah_login_member()
 {
     $ci = get_instance();
@@ -53,18 +65,13 @@ function cek_sudah_login_member()
     }
 }
 
+// jika role_id user bukan administrator, maka user akan di-redirect ke halaman home
 function cek_akses()
 {
     $ci = get_instance();
 
     $role_id = $ci->session->userdata('role_id');
     if ($role_id != 1) {
-        $ci->session->set_flashdata(
-            'pesan',
-            '<div class="alert alert-message alert-danger" role="alert">
-                Akses tidak diizinkan!!
-            </div>'
-        );
-        redirect('home');
+        redirect('member/blok');
     }
 }

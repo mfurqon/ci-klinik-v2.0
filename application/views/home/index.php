@@ -98,99 +98,30 @@
             <!-- End Doctors -->
 
 
-            <!-- Start Janji Temu -->
-            <div class="container-xxl py-5" id="form-janji-temu">
+            <!-- Janji Temu Start -->
+            <div class="container-xxl py-5">
                 <div class="container">
                     <div class="row g-5">
-                        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <p class="d-inline-block border rounded-pill py-1 px-4">Janji Temu</p>
-                            <h1 class="mb-4">Buat Janji Temu Dengan Dokter Kami</h1>
-                            <p class="mb-4">Anda dapat membuat janji dengan dokter kami sesuai dengan keinginan anda penuh</p>
-
-                            <div class="bg-light rounded d-flex align-items-center p-5 mb-4">
-                                <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
-                                    <i class="fa fa-phone-alt text-primary fa-fade"></i>
-                                </div>
-
-                                <div class="ms-4">
-                                    <p class="mb-2">Telepon Kami Sekarang</p>
-                                    <h5 class="mb-0">08123456789</h5>
-                                </div>
-                            </div>
-
-                            <div class="bg-light rounded d-flex align-items-center p-5">
-                                <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
-                                    <i class="fa fa-envelope-open text-primary fa-fade"></i>
-                                </div>
-
-                                <div class="ms-4">
-                                    <p class="mb-2">Hubungi Kami Sekarang</p>
-                                    <h5 class="mb-0">ci-klinik@gmail.com</h5>
-                                </div>
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                            <div class="d-flex flex-column">
+                                <img class="img-fluid rounded w-75 align-self-end" src="<?= base_url('assets/img/klinik/suntik.jpg'); ?>" alt="gambar-klinik">
+                                <img class="img-fluid rounded w-50 bg-white pt-3 pe-3" src="<?= base_url('assets/img/klinik/ruang-klinik-2.jpg'); ?>" alt="gambar-klinik" style="margin-top: -25%;">
                             </div>
                         </div>
-
-                        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                            <div class="bg-light rounded h-100 d-flex align-items-center p-5">
-                                <form action="<?= base_url('home'); ?>" method="post" onsubmit="confirmSubmissionJanjiTemu(event)">
-                                    <?php
-                                    $date = date('Y-m-d'); ?>
-                                    <input type="date" class="form-control" id="tanggal_dibuat" name="tanggal_dibuat" value="<?= $date; ?>" hidden>
-
-                                    <div class="row g-3">
-                                        <div class="col-12 col-sm-6">
-                                            <input type="text" class="form-control border-0" id="nama" name="nama" placeholder="Nama Anda" style="height: 55px;" value="<?= $user['nama']; ?>">
-                                            <?= form_error('nama', '<small class="text-danger ps-2">', '</small>'); ?>
-                                        </div>
-
-                                        <div class="col-12 col-sm-6">
-                                            <input type="text" class="form-control border-0" id="email" name="email" placeholder="Email Anda" style="height: 55px;" value="<?= $user['email']; ?>">
-                                            <?= form_error('email', '<small class="text-danger ps-2">', '</small>'); ?>
-                                        </div>
-
-                                        <div class="col-12 col-sm-6">
-                                            <input type="text" class="form-control border-0" id="telepon" name="telepon" placeholder="Nomor Handphone" style="height: 55px;" value="<?= set_value('telepon'); ?>">
-                                            <?= form_error('telepon', '<small class="text-danger ps-2">', '</small>'); ?>
-                                        </div>
-
-                                        <div class="col-12 col-sm-6">
-                                            <select name="dokter" id="dokter" class="form-select border-0" style="height: 55px;">
-                                                <option value="">Pilih Dokter</option>
-                                                <?php foreach ($dokter as $d) : ?>
-                                                    <option value="<?= $d['nama']; ?>"><?= $d['nama']; ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                            <?= form_error('dokter', '<small class="text-danger ps-2">', '</small>'); ?>
-                                        </div>
-
-                                        <div class="col-12 col-sm-6">
-                                            <div class="date" id="date" data-target-input="nearest">
-                                                <input type="date" class="form-control border-0 datetimepicker-input" placeholder="Pilih Hari" data-target="#date" data-toggle="datetimepicker" style="height: 55px;" id="tanggal_temu" name="tanggal_temu">
-                                                <?= form_error('tanggal_temu', '<small class="text-danger ps-2">', '</small>'); ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-6">
-                                            <div class="time" id="time" data-target-input="nearest">
-                                                <input type="time" class="form-control border-0 datetimepicker-input" placeholder="Pilih Waktu" data-target="#time" data-toggle="datetimepicker" style="height: 55px;" id="jam_temu" name="jam_temu">
-                                                <?= form_error('jam_temu', '<small class="text-danger ps-2">', '</small>'); ?>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <textarea name="keluhan" id="keluhan" rows="5" class="form-control border-0" placeholder="Jelaskan gejala anda (opsional)"></textarea>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <button class="btn btn-primary w-100 py-3">Buat Janji Temu</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                            <p class="d-inline-block border rounded-pill py-1 px-4">Janji Temu</p>
+                            <h1 class="mb-4">Buat Janji Temu Dengan Dokter Kami</h1>
+                            <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                            <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam rebum amet diam ipsum. Clita clita labore, dolor duo nonumy clita sit at, sed sit sanctus dolor eos.</p>
+                            <p><i class="far fa-check-circle text-primary me-3"></i>Quality health care</p>
+                            <p><i class="far fa-check-circle text-primary me-3"></i>Only Qualified Doctors</p>
+                            <p><i class="far fa-check-circle text-primary me-3"></i>Medical Research Professionals</p>
+                            <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="<?= base_url('home/janji_temu'); ?>">Buat Janji Temu</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- End Janji Temu -->
+            <!-- Janji Temu End -->
 
 
             <!-- Testimonial Start -->

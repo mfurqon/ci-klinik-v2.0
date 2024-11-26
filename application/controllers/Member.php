@@ -30,6 +30,7 @@ class Member extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
         $this->form_validation->set_rules('email', 'Alamat Email', 'required|trim|valid_email|is_unique[user.email]');
         $this->form_validation->set_rules('alamat', 'Alamat Tempat Tinggal', 'required');
+        $this->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric|min_length[5]');
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|trim|matches[password1]');
 
@@ -42,6 +43,7 @@ class Member extends CI_Controller
                 'nama' => htmlspecialchars($this->input->post('nama', true)),
                 'alamat' => htmlspecialchars($this->input->post('alamat', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
+                'telepon' => htmlspecialchars($this->input->post('telepon', true)),
                 'gambar' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => 2,
@@ -144,6 +146,15 @@ class Member extends CI_Controller
         $this->session->unset_userdata('role_id');
         $this->session->set_flashdata('pesan', '🥳 Anda berhasil logout');
         redirect('home');
+    }
+
+    public function blok()
+    {
+        $data['judul'] = "Akses Tidak Sah!";
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
+        $this->load->view('templates/header', $data);
+        $this->load->view('member/blok');
+        $this->load->view('templates/footer');
     }
 
     private function _login()

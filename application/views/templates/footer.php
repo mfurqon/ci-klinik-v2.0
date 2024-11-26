@@ -34,7 +34,7 @@
 
                         <div class="col-lg-3 col-md-3">
                                 <h5 class="text-light mb-4">Services</h5>
-                                <a class="btn btn-link" href="<?= base_url('home#form-janji-temu'); ?>">
+                                <a class="btn btn-link" href="<?= base_url('home/janji_temu'); ?>">
                                         Janji Temu
                                 </a>
                                 <a class="btn btn-link" href="<?= base_url('home/obat#beli-obat'); ?>">
@@ -120,6 +120,16 @@
 
 <!-- Template Javascript -->
 <script src="<?= base_url('assets/js/klinik.js'); ?>"></script>
+
+<!-- Sweet Alert Javascript -->
+<script src="<?= base_url('assets/js/sweetalert.js'); ?>"></script>
+
+<!-- Datatables -->
+<script src="<?= base_url('assets/vendor/datatables/jquery.dataTables.min.js'); ?>"></script>
+<script src="<?= base_url('assets/vendor/DataTablesKlinik/datatables.min.js'); ?>"></script>
+
+<!-- Panggil Datatables -->
+<script src="<?= base_url('assets/js/panggil-datatables.js'); ?>"></script>
 
 </body>
 

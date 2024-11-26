@@ -28,6 +28,9 @@
     <!-- Template Stylesheet -->
     <link href="<?= base_url('assets/css/style-klinik.css'); ?>" rel="stylesheet">
 
+    <!-- Custom styles Datatables -->
+    <link href="<?= base_url('assets/vendor/DataTablesKlinik/datatables.min.css'); ?>" rel="stylesheet">
+
     <!-- My Font Awesome API -->
     <script src="https://kit.fontawesome.com/30e4c5624e.js" crossorigin="anonymous"></script>
 
@@ -37,13 +40,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function confirmSubmissionJanjiTemu(event) {
-            var isConfirmed = confirm('Apakah anda sudah yakin buat janji temu? Data yang sudah dikirim tidak dapat diubah!!');
-            if (!isConfirmed) {
-                event.preventDefault(); // Mencegah pengiriman form jika pengguna mengklik "Batal"
-            }
-        }
-
         function confirmSubmissionPesanObat(event) {
             var isConfirmed = confirm('Apakah anda sudah yakin buat pemesanan obat? Data yang sudah dikirim tidak dapat diubah!!');
             if (!isConfirmed) {
@@ -56,7 +52,7 @@
 <body>
 
     <!-- Navbar Start -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white wow fadeIn shadow" data-wow-delay="0.1s">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white p-0 shadow wow fadeIn" data-wow-delay="0.1s">
         <a class="navbar-brand d-flex align-items-center px-4 px-lg-5" href="<?= base_url(); ?>">
             <h1 class="m-0 text-primary">
                 <img class="img" src="<?= base_url('assets/img/klinik/logo-klinik-biru-remove-bg.webp'); ?>" alt="logo-klinik">
@@ -98,10 +94,10 @@
                 </a>
                 <?php if ($user) : ?>
                     <a class="nav-item nav-link" href="<?= base_url('home/user/' . $user['id']); ?>">
-                        <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>" style="max-width: 30px; max-height: 30px; border: 1px solid gray; position: relative; top: -5px;">
+                        <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>" style="max-width: 25px; max-height: 25px; border: 1px solid gray; position: relative; top: -3px;">
                     </a>
                 <?php endif; ?>
             </div>
-            <!-- <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Janji Temu<i class="fa fa-arrow-right ms-3"></i></a> -->
+            <a href="<?= base_url('home/janji_temu'); ?>" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Janji Temu<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
