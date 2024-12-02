@@ -11,49 +11,54 @@
 
             <?= $this->session->flashdata('pesan'); ?>
 
-            <a href="" class="btn btn-primary mb-4" data-toggle="modal" data-target="#tambahObatModal">
-                <i class="fas fa-fw fa-circle-plus"></i>
-                Tambah Obat
-            </a>
-
-            <table class="table table-hover table-responsive">
-                <thead class="bg-gradient-primary text-white">
-                    <tr>
-                        <th scope="col" class="text-center">#</th>
-                        <th scope="col" class="text-center">Nama Obat</th>
-                        <th scope="col" class="text-center">Jenis Obat</th>
-                        <th scope="col" class="text-center">Harga (Rp)</th>
-                        <th scope="col" class="text-center">Stok</th>
-                        <th scope="col" class="text-center">Tanggal Kedaluwarsa</th>
-                        <th scope="col" class="text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $a = 1;
-                    foreach ($obat as $o) : ?>
-                        <tr>
-                            <th scope="row" class="text-center"><?= $a++; ?></th>
-                            <td class="text-center"><?= $o['nama_obat']; ?></td>
-                            <td class="text-center"><?= $o['nama_jenis_obat']; ?></td>
-                            <td class="text-center"><?= number_format($o['harga']); ?></td>
-                            <td class="text-center"><?= $o['stok']; ?></td>
-                            <td class="text-center"><?= date('d-m-Y', strtotime($o['tanggal_kedaluwarsa'])); ?></td>
-                            <td class="text-center">
-                                <a href="<?= base_url('obat/detail_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light p-2" title="Lihat">
-                                    <i class="fas fa-fw fa-search"></i>
-                                </a>
-                                <a href="<?= base_url('obat/ubah_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
-                                    <i class="fas fa-fw fa-pen"></i>
-                                </a>
-                                <a href="<?= base_url('obat/hapus_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus obat <?= $o['nama_obat']; ?> ?');">
-                                    <i class="fas fa-fw fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <!-- DataTales Obat -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex justify-content-between">
+                    <h5 class="font-weight-bold text-primary d-inline-block mt-2">Data Obat</h5>
+                    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#tambahObatModal">
+                        <i class="fas fa-fw fa-circle-plus"></i>
+                        Tambah Obat
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nama Obat</th>
+                                    <th>Jenis Obat</th>
+                                    <th>Harga (Rp)</th>
+                                    <th>Stok</th>
+                                    <th>Tanggal Kedaluwarsa</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($obat as $o) : ?>
+                                    <tr>
+                                        <td><?= $o['nama_obat']; ?></td>
+                                        <td><?= $o['nama_jenis_obat']; ?></td>
+                                        <td><?= number_format($o['harga']); ?></td>
+                                        <td><?= $o['stok']; ?></td>
+                                        <td><?= date('d-m-Y', strtotime($o['tanggal_kedaluwarsa'])); ?></td>
+                                        <td>
+                                            <a href="<?= base_url('obat/detail_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light p-2" title="Lihat">
+                                                <i class="fas fa-fw fa-search"></i>
+                                            </a>
+                                            <a href="<?= base_url('obat/ubah_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
+                                                <i class="fas fa-fw fa-pen"></i>
+                                            </a>
+                                            <a href="<?= base_url('obat/hapus_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus obat <?= $o['nama_obat']; ?> ?');">
+                                                <i class="fas fa-fw fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

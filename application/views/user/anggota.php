@@ -12,50 +12,55 @@
 
             <?= $this->session->flashdata('pesan'); ?>
 
-            <a href="" class="btn btn-primary mb-4" data-toggle="modal" data-target="#anggotaBaruModal">
-                <i class="fas fa-fw fa-circle-plus"></i>
-                Tambah Anggota
-            </a>
-
-            <table class="table table-hover table-responsive">
-                <thead class="bg-gradient-primary text-white">
-                    <tr class="text-center">
-                        <th scope="col">#</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Tanggal Gabung</th>
-                        <th scope="col">Gambar</th>
-                        <th scope="col">Pilihan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $n = 1;
-                    foreach ($anggota as $a) : ?>
-                        <tr class="text-center">
-                            <th scope="row"><?= $n++; ?></th>
-                            <td><?= $a['nama']; ?></td>
-                            <td><?= $a['email']; ?></td>
-                            <td><?= $a['role_nama']; ?></td>
-                            <td><?= date('d-m-Y', strtotime($a['tanggal_dibuat'])); ?></td>
-                            <td>
-                                <picture>
-                                    <img src="<?= base_url('assets/img/profile/') . $a['gambar']; ?>" class="img-fluid img-thumbnail" alt="profile image" style="max-width: 100px;">
-                                </picture>
-                            </td>
-                            <td>
-                                <a href="<?= base_url('user/ubah_anggota/') . $a['user_id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <a href="<?= base_url('user/hapus_anggota/') . $a['user_id']; ?>" onclick="return confirm('Apakah kamu yakin akan menghapus <?= 'anggota' . ' ' . $a['nama']; ?> ?');" class="badge bg-gradient-light text-danger p-2" title="Hapus">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <!-- DataTales Anggota -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex justify-content-between">
+                    <h5 class="font-weight-bold text-primary d-inline-block mt-2">Data Anggota</h5>
+                    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#anggotaBaruModal">
+                        <i class="fas fa-fw fa-circle-plus"></i>
+                        Tambah Anggota
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Tanggal Gabung</th>
+                                    <th>Gambar</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($anggota as $a) : ?>
+                                    <tr>
+                                        <td><?= $a['nama']; ?></td>
+                                        <td><?= $a['email']; ?></td>
+                                        <td><?= $a['role_nama']; ?></td>
+                                        <td><?= date('d-m-Y', strtotime($a['tanggal_dibuat'])); ?></td>
+                                        <td>
+                                            <picture>
+                                                <img src="<?= base_url('assets/img/profile/') . $a['gambar']; ?>" class="img-fluid img-thumbnail" alt="profile image" style="max-width: 100px;">
+                                            </picture>
+                                        </td>
+                                        <td>
+                                            <a href="<?= base_url('user/ubah_anggota/') . $a['user_id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
+                                                <i class="fas fa-pen"></i>
+                                            </a>
+                                            <a href="<?= base_url('user/hapus_anggota/') . $a['user_id']; ?>" onclick="return confirm('Apakah kamu yakin akan menghapus <?= 'anggota' . ' ' . $a['nama']; ?> ?');" class="badge bg-gradient-light text-danger p-2" title="Hapus">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

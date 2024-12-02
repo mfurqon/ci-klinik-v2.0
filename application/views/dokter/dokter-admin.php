@@ -11,49 +11,54 @@
 
             <?= $this->session->flashdata('pesan'); ?>
 
-            <a href="" class="btn btn-primary mb-4" data-toggle="modal" data-target="#tambahDokterModal">
-                <i class="fas fa-fw fa-circle-plus"></i>
-                Tambah Dokter
-            </a>
-
-            <table class="table table-hover">
-                <thead class="bg-gradient-primary text-light">
-                    <tr class="text-center">
-                        <th scope="col">#</th>
-                        <th scope="col">NIP</th>
-                        <th scope="col">Nama Dokter</th>
-                        <th scope="col">Spesialis</th>
-                        <th scope="col">Jenis Kelamin</th>
-                        <th scope="col">Tanggal Ditambahkan</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $a = 1;
-                    foreach ($dokter as $d) : ?>
-                        <tr class="text-center">
-                            <th scope="row"><?= $a++; ?></th>
-                            <td><?= $d['nip']; ?></td>
-                            <td><?= $d['nama_dokter']; ?></td>
-                            <td><?= $d['gelar_spesialis']; ?></td>
-                            <td><?= $d['jenis_kelamin']; ?></td>
-                            <td><?= date('d-m-Y', strtotime($d['tanggal_ditambahkan'])); ?></td>
-                            <td>
-                                <a href="<?= base_url('dokter/detail_dokter/') . $d['id_dokter']; ?>" class="badge bg-gradient-light p-2" title="Lihat">
-                                    <i class="fas fa-fw fa-search"></i>
-                                </a>
-                                <a href="<?= base_url('dokter/ubah_dokter/') . $d['id_dokter']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
-                                    <i class="fas fa-fw fa-pen"></i>
-                                </a>
-                                <a href="<?= base_url('dokter/hapus_dokter/') . $d['id_dokter']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus dokter <?= $d['nama_dokter']; ?> ?');">
-                                    <i class="fas fa-fw fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <!-- DataTales Dokter -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex justify-content-between">
+                    <h5 class="font-weight-bold text-primary d-inline-block mt-2">Data Dokter</h5>
+                    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#tambahDokterModal">
+                        <i class="fas fa-fw fa-circle-plus"></i>
+                        Tambah Dokter
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>NIP</th>
+                                    <th>Nama Dokter</th>
+                                    <th>Spesialis</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Tanggal Ditambahkan</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($dokter as $d) : ?>
+                                    <tr>
+                                        <td><?= $d['nip']; ?></td>
+                                        <td><?= $d['nama_dokter']; ?></td>
+                                        <td><?= $d['gelar_spesialis']; ?></td>
+                                        <td><?= $d['jenis_kelamin']; ?></td>
+                                        <td><?= date('d-m-Y', strtotime($d['tanggal_ditambahkan'])); ?></td>
+                                        <td>
+                                            <a href="<?= base_url('dokter/detail_dokter/') . $d['id_dokter']; ?>" class="badge bg-gradient-light p-2" title="Lihat">
+                                                <i class="fas fa-fw fa-search"></i>
+                                            </a>
+                                            <a href="<?= base_url('dokter/ubah_dokter/') . $d['id_dokter']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
+                                                <i class="fas fa-fw fa-pen"></i>
+                                            </a>
+                                            <a href="<?= base_url('dokter/hapus_dokter/') . $d['id_dokter']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus dokter <?= $d['nama_dokter']; ?> ?');">
+                                                <i class="fas fa-fw fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
