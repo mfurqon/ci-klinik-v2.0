@@ -180,15 +180,15 @@ class Member extends CI_Controller
                     redirect('home');
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Password salah!!</div>');
-                    redirect('home');
+                    redirect('member');
                 }
             } else {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">User belum diaktifasi!!</div>');
-                redirect('home');
+                redirect('member');
             }
         } else {
             $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Email tidak terdaftar!!</div>');
-            redirect('home');
+            redirect('member');
         }
     }
 }
