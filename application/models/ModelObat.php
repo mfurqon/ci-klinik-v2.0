@@ -145,6 +145,18 @@ class ModelObat extends CI_Model
         $this->db->insert('pemesanan_obat', $data);
     }
 
+    // pengolahan data keranjang obat
+    public function masukKeranjang($data)
+    {
+        $this->db->insert('temp_pemesanan_obat', $data);
+    }
+
+    public function getDataWhere($where)
+    {
+        $this->db->where($where);
+        return $this->db->get('temp_pemesanan_obat')->num_rows();
+    }
+
 
     // Kumpulan kode form_validation
 
