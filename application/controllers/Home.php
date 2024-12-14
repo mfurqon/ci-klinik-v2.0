@@ -10,6 +10,7 @@ class Home extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->ModelDokter->getAllDokter();
         $data['dokter_limit'] = $this->ModelDokter->getDokterLimit();
+        $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('templates/header', $data);
         $this->load->view('home/index', $data);
@@ -23,6 +24,7 @@ class Home extends CI_Controller
         $data['judul'] = "Janji Temu";
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->ModelDokter->getAllDokter();
+        $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->ModelJanjiTemu->form_validation_buat_janji_temu();
 
@@ -42,6 +44,7 @@ class Home extends CI_Controller
         $data['judul'] = "Obat";
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ModelObat->getAllObat();
+        $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('templates/header', $data);
         $this->load->view('obat/index', $data);
@@ -53,6 +56,7 @@ class Home extends CI_Controller
         $data['judul'] = "Dokter";
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialis();
+        $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('templates/header', $data);
         $this->load->view('dokter/index', $data);
@@ -63,6 +67,7 @@ class Home extends CI_Controller
     {
         $data['judul'] = 'Tentang';
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('templates/header', $data);
         $this->load->view('home/tentang');
@@ -74,6 +79,7 @@ class Home extends CI_Controller
         $data['judul'] = 'Riwayat Janji Temu';
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['janji_temu'] = $this->ModelJanjiTemu->getJanjiTemuById($data['user']['id']);
+        $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('templates/header', $data);
         $this->load->view('home/riwayat-janji-temu', $data);
