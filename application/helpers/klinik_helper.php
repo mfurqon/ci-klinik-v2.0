@@ -29,6 +29,12 @@ function cek_belum_login()
     $ci = get_instance();
 
     if(!$ci->session->userdata('email')) {
+        $ci->session->set_flashdata(
+            'pesan',
+            '<div class="alert alert-danger" role="alert">
+                Anda belum login!!
+            </div>'
+        );
         redirect('member');
     }
 }
