@@ -84,15 +84,24 @@
                     </a>
                 <?php else : ?>
                     <a href="<?= base_url('member'); ?>" class="nav-item nav-link">Login</a>
+                    <a href="<?= base_url('obat/keranjang'); ?>" class="nav-item nav-link position-relative">
+                        <i class="fa-solid fa-lg fa-cart-shopping"></i>
+                    </a>
                 <?php endif; ?>
-                <a href="<?= base_url('obat/keranjang/' . $user['id']); ?>" class="nav-item nav-link position-relative">
-                    <i class="fa-solid fa-lg fa-cart-shopping"></i>
-                    <span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">
-                        3
-                        <span class="visually-hidden">jumlah obat dalam keranjang</span>
-                    </span>
-                </a>
                 <?php if ($user) : ?>
+                    <?php if ($data_keranjang > 0) : ?>
+                        <a href="<?= base_url('obat/keranjang'); ?>" class="nav-item nav-link position-relative">
+                            <i class="fa-solid fa-lg fa-cart-shopping"></i>
+                            <span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">
+                                <?= $data_keranjang; ?>
+                                <span class="visually-hidden">jumlah obat dalam keranjang</span>
+                            </span>
+                        </a>
+                    <?php else : ?>
+                        <a href="<?= base_url('obat/keranjang'); ?>" class="nav-item nav-link position-relative">
+                            <i class="fa-solid fa-lg fa-cart-shopping"></i>
+                        </a>
+                    <?php endif; ?>
                     <a class="nav-item nav-link" href="<?= base_url('home/user/' . $user['id']); ?>">
                         <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>" style="max-width: 25px; max-height: 25px; border: 1px solid gray; position: relative; top: -3px;">
                     </a>
