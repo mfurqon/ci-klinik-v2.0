@@ -83,29 +83,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-        document.addEventListener('DOMContentLoaded', function() {
-                const maxStok = <?= $obat['stok']; ?>;
-                const stokInput = document.getElementById('jumlah');
-                const btnDecrease = document.getElementById('btn-decrease');
-                const btnIncrease = document.getElementById('btn-increase');
-
-                btnDecrease.addEventListener('click', function() {
-                        let currentValue = parseInt(stokInput.value);
-                        if (currentValue > 1) {
-                                stokInput.value = currentValue - 1;
-                        }
-                });
-
-                btnIncrease.addEventListener('click', function() {
-                        let currentValue = parseInt(stokInput.value);
-                        if (currentValue < maxStok) {
-                                stokInput.value = currentValue + 1;
-                        }
-                });
-        });
-</script>
-
 <!-- Javascript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -120,6 +97,9 @@
 
 <!-- Template Javascript -->
 <script src="<?= base_url('assets/js/klinik.js'); ?>"></script>
+
+<!-- Button Quantity Javascript -->
+<script src="<?= base_url('assets/js/button-quantity.js'); ?>"></script>
 
 <!-- Sweet Alert Javascript -->
 <script src="<?= base_url('assets/js/sweetalert.js'); ?>"></script>
