@@ -1,17 +1,3 @@
-<?php if ($this->session->flashdata('pesan')) : ?>
-    <script>
-        Swal.fire({
-            title: 'Berhasil!',
-            text: '<?= $this->session->flashdata('pesan') ?>',
-            icon: 'success',
-            confirmButtonText: 'OK',
-            customClass: {
-                confirmButton: 'btn btn-primary'
-            }
-        });
-    </script>
-<?php endif; ?>
-
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style="visibility: visible;         animation-delay: 0.1s; animation-name: fadeIn;
     background: url(../../../../ci-klinik/assets/img/obat/gambar-obat.jpg) top center no-repeat;
