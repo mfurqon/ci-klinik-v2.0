@@ -85,4 +85,51 @@ class Home extends CI_Controller
         $this->load->view('home/riwayat-janji-temu', $data);
         $this->load->view('templates/footer');
     }
+
+    public function keranjang()
+    {
+        cek_belum_login();
+
+        $id_user = $this->session->userdata('id_user');
+
+        $data['judul'] = "Data Keranjang Obat";
+        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+
+        $dtb = $this->ModelObat->showTempPemesananObat(['id_user' => $id_user])->num_rows();
+
+        if ($dtb < 1) {
+            $this->session->set_flashdata('pesan', [
+                'title' => 'Kosong',
+                'text' => 'Tidak ada apapun di keranjang 😞',
+                'icon' => 'error'
+            ]);
+            redirect(base_url());
+        } else {
+            $data['temp_pemesanan_obat'] = $this->ModelObat->joinObatTempPemesananObat($id_user);
+        }
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('obat/keranjang', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function hapus_keranjang()
+    {
+        $id_temp = $this->uri->segment(3);
+
+        $this->ModelObat->deleteKeranjang(['id' => $id_temp]);
+
+        redirect('home/keranjang');
+    }
+
+    public function update_keranjang()
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+        $id = $data['id'];
+        $quantity = $data['quantity'];
+        $this->db->where('id', $id);
+        $this->db->update('temp_pemesanan_obat', ['jumlah_obat' => $quantity]);
+        echo json_encode(['success' => true]);
+    }
 }
