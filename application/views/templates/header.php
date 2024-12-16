@@ -39,14 +39,6 @@
     <!-- Include the Bootstrap 4 Sweet Alert theme -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        function confirmSubmissionPesanObat(event) {
-            var isConfirmed = confirm('Apakah anda sudah yakin buat pemesanan obat? Data yang sudah dikirim tidak dapat diubah!!');
-            if (!isConfirmed) {
-                event.preventDefault(); // Mencegah pengiriman form jika pengguna mengklik "Batal"
-            }
-        }
-    </script>
 </head>
 
 <body>
@@ -84,13 +76,13 @@
                     </a>
                 <?php else : ?>
                     <a href="<?= base_url('member'); ?>" class="nav-item nav-link">Login</a>
-                    <a href="<?= base_url('obat/keranjang'); ?>" class="nav-item nav-link position-relative">
+                    <a href="<?= base_url('home/keranjang'); ?>" class="nav-item nav-link position-relative">
                         <i class="fa-solid fa-lg fa-cart-shopping"></i>
                     </a>
                 <?php endif; ?>
                 <?php if ($user) : ?>
                     <?php if ($data_keranjang > 0) : ?>
-                        <a href="<?= base_url('obat/keranjang'); ?>" class="nav-item nav-link position-relative">
+                        <a href="<?= base_url('home/keranjang'); ?>" class="nav-item nav-link position-relative">
                             <i class="fa-solid fa-lg fa-cart-shopping"></i>
                             <span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">
                                 <?= $data_keranjang; ?>
@@ -98,7 +90,7 @@
                             </span>
                         </a>
                     <?php else : ?>
-                        <a href="<?= base_url('obat/keranjang'); ?>" class="nav-item nav-link position-relative">
+                        <a href="<?= base_url('home/keranjang'); ?>" class="nav-item nav-link position-relative">
                             <i class="fa-solid fa-lg fa-cart-shopping"></i>
                         </a>
                     <?php endif; ?>
@@ -110,3 +102,18 @@
             <a href="<?= base_url('home/janji_temu'); ?>" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Janji Temu<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
+
+    <?php if ($this->session->flashdata('pesan')) : ?>
+        <?php $pesan = $this->session->flashdata('pesan'); ?>
+        <script>
+            Swal.fire({
+                title: '<?= $pesan['title'] ?>',
+                text: '<?= $pesan['text'] ?>',
+                icon: '<?= $pesan['icon'] ?>',
+                confirmButtonText: 'OK',
+                customClass: {
+                    confirmButton: 'btn btn-primary'
+                }
+            });
+        </script>
+    <?php endif; ?>
