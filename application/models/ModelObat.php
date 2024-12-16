@@ -40,7 +40,7 @@ class ModelObat extends CI_Model
     {
         return $this->db->get('obat')->num_rows();
     }
-    
+
     public function tambahDataObat($gambar)
     {
         $data = [
@@ -155,6 +155,28 @@ class ModelObat extends CI_Model
     {
         $this->db->where($where);
         return $this->db->get('temp_pemesanan_obat')->num_rows();
+    }
+
+    public function showTempPemesananObat($where)
+    {
+        return $this->db->get('temp_pemesanan_obat', $where);
+    }
+
+    public function deleteKeranjang($where)
+    {
+        $this->db->where($where);
+        $this->db->delete('temp_pemesanan_obat');
+    }
+
+
+    // Lakukan join antara temp_pemesanan_obat dan obat untuk mendapatkan stok
+    public function joinObatTempPemesananObat($id_user)
+    {
+        $this->db->select('temp_pemesanan_obat.id, temp_pemesanan_obat.gambar_obat, temp_pemesanan_obat.nama_obat, temp_pemesanan_obat.harga_obat, temp_pemesanan_obat.jumlah_obat, temp_pemesanan_obat.id_obat, obat.stok');
+        $this->db->from('temp_pemesanan_obat');
+        $this->db->join('obat', 'temp_pemesanan_obat.id_obat = obat.id');
+        $this->db->where('temp_pemesanan_obat.id_user', $id_user);
+        return $this->db->get()->result_array();
     }
 
 
