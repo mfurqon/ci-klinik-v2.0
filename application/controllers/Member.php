@@ -144,7 +144,11 @@ class Member extends CI_Controller
     {
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
-        $this->session->set_flashdata('pesan', '🥳 Anda berhasil logout');
+        $this->session->set_flashdata('pesan', [
+            'title' => 'Berhasil',
+            'text' => '🥳 Anda berhasil logout',
+            'icon' => 'success'
+        ]);
         redirect('home');
     }
 
@@ -177,6 +181,11 @@ class Member extends CI_Controller
                     ];
 
                     $this->session->set_userdata($data);
+                    $this->session->set_flashdata('pesan', [
+                        'title' => 'Sukses',
+                        'text' => "🥳 Selamat Datang {$user['nama']}",
+                        'icon' => 'success'
+                    ]);
                     redirect('home');
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Password salah!!</div>');
