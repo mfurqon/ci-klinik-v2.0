@@ -9,7 +9,7 @@ if (!function_exists('set_tambah_dokter_rules')) {
 
         $CI->form_validation->set_rules('nip', 'NIP', 'required|trim|numeric|is_unique[dokter.nip]|min_length[8]');
         $CI->form_validation->set_rules('nama_dokter', 'Nama Dokter', 'required|trim');
-        $CI->form_validation->set_rules('spesialis', 'Spesialis', 'required|trim');
+        $CI->form_validation->set_rules('spesialisasi', 'Spesialisasi', 'required|trim');
         $CI->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
         $CI->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric');
         $CI->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
@@ -25,7 +25,7 @@ if (!function_exists('set_ubah_dokter_rules')) {
         $CI = get_instance();
 
         $CI->form_validation->set_rules('nama_dokter', 'Nama Dokter', 'required|trim');
-        $CI->form_validation->set_rules('spesialis', 'Spesialis', 'required|trim');
+        $CI->form_validation->set_rules('spesialisasi', 'Spesialisasi', 'required|trim');
         $CI->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
         $CI->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric');
         $CI->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
@@ -42,7 +42,7 @@ if (!function_exists('set_tambah_spesialisasi_rules')) {
     {
         $CI = get_instance();
 
-        $CI->form_validation->set_rules('spesialis', 'Spesialis', 'required|trim');
+        $CI->form_validation->set_rules('spesialisasi', 'Spesialisasi', 'required|trim');
     }
 }
 
@@ -51,7 +51,7 @@ if (!function_exists('set_ubah_spesialisasi_rules')) {
     {
         $CI = get_instance();
 
-        $CI->form_validation->set_rules('spesialis', 'Spesialis', 'required|trim');
+        $CI->form_validation->set_rules('spesialisasi', 'Spesialisasi', 'required|trim');
     }
 }
 
