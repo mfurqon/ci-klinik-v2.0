@@ -71,14 +71,4 @@ class ModelJanjiTemu extends CI_Model
     {
         $this->db->delete('janji_temu', $where);
     }
-
-
-    // form validation janji temu
-    public function form_validation_buat_janji_temu()
-    {
-        $this->form_validation->set_rules('telepon', 'Nomor Handphone', 'required|trim|numeric');
-        $this->form_validation->set_rules('dokter', 'Dokter', 'required');
-        $this->form_validation->set_rules('tanggal_temu', 'Tanggal Temu', 'required');
-        $this->form_validation->set_rules('jam_temu', 'Jam Temu', 'required');
-    }
 }
