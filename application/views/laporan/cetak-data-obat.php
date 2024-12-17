@@ -55,7 +55,7 @@
     </style>
 
     <div class="logo">
-        <img class="logo" src="<?= base_url('assets/img/logo-klinik-biru-remove-bg.webp'); ?>" alt="logo-klinik">
+        <img class="logo" src="<?= base_url('assets/img/klinik/logo-klinik-biru-remove-bg.webp'); ?>" alt="logo-klinik">
         <h1>CI Klinik</h1>
     </div>
 
