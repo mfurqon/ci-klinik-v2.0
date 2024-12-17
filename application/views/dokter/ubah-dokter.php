@@ -28,15 +28,15 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="spesialis" class="col-sm-3 col-form-label">Spesialis</label>
+                        <label for="spesialisasi" class="col-sm-3 col-form-label">Spesialisasi</label>
                         <div class="col-sm-9">
-                            <select name="spesialis" id="spesialis" class="form-control">
-                                <option value="">Pilih Spesialis</option>
-                                <?php foreach ($spesialis as $s) : ?>
-                                    <option value="<?= $s['id']; ?>"><?= $s['gelar_spesialis']; ?></option>
+                            <select name="spesialisasi" id="spesialisasi" class="form-control">
+                                <option value="">Pilih Spesialisasi</option>
+                                <?php foreach ($spesialisasi as $s) : ?>
+                                    <option value="<?= $s['id']; ?>"><?= $s['nama']; ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <?= form_error('spesialis', '<small class="text-danger pl-3">', '</small>'); ?>
+                            <?= form_error('spesialisasi', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                     </div>
 
