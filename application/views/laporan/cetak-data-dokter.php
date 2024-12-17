@@ -55,7 +55,7 @@
     </style>
 
     <div class="logo">
-        <img class="logo" src="<?= base_url('assets/img/logo-klinik-biru-remove-bg.webp'); ?>" alt="logo-klinik">
+        <img class="logo" src="<?= base_url('assets/img/klinik/logo-klinik-biru-remove-bg.webp'); ?>" alt="logo-klinik">
         <h1>CI Klinik</h1>
     </div>
 
@@ -69,7 +69,7 @@
                 <th>No</th>
                 <th>Nama Dokter</th>
                 <th>NIP</th>
-                <th>Spesialis</th>
+                <th>Spesialisasi</th>
                 <th>Jenis Kelamin</th>
                 <th>Telepon</th>
                 <th>Email</th>
@@ -87,7 +87,7 @@
                     <th scope="row"><?= $no++; ?></th>
                     <td><?= $d['nama_dokter']; ?></td>
                     <td><?= $d['nip']; ?></td>
-                    <td><?= $d['gelar_spesialis']; ?></td>
+                    <td><?= $d['nama_spesialisasi']; ?></td>
                     <td><?= $d['jenis_kelamin']; ?></td>
                     <td><?= $d['telepon']; ?></td>
                     <td><?= $d['email']; ?></td>
