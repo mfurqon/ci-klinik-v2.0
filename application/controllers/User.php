@@ -28,7 +28,7 @@ class User extends CI_Controller
         $data['role'] = $this->ModelUser->getAllRole();
         $data['anggota'] = $this->ModelUser->getJoinUserRole();
 
-        $this->ModelUser->form_validation_user();
+        set_tambah_user_rules();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/adm_header', $data);
@@ -66,7 +66,7 @@ class User extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['role'] = $this->ModelUser->getAllRole();
         
-        $this->ModelUser->form_validation_role();
+        set_tambah_role_rules();
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/adm_header', $data);
@@ -95,7 +95,7 @@ class User extends CI_Controller
         $data['anggota'] = $this->ModelUser->getJoinRoleIdById(['user_id' => $this->uri->segment(3)]);
         $data['role'] = $this->ModelUser->getAllRole();
 
-        $this->ModelUser->form_validation_ubah_data_user();
+        set_ubah_user_rules();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/adm_header', $data);
@@ -176,7 +176,7 @@ class User extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->input->post('email')]);
         $data['role'] = $this->ModelUser->getRoleById(['role.id' => $this->uri->segment(3)]);
 
-        $this->ModelUser->form_validation_role();
+        set_ubah_role_rules();
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/adm_header', $data);
@@ -276,7 +276,7 @@ class User extends CI_Controller
         $data['judul'] = 'Ubah Password';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->ModelUser->form_validation_ubah_password();
+        set_ubah_password_rules();
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/adm_header', $data);
