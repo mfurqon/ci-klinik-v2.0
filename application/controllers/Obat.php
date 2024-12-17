@@ -13,7 +13,7 @@ class Obat extends CI_Controller
         $data['obat'] = $this->ModelObat->getJoinObatJenisObat();
         $data['jenis_obat'] = $this->ModelObat->getAllJenisObat();
 
-        $this->ModelObat->form_validation_tambah_obat();
+        set_tambah_obat_rules();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/adm_header', $data);
@@ -82,7 +82,7 @@ class Obat extends CI_Controller
         $data['obat'] = $this->ModelObat->getObatJenisObatById(['obat.id' => $this->uri->segment(3)]);
         $data['jenis_obat'] = $this->ModelObat->getAllJenisObat();
 
-        $this->ModelObat->form_validation_ubah_obat();
+        set_ubah_obat_rules();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/adm_header', $data);
@@ -175,7 +175,7 @@ class Obat extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['jenis_obat'] = $this->ModelObat->getAllJenisObat();
 
-        $this->ModelObat->form_validation_jenis_obat();
+        set_tambah_jenis_obat_rules();
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/adm_header', $data);
@@ -204,7 +204,7 @@ class Obat extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['jenis_obat'] = $this->ModelObat->getJenisObatById(['jenis_obat.id' => $this->uri->segment(3)]);
 
-        $this->ModelObat->form_validation_jenis_obat();
+        set_ubah_jenis_obat_rules();
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/adm_header', $data);
