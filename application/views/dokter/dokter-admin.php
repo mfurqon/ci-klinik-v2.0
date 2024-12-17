@@ -27,7 +27,7 @@
                                 <tr>
                                     <th>NIP</th>
                                     <th>Nama Dokter</th>
-                                    <th>Spesialis</th>
+                                    <th>Spesialisasi</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Tanggal Ditambahkan</th>
                                     <th>Aksi</th>
@@ -38,7 +38,7 @@
                                     <tr>
                                         <td><?= $d['nip']; ?></td>
                                         <td><?= $d['nama_dokter']; ?></td>
-                                        <td><?= $d['gelar_spesialis']; ?></td>
+                                        <td><?= $d['nama_spesialisasi']; ?></td>
                                         <td><?= $d['jenis_kelamin']; ?></td>
                                         <td><?= date('d-m-Y', strtotime($d['tanggal_ditambahkan'])); ?></td>
                                         <td>
@@ -99,11 +99,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="spesialis" class="form-label">Spesialis</label>
-                        <select name="spesialis" id="spesialis" class="form-control">
-                            <option value="">Pilih Spesialis</option>
-                            <?php foreach ($spesialis as $s) : ?>
-                                <option value="<?= $s['id']; ?>"><?= $s['gelar_spesialis']; ?></option>
+                        <label for="spesialisasi" class="form-label">Spesialisasi</label>
+                        <select name="spesialisasi" id="spesialisasi" class="form-control">
+                            <option value="">Pilih Spesialisasi</option>
+                            <?php foreach ($spesialisasi as $s) : ?>
+                                <option value="<?= $s['id']; ?>"><?= $s['nama']; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
