@@ -95,39 +95,4 @@ class ModelUser extends CI_Model
     {
         $this->db->delete('role', ['id' => $id]);
     }
-
-
-    // Kumpulan kode form_validation
-    // Kumpulan kode form_validation user
-    public function form_validation_user()
-    {
-        $this->form_validation->set_rules('nama', 'Nama Anggota', 'required|trim');
-        $this->form_validation->set_rules('email', 'Alamat Email', 'required|trim|valid_email|is_unique[user.email]');
-        $this->form_validation->set_rules('role', 'Role', 'required');
-        $this->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric|min_length[5]');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]');
-        $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|trim|min_length[3]|matches[password1]');
-    }
-
-    public function form_validation_ubah_data_user()
-    {
-        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
-        $this->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric|min_length[5]');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim|min_length[7]');
-    }
-
-    public function form_validation_ubah_password()
-    {
-        $this->form_validation->set_rules('password_lama', 'Password Saat Ini', 'required|trim');
-        $this->form_validation->set_rules('password_baru1', 'Password Baru', 'required|trim|min_length[3]|matches[password_baru2]');
-        $this->form_validation->set_rules('password_baru2', 'Konfirmasi Password Baru', 'required|trim|min_length[3]|matches[password_baru1]');
-    }
-
-
-    // Kumpulan kode form_validation role
-    public function form_validation_role()
-    {
-        $this->form_validation->set_rules('role', 'Role', 'required|trim');
-    }
 }
