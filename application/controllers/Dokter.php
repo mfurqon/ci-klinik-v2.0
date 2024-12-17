@@ -11,8 +11,8 @@ class Dokter extends CI_Controller
 
         $data['judul'] = "Data Dokter";
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialis();
-        $data['spesialis'] = $this->ModelDokter->getAllSpesialis();
+        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasi();
+        $data['spesialisasi'] = $this->ModelDokter->getAllSpesialisasi();
 
         set_tambah_dokter_rules();
 
@@ -60,7 +60,7 @@ class Dokter extends CI_Controller
 
         $data['judul'] = 'Detail Dokter';
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisById(['dokter.id' => $this->uri->segment(3)]);
+        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
 
         $this->load->view('templates/adm_header', $data);
         $this->load->view('templates/adm_sidebar', $data);
@@ -76,8 +76,8 @@ class Dokter extends CI_Controller
 
         $data['judul'] = 'Ubah Dokter';
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisById(['dokter.id' => $this->uri->segment(3)]);
-        $data['spesialis'] = $this->ModelDokter->getAllSpesialis();
+        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
+        $data['spesialisasi'] = $this->ModelDokter->getAllSpesialisasi();
 
         $nip_lama = $data['dokter']['nip'];
         $nip_baru = $this->input->post('nip', true);
@@ -99,7 +99,7 @@ class Dokter extends CI_Controller
             $id = $this->input->post('id', true);
             $nip = $this->input->post('nip', true);
             $nama_dokter = $this->input->post('nama_dokter', true);
-            $spesialisasi = $this->input->post('spesialis', true);
+            $spesialisasi = $this->input->post('spesialisasi', true);
             $jenis_kelamin = $this->input->post('jenis_kelamin', true);
             $telepon = $this->input->post('telepon', true);
             $email = $this->input->post('email', true);
@@ -129,7 +129,7 @@ class Dokter extends CI_Controller
 
             $this->db->set('nip', $nip);
             $this->db->set('nama', $nama_dokter);
-            $this->db->set('id_spesialis', $spesialisasi);
+            $this->db->set('id_spesialisasi', $spesialisasi);
             $this->db->set('jenis_kelamin', $jenis_kelamin);
             $this->db->set('telepon', $telepon);
             $this->db->set('email', $email);
@@ -174,14 +174,14 @@ class Dokter extends CI_Controller
         redirect('dokter');
     }
 
-    public function spesialis()
+    public function spesialisasi()
     {
         cek_login();
         cek_akses();
 
-        $data['judul'] = "Data Spesialis Dokter";
+        $data['judul'] = "Data Spesialisasi Dokter";
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['spesialis'] = $this->ModelDokter->getAllSpesialis();
+        $data['spesialisasi'] = $this->ModelDokter->getAllSpesialisasi();
 
         set_tambah_spesialisasi_rules();
 
@@ -189,28 +189,28 @@ class Dokter extends CI_Controller
             $this->load->view('templates/adm_header', $data);
             $this->load->view('templates/adm_sidebar', $data);
             $this->load->view('templates/adm_topbar', $data);
-            $this->load->view('dokter/spesialis', $data);
+            $this->load->view('dokter/spesialisasi', $data);
             $this->load->view('templates/adm_footer');
         } else {
-            $this->ModelDokter->tambahSpesialis();
+            $this->ModelDokter->tambahSpesialisasi();
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message">
-                    &#129395; Data Spesialis Dokter Berhasil ditambah
+                    &#129395; Data Spesialisasi Dokter Berhasil ditambah
                 </div>'
             );
-            redirect('dokter/spesialis');
+            redirect('dokter/spesialisasi');
         }
     }
 
-    public function ubah_spesialis()
+    public function ubah_spesialisasi()
     {
         cek_login();
         cek_akses();
 
-        $data['judul'] = 'Ubah Spesialis Dokter';
+        $data['judul'] = 'Ubah Spesialisasi Dokter';
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['spesialis'] = $this->ModelDokter->getSpesialisById(['spesialis.id' => $this->uri->segment(3)]);
+        $data['spesialisasi'] = $this->ModelDokter->getSpesialisasiById(['spesialisasi.id' => $this->uri->segment(3)]);
 
         set_ubah_spesialisasi_rules();
 
@@ -218,42 +218,43 @@ class Dokter extends CI_Controller
             $this->load->view('templates/adm_header', $data);
             $this->load->view('templates/adm_sidebar', $data);
             $this->load->view('templates/adm_topbar', $data);
-            $this->load->view('dokter/ubah-spesialis', $data);
+            $this->load->view('dokter/ubah-spesialisasi', $data);
             $this->load->view('templates/adm_footer');
         } else {
-            $this->ModelDokter->ubahSpesialis();
+            $this->ModelDokter->ubahSpesialisasi();
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message">
-                    &#129395; Data Spesialis Dokter Berhasil diubah
+                    &#129395; Data Spesialisasi Dokter Berhasil diubah
                 </div>'
             );
-            redirect('dokter/spesialis');
+            redirect('dokter/spesialisasi');
         }
     }
 
-    public function hapus_spesialis()
+    public function hapus_spesialisasi()
     {
         cek_login();
         cek_akses();
 
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
 
-        $this->ModelDokter->hapusSpesialis($this->uri->segment(3));
+        $this->ModelDokter->hapusSpesialisasi($this->uri->segment(3));
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">
-                &#129395; Data Spesialis Dokter Berhasil dihapus
+                &#129395; Data Spesialisasi Dokter Berhasil dihapus
             </div>'
         );
-        redirect('dokter/spesialis');
+        redirect('dokter/spesialisasi');
     }
 
     public function lihat_dokter()
     {
         $data['judul'] = 'Detail Dokter';
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisById(['dokter.id' => $this->uri->segment(3)]);
+        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
+        $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('templates/header', $data);
         $this->load->view('dokter/lihat-dokter', $data);
