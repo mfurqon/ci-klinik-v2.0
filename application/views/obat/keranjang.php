@@ -28,7 +28,9 @@
                     </div>
                 <?php endforeach; ?>
                 <div class="row justify-content-between">
-                    <button class="btn btn-primary col-3 mt-4" onclick="window.history.go(-1)"><i class="fa-solid fa-arrow-left-long"></i> Kembali Belanja</button>
+                    <button class="btn btn-primary col-3 mt-4" onclick="window.history.go(-1)">
+                        <i class="fa-solid fa-arrow-left-long"></i> Kembali
+                    </button>
                     <a href="<?= base_url('home/pembayaran'); ?>" class="btn btn-success col-3 mt-4"><i class="fa-solid fa-cart-shopping fa-sm"></i> Lanjutkan Bayar</a>
                 </div>
             </div>
