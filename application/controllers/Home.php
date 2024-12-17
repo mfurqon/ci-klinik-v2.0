@@ -59,7 +59,7 @@ class Home extends CI_Controller
     {
         $data['judul'] = "Dokter";
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialis();
+        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasi();
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('templates/header', $data);

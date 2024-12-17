@@ -7,7 +7,7 @@ class Laporan extends CI_Controller
     {
         $data['judul'] = 'Laporan Data Dokter';
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialis();
+        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasi();
 
         $this->load->view('templates/adm_header', $data);
         $this->load->view('templates/adm_sidebar', $data);
@@ -20,14 +20,14 @@ class Laporan extends CI_Controller
     {
         $data['judul'] = 'Laporan Data Dokter';
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialis();
+        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasi();
 
         $this->load->view('laporan/cetak-data-dokter', $data);
     }
 
     public function pdf_data_dokter()
     {
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialis();
+        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasi();
 
         $this->load->view('laporan/pdf-data-dokter', $data);
 
@@ -44,7 +44,7 @@ class Laporan extends CI_Controller
     {
         $data = [
             'judul' => 'Data Dokter Excel', 
-            'dokter' => $this->ModelDokter->getJoinDokterSpesialis()
+            'dokter' => $this->ModelDokter->getJoinDokterSpesialisasi()
         ];
         $this->load->view('laporan/excel-data-dokter', $data);
     }
