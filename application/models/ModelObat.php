@@ -178,48 +178,4 @@ class ModelObat extends CI_Model
         $this->db->where('temp_pemesanan_obat.id_user', $id_user);
         return $this->db->get()->result_array();
     }
-
-
-    // Kumpulan kode form_validation
-
-    // Kumpulan kode form_validation jenis_obat
-    public function form_validation_jenis_obat()
-    {
-        $this->form_validation->set_rules('jenis_obat', 'Jenis Obat', 'required|trim');
-    }
-
-
-    // Kumpulan kode form_validation obat
-    public function form_validation_tambah_obat()
-    {
-        $this->form_validation->set_rules('nama_obat', 'Nama Obat', 'required|trim');
-        $this->form_validation->set_rules('id_jenis_obat', 'Jenis Obat', 'required|trim');
-        $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric');
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim');
-        $this->form_validation->set_rules('stok', 'Stok', 'required|trim|numeric');
-        $this->form_validation->set_rules('tanggal_kedaluwarsa', 'Tanggal Kadaluwarsa', 'required');
-    }
-
-    public function form_validation_ubah_obat()
-    {
-        $this->form_validation->set_rules('nama_obat', 'Nama Obat', 'required|trim');
-        $this->form_validation->set_rules('id_jenis_obat', 'Jenis Obat', 'required|trim');
-        $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric');
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim');
-        $this->form_validation->set_rules('stok', 'Stok', 'required|trim|numeric');
-        $this->form_validation->set_rules('tanggal_kedaluwarsa', 'Tanggal Kadaluwarsa', 'required');
-    }
-
-    public function form_validation_beli_obat()
-    {
-        $this->form_validation->set_rules('nama_pemesan', 'Nama Pemesan', 'required|trim');
-        $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required|trim');
-        $this->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
-        $this->form_validation->set_rules('nama_obat', 'Nama Obat', 'required|trim');
-        $this->form_validation->set_rules('pembayaran', 'Pembayaran', 'required|trim');
-        $this->form_validation->set_rules('pengiriman', 'Pengiriman', 'required|trim');
-        $this->form_validation->set_rules('jumlah', 'Jumlah Obat', 'required|trim|numeric');
-    }
 }
