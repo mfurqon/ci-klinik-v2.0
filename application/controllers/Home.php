@@ -26,7 +26,7 @@ class Home extends CI_Controller
         $data['dokter'] = $this->ModelDokter->getAllDokter();
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
-        $this->ModelJanjiTemu->form_validation_buat_janji_temu();
+        set_buat_janji_temu_rules();
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
@@ -34,7 +34,11 @@ class Home extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->ModelJanjiTemu->tambahJanjiTemu($data);
-            $this->session->set_flashdata('pesan', '🥳 Janji Temu berhasil dibuat');
+            $this->session->set_flashdata('pesan', [
+                'title' => 'Berhasil',
+                'text' => '🥳 Janji Temu berhasil dibuat',
+                'icon' => 'success'
+            ]);
             redirect('home');
         }
     }
