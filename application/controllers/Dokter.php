@@ -14,7 +14,7 @@ class Dokter extends CI_Controller
         $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialis();
         $data['spesialis'] = $this->ModelDokter->getAllSpesialis();
 
-        $this->ModelDokter->form_validation_tambah_dokter();
+        set_tambah_dokter_rules();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/adm_header', $data);
@@ -87,7 +87,7 @@ class Dokter extends CI_Controller
             $this->form_validation->set_rules('nip', 'NIP', 'required|trim|numeric|min_length[8]');            
         }
 
-        $this->ModelDokter->form_validation_ubah_dokter();
+        set_ubah_dokter_rules();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/adm_header', $data);
@@ -183,7 +183,7 @@ class Dokter extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['spesialis'] = $this->ModelDokter->getAllSpesialis();
 
-        $this->ModelDokter->form_validation_spesialis();
+        set_tambah_spesialisasi_rules();
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/adm_header', $data);
@@ -212,7 +212,7 @@ class Dokter extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['spesialis'] = $this->ModelDokter->getSpesialisById(['spesialis.id' => $this->uri->segment(3)]);
 
-        $this->ModelDokter->form_validation_spesialis();
+        set_ubah_spesialisasi_rules();
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/adm_header', $data);
