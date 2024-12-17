@@ -13,9 +13,9 @@ class ModelDokter extends CI_Model
     public function getDokterLimit($limit = 4)
     {
         $this->db->limit($limit);
-        $this->db->select('dokter.id AS id_dokter, dokter.nip, dokter.nama AS nama_dokter, dokter.jenis_kelamin, dokter.telepon, dokter.email, dokter.alamat, dokter.jam_masuk, dokter.jam_keluar, dokter.tanggal_ditambahkan, dokter.gambar, spesialis.id AS id_spesialis, spesialis.gelar_spesialis');
+        $this->db->select('dokter.id AS id_dokter, dokter.nip, dokter.nama AS nama_dokter, dokter.jenis_kelamin, dokter.telepon, dokter.email, dokter.alamat, dokter.jam_masuk, dokter.jam_keluar, dokter.tanggal_ditambahkan, dokter.gambar, spesialisasi.id AS id_spesialisasi, spesialisasi.nama AS nama_spesialisasi');
         $this->db->from('dokter');
-        $this->db->join('spesialis', 'dokter.id_spesialis = spesialis.id');
+        $this->db->join('spesialisasi', 'dokter.id_spesialisasi = spesialisasi.id');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -35,7 +35,7 @@ class ModelDokter extends CI_Model
         $data = [
             "nama" => $this->input->post('nama_dokter', true),
             "nip" => $this->input->post('nip', true),
-            "id_spesialis" => $this->input->post('spesialis', true),
+            "id_spesialisasi" => $this->input->post('spesialisasi', true),
             "jenis_kelamin" => $this->input->post('jenis_kelamin', true),
             "telepon" => $this->input->post('telepon', true),
             "email" => $this->input->post('email', true),
@@ -68,54 +68,54 @@ class ModelDokter extends CI_Model
     }
 
 
-    // Pengolahan data pada table spesialis
-    public function getAllSpesialis()
+    // Pengolahan data pada table spesialisasi
+    public function getAllSpesialisasi()
     {
-        return $this->db->get('spesialis')->result_array();
+        return $this->db->get('spesialisasi')->result_array();
     }
 
-    public function getSpesialisById($where)
+    public function getSpesialisasiById($where)
     {
-        $this->db->from('spesialis');
+        $this->db->from('spesialisasi');
         $this->db->where($where);
         return $this->db->get()->row_array();
     }
 
-    public function tambahSpesialis()
+    public function tambahSpesialisasi()
     {
-        $data = ['gelar_spesialis' => $this->input->post('spesialis', true)];
-        $this->db->insert('spesialis', $data);
+        $data = ['nama' => $this->input->post('spesialisasi', true)];
+        $this->db->insert('spesialisasi', $data);
     }
 
-    public function ubahSpesialis()
+    public function ubahSpesialisasi()
     {
         $data = [
-            "gelar_spesialis" => $this->input->post('spesialis', true)
+            "nama" => $this->input->post('spesialisasi', true)
         ];
 
         $this->db->where('id', $this->input->post('id'));
-        $this->db->update('spesialis', $data);
+        $this->db->update('spesialisasi', $data);
     }
 
-    public function hapusSpesialis($id)
+    public function hapusSpesialisasi($id)
     {
-        $this->db->delete('spesialis', ['id' => $id]);
+        $this->db->delete('spesialisasi', ['id' => $id]);
     }
 
-    public function getJoinDokterSpesialis()
+    public function getJoinDokterSpesialisasi()
     {
-        $this->db->select('dokter.id AS id_dokter, dokter.nip, dokter.nama AS nama_dokter, dokter.jenis_kelamin, dokter.telepon, dokter.email, dokter.alamat, dokter.jam_masuk, dokter.jam_keluar, dokter.tanggal_ditambahkan, dokter.gambar, spesialis.id AS id_spesialis, spesialis.gelar_spesialis');
+        $this->db->select('dokter.id AS id_dokter, dokter.nip, dokter.nama AS nama_dokter, dokter.jenis_kelamin, dokter.telepon, dokter.email, dokter.alamat, dokter.jam_masuk, dokter.jam_keluar, dokter.tanggal_ditambahkan, dokter.gambar, spesialisasi.id AS id_spesialisasi, spesialisasi.nama AS nama_spesialisasi');
         $this->db->from('dokter');
-        $this->db->join('spesialis', 'dokter.id_spesialis = spesialis.id');
+        $this->db->join('spesialisasi', 'dokter.id_spesialisasi = spesialisasi.id');
         $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function getJoinDokterSpesialisById($where)
+    public function getJoinDokterSpesialisasiById($where)
     {
-        $this->db->select('dokter.id AS id_dokter, dokter.nip, dokter.nama AS nama_dokter, dokter.jenis_kelamin, dokter.telepon, dokter.email, dokter.alamat, dokter.jam_masuk, dokter.jam_keluar, dokter.tanggal_ditambahkan, dokter.gambar, spesialis.id AS id_spesialis, spesialis.gelar_spesialis');
+        $this->db->select('dokter.id AS id_dokter, dokter.nip, dokter.nama AS nama_dokter, dokter.jenis_kelamin, dokter.telepon, dokter.email, dokter.alamat, dokter.jam_masuk, dokter.jam_keluar, dokter.tanggal_ditambahkan, dokter.gambar, spesialisasi.id AS id_spesialisasi, spesialisasi.nama AS nama_spesialisasi');
         $this->db->from('dokter');
-        $this->db->join('spesialis', 'dokter.id_spesialis = spesialis.id');
+        $this->db->join('spesialisasi', 'dokter.id_spesialisasi = spesialisasi.id');
         $this->db->where($where);
         return $this->db->get()->row_array();
     }
