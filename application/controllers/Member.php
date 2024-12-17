@@ -156,6 +156,8 @@ class Member extends CI_Controller
     {
         $data['judul'] = "Akses Tidak Sah!";
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        
         $this->load->view('templates/header', $data);
         $this->load->view('member/blok');
         $this->load->view('templates/footer');
