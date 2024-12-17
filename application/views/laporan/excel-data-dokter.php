@@ -16,7 +16,7 @@ header("Expires: 0");
             <th>No</th>
             <th>Nama Dokter</th>
             <th>NIP</th>
-            <th>Spesialis</th>
+            <th>Spesialisasi</th>
             <th>Jenis Kelamin</th>
             <th>Telepon</th>
             <th>Email</th>
@@ -33,7 +33,7 @@ header("Expires: 0");
                 <th scope="row"><?= $no++; ?></th>
                 <td><?= $d['nama_dokter']; ?></td>
                 <td><?= $d['nip']; ?></td>
-                <td><?= $d['gelar_spesialis']; ?></td>
+                <td><?= $d['nama_spesialisasi']; ?></td>
                 <td><?= $d['jenis_kelamin']; ?></td>
                 <td style="mso-number-format:'\@';"><?= $d['telepon']; ?></td> <!-- Ini agar angka nol di depan dapat terbaca -->
                 <td><?= $d['email']; ?></td>

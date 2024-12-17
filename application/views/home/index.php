@@ -72,7 +72,7 @@
 
                                     <div class="team-text bg-light text-center p-4">
                                         <h5><?= $dl['nama_dokter']; ?></h5>
-                                        <p class="text-primary">Spesialis <?= $dl['gelar_spesialis']; ?></p>
+                                        <p class="text-primary">Spesialisasi <?= $dl['nama_spesialisasi']; ?></p>
                                     </div>
                                 </div>
                             </div>

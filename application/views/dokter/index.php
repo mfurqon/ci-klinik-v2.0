@@ -28,7 +28,7 @@
                         </div>
                         <div class="team-text bg-light text-center p-4">
                             <h5><?= $d['nama_dokter']; ?></h5>
-                            <p class="text-primary">Spesialis <?= $d['gelar_spesialis']; ?></p>
+                            <p class="text-primary">Spesialisasi <?= $d['nama_spesialisasi']; ?></p>
                             <div class="team-social text-center">
                                 <a href="<?= base_url('dokter/lihat_dokter/') . $d['id_dokter']; ?>" class="btn btn-primary">
                                     <i class="fas fa-eye align-items-center"></i>

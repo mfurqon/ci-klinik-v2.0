@@ -17,7 +17,7 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <p class="card-text"><strong>NIP :</strong> <?= $dokter['nip']; ?></p>
-                            <p class="card-text"><strong>Spesialis :</strong> <?= $dokter['gelar_spesialis']; ?></p>
+                            <p class="card-text"><strong>Spesialisasi :</strong> <?= $dokter['nama_spesialisasi']; ?></p>
                             <p class="card-text"><strong>Jenis Kelamin :</strong> <?= $dokter['jenis_kelamin']; ?></p>
                             <p class="card-text"><strong>Telepon :</strong> <?= $dokter['telepon']; ?></p>
                             <p class="card-text"><strong>Email :</strong> <?= $dokter['email']; ?></p>

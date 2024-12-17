@@ -14,7 +14,7 @@
                     <div class="col-md-8 bg-light">
                         <div class="card-body p-4">
                             <h5 class="card-title text-primary"><?= $dokter['nama_dokter']; ?></h5>
-                            <p class="card-text"><strong>Spesialis:</strong> <?= $dokter['gelar_spesialis']; ?></p>
+                            <p class="card-text"><strong>Spesialisasi:</strong> <?= $dokter['nama_spesialisasi']; ?></p>
                             <p class="card-text"><strong>Jam Operasional:</strong> <?= $dokter['jam_masuk'] . ' - ' . $dokter['jam_keluar']; ?></p>
 
                             <button class="btn btn-outline-primary mt-3" onclick="window.history.back()">Kembali</button>
