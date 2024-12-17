@@ -4,10 +4,10 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url(); ?>">
         <div class="sidebar-brand-icon">
-            <i class="fas fa-stethoscope rotate-n-15"></i>
-            <!-- <i>
-                <img class="img bg-white rounded p-1" src="<?= base_url('assets/img/logo-klinik-biru-remove-bg.webp'); ?>" alt="logo-klinik">
-            </i> -->
+            <!-- <i class="fas fa-stethoscope rotate-n-15"></i> -->
+            <i>
+                <img class="img bg-white rounded p-1" src="<?= base_url('assets/img/klinik/logo-klinik-biru-remove-bg.webp'); ?>" alt="logo-klinik">
+            </i>
         </div>
         <div class="sidebar-brand-text mx-3">CI Klinik</div>
     </a>
@@ -48,10 +48,10 @@
                 <span>Data Dokter</span>
             </a>
         </li>
-        <li class="nav-item <?= ($judul == "Data Spesialis Dokter") ? 'active' : ''; ?>">
-            <a href="<?= base_url('dokter/spesialis'); ?>" class="nav-link pb-0">
+        <li class="nav-item <?= ($judul == "Data Spesialisasi Dokter") ? 'active' : ''; ?>">
+            <a href="<?= base_url('dokter/spesialisasi'); ?>" class="nav-link pb-0">
                 <i class="fas fa-fw fa-hospital-user"></i>
-                <span>Data Spesialis Dokter</span>
+                <span>Data Spesialisasi Dokter</span>
             </a>
         </li>
         <li class="nav-item <?= ($judul == "Data Anggota") ? 'active' : ''; ?>">
