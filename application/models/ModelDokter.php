@@ -119,37 +119,4 @@ class ModelDokter extends CI_Model
         $this->db->where($where);
         return $this->db->get()->row_array();
     }
-
-
-    // Kumpulan kode form_validation dokter
-    public function form_validation_tambah_dokter()
-    {
-        $this->form_validation->set_rules('nip', 'NIP', 'required|trim|numeric|is_unique[dokter.nip]|min_length[8]');
-        $this->form_validation->set_rules('nama_dokter', 'Nama Dokter', 'required|trim');
-        $this->form_validation->set_rules('spesialis', 'Spesialis', 'required|trim');
-        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
-        $this->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-        $this->form_validation->set_rules('jam_masuk', 'Jam Masuk', 'required');
-        $this->form_validation->set_rules('jam_keluar', 'Jam Keluar', 'required');
-    }
-
-    public function form_validation_ubah_dokter()
-    {
-        $this->form_validation->set_rules('nama_dokter', 'Nama Dokter', 'required|trim');
-        $this->form_validation->set_rules('spesialis', 'Spesialis', 'required|trim');
-        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
-        $this->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric');
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-        $this->form_validation->set_rules('jam_masuk', 'Jam Masuk', 'required');
-        $this->form_validation->set_rules('jam_keluar', 'Jam Keluar', 'required');
-    }
-
-    // Kumpulan kode form_validation spesialis
-    public function form_validation_spesialis()
-    {
-        $this->form_validation->set_rules('spesialis', 'Spesialis', 'required|trim');
-    }
 }
