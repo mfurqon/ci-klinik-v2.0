@@ -19,10 +19,10 @@ class Admin extends CI_Controller
         $data['total_janji_temu'] = $this->ModelJanjiTemu->hitungJanjiTemu();
         $data['total_anggota'] = $this->ModelUser->hitungAnggota();
 
-        $this->load->view('templates/adm_header', $data);
-        $this->load->view('templates/adm_sidebar', $data);
-        $this->load->view('templates/adm_topbar', $data);
+        $this->load->view('templates/backend/main/header', $data);
+        $this->load->view('templates/backend/main/sidebar', $data);
+        $this->load->view('templates/backend/main/topbar', $data);
         $this->load->view('admin/index', $data);
-        $this->load->view('templates/adm_footer');
+        $this->load->view('templates/backend/main/footer');
     }
 }

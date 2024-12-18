@@ -14,11 +14,11 @@ class User extends CI_Controller
         $data['judul'] = 'Profil Saya';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->load->view('templates/adm_header', $data);
-        $this->load->view('templates/adm_sidebar', $data);
-        $this->load->view('templates/adm_topbar', $data);
+        $this->load->view('templates/backend/main/header', $data);
+        $this->load->view('templates/backend/main/sidebar', $data);
+        $this->load->view('templates/backend/main/topbar', $data);
         $this->load->view('user/index', $data);
-        $this->load->view('templates/adm_footer');
+        $this->load->view('templates/backend/main/footer');
     }
 
     public function manage()
@@ -31,11 +31,11 @@ class User extends CI_Controller
         set_tambah_user_rules();
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/adm_header', $data);
-            $this->load->view('templates/adm_sidebar', $data);
-            $this->load->view('templates/adm_topbar', $data);
+            $this->load->view('templates/backend/main/header', $data);
+            $this->load->view('templates/backend/main/sidebar', $data);
+            $this->load->view('templates/backend/main/topbar', $data);
             $this->load->view('user/anggota', $data);
-            $this->load->view('templates/adm_footer');
+            $this->load->view('templates/backend/main/footer');
         } else {
             $data = [
                 'nama' => htmlspecialchars($this->input->post('nama', true)),
@@ -69,11 +69,11 @@ class User extends CI_Controller
         set_tambah_role_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/adm_header', $data);
-            $this->load->view('templates/adm_sidebar', $data);
-            $this->load->view('templates/adm_topbar', $data);
+            $this->load->view('templates/backend/main/header', $data);
+            $this->load->view('templates/backend/main/sidebar', $data);
+            $this->load->view('templates/backend/main/topbar', $data);
             $this->load->view('user/role', $data);
-            $this->load->view('templates/adm_footer');
+            $this->load->view('templates/backend/main/footer');
         } else {
             $this->ModelUser->tambahRole();
             $this->session->set_flashdata(
@@ -98,11 +98,11 @@ class User extends CI_Controller
         set_ubah_user_rules();
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/adm_header', $data);
-            $this->load->view('templates/adm_sidebar', $data);
-            $this->load->view('templates/adm_topbar', $data);
+            $this->load->view('templates/backend/main/header', $data);
+            $this->load->view('templates/backend/main/sidebar', $data);
+            $this->load->view('templates/backend/main/topbar', $data);
             $this->load->view('user/ubah-anggota', $data);
-            $this->load->view('templates/adm_footer');
+            $this->load->view('templates/backend/main/footer');
         } else {
             $nama = $this->input->post('nama', true);
             $id = $this->input->post('id', true);
@@ -179,11 +179,11 @@ class User extends CI_Controller
         set_ubah_role_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/adm_header', $data);
-            $this->load->view('templates/adm_sidebar', $data);
-            $this->load->view('templates/adm_topbar', $data);
+            $this->load->view('templates/backend/main/header', $data);
+            $this->load->view('templates/backend/main/sidebar', $data);
+            $this->load->view('templates/backend/main/topbar', $data);
             $this->load->view('user/ubah-role', $data);
-            $this->load->view('templates/adm_footer');
+            $this->load->view('templates/backend/main/footer');
         } else {
             $this->ModelUser->ubahRole();
             $this->session->set_flashdata(
@@ -219,14 +219,14 @@ class User extends CI_Controller
         $data['judul'] = 'Ubah Profil';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->ModelUser->form_validation_ubah_data_user();
+        set_ubah_user_rules();
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/adm_header', $data);
-            $this->load->view('templates/adm_sidebar', $data);
-            $this->load->view('templates/adm_topbar', $data);
+            $this->load->view('templates/backend/main/header', $data);
+            $this->load->view('templates/backend/main/sidebar', $data);
+            $this->load->view('templates/backend/main/topbar', $data);
             $this->load->view('user/ubah-profil', $data);
-            $this->load->view('templates/adm_footer');
+            $this->load->view('templates/backend/main/footer');
         } else {
             $nama = $this->input->post('nama');
             $email = $this->input->post('email');
@@ -279,11 +279,11 @@ class User extends CI_Controller
         set_ubah_password_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/adm_header', $data);
-            $this->load->view('templates/adm_sidebar', $data);
-            $this->load->view('templates/adm_topbar', $data);
+            $this->load->view('templates/backend/main/header', $data);
+            $this->load->view('templates/backend/main/sidebar', $data);
+            $this->load->view('templates/backend/main/topbar', $data);
             $this->load->view('user/ubah-password', $data);
-            $this->load->view('templates/adm_footer');
+            $this->load->view('templates/backend/main/footer');
         } else {
             $password_lama = $this->input->post('password_lama');
             $password_baru = $this->input->post('password_baru1');

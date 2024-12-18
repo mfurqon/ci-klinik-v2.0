@@ -17,11 +17,11 @@ class Dokter extends CI_Controller
         set_tambah_dokter_rules();
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/adm_header', $data);
-            $this->load->view('templates/adm_sidebar', $data);
-            $this->load->view('templates/adm_topbar', $data);
+            $this->load->view('templates/backend/main/header', $data);
+            $this->load->view('templates/backend/main/sidebar', $data);
+            $this->load->view('templates/backend/main/topbar', $data);
             $this->load->view('dokter/dokter-admin', $data);
-            $this->load->view('templates/adm_footer');
+            $this->load->view('templates/backend/main/footer');
         } else {
             // Konfigurasi Sebelum Gambar Di-Upload
             $config['upload_path'] = './assets/img/upload-dokter/';
@@ -62,11 +62,11 @@ class Dokter extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
 
-        $this->load->view('templates/adm_header', $data);
-        $this->load->view('templates/adm_sidebar', $data);
-        $this->load->view('templates/adm_topbar', $data);
+        $this->load->view('templates/backend/main/header', $data);
+        $this->load->view('templates/backend/main/sidebar', $data);
+        $this->load->view('templates/backend/main/topbar', $data);
         $this->load->view('dokter/detail-dokter', $data);
-        $this->load->view('templates/adm_footer');
+        $this->load->view('templates/backend/main/footer');
     }
 
     public function ubah_dokter()
@@ -90,11 +90,11 @@ class Dokter extends CI_Controller
         set_ubah_dokter_rules();
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/adm_header', $data);
-            $this->load->view('templates/adm_sidebar', $data);
-            $this->load->view('templates/adm_topbar', $data);
+            $this->load->view('templates/backend/main/header', $data);
+            $this->load->view('templates/backend/main/sidebar', $data);
+            $this->load->view('templates/backend/main/topbar', $data);
             $this->load->view('dokter/ubah-dokter', $data);
-            $this->load->view('templates/adm_footer');
+            $this->load->view('templates/backend/main/footer');
         } else {
             $id = $this->input->post('id', true);
             $nip = $this->input->post('nip', true);
@@ -186,11 +186,11 @@ class Dokter extends CI_Controller
         set_tambah_spesialisasi_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/adm_header', $data);
-            $this->load->view('templates/adm_sidebar', $data);
-            $this->load->view('templates/adm_topbar', $data);
+            $this->load->view('templates/backend/main/header', $data);
+            $this->load->view('templates/backend/main/sidebar', $data);
+            $this->load->view('templates/backend/main/topbar', $data);
             $this->load->view('dokter/spesialisasi', $data);
-            $this->load->view('templates/adm_footer');
+            $this->load->view('templates/backend/main/footer');
         } else {
             $this->ModelDokter->tambahSpesialisasi();
             $this->session->set_flashdata(
@@ -215,11 +215,11 @@ class Dokter extends CI_Controller
         set_ubah_spesialisasi_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/adm_header', $data);
-            $this->load->view('templates/adm_sidebar', $data);
-            $this->load->view('templates/adm_topbar', $data);
+            $this->load->view('templates/backend/main/header', $data);
+            $this->load->view('templates/backend/main/sidebar', $data);
+            $this->load->view('templates/backend/main/topbar', $data);
             $this->load->view('dokter/ubah-spesialisasi', $data);
-            $this->load->view('templates/adm_footer');
+            $this->load->view('templates/backend/main/footer');
         } else {
             $this->ModelDokter->ubahSpesialisasi();
             $this->session->set_flashdata(
@@ -256,8 +256,8 @@ class Dokter extends CI_Controller
         $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/frontend/main/header', $data);
         $this->load->view('dokter/lihat-dokter', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/frontend/main/footer');
     }
 }

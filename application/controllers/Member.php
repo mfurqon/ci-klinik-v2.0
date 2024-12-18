@@ -13,9 +13,9 @@ class Member extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/member/auth-header', $data);
+            $this->load->view('templates/frontend/login/header', $data);
             $this->load->view('member/login');
-            $this->load->view('templates/member/auth-footer');
+            $this->load->view('templates/frontend/login/footer');
         } else {
             $this->_login();
         }
@@ -35,9 +35,9 @@ class Member extends CI_Controller
         $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|trim|matches[password1]');
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/member/auth-header', $data);
+            $this->load->view('templates/frontend/login/header', $data);
             $this->load->view('member/daftar');
-            $this->load->view('templates/member/auth-footer');
+            $this->load->view('templates/frontend/login/footer');
         } else {
             $data = [
                 'nama' => htmlspecialchars($this->input->post('nama', true)),
@@ -158,9 +158,9 @@ class Member extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
         
-        $this->load->view('templates/header', $data);
+        $this->load->view('templates/frontend/main/header', $data);
         $this->load->view('member/blok');
-        $this->load->view('templates/footer');
+        $this->load->view('templates/frontend/main/footer');
     }
 
     private function _login()
