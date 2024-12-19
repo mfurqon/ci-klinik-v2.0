@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class ModelUser extends CI_Model
+class UserModel extends CI_Model
 {
     // Pengolahan data pada table user
     public function getAllUser()

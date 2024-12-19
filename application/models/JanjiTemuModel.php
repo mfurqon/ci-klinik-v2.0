@@ -1,8 +1,7 @@
 <?php
-
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class ModelJanjiTemu extends CI_Model
+class JanjiTemuModel extends CI_Model
 {
     public function getAllJanjiTemu()
     {

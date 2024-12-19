@@ -1,8 +1,7 @@
 <?php
-
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class ModelObat extends CI_Model
+class ObatModel extends CI_Model
 {
     // Pengolahan data pada table obat
     public function getAllObat()
