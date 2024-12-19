@@ -19,7 +19,7 @@ class Janji_Temu extends CI_Controller
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
         $this->load->view('backend/templates/main/topbar', $data);
-        $this->load->view('backend/janji-temu/list-janji-temu', $data);
+        $this->load->view('backend/janji_temu/list_janji_temu', $data);
         $this->load->view('backend/templates/main/footer');
     }
 
@@ -32,7 +32,7 @@ class Janji_Temu extends CI_Controller
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
         $this->load->view('backend/templates/main/topbar', $data);
-        $this->load->view('backend/janji-temu/detail-janji-temu', $data);
+        $this->load->view('backend/janji_temu/detail_janji_temu', $data);
         $this->load->view('backend/templates/main/footer');
     }
 
@@ -61,7 +61,7 @@ class Janji_Temu extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('backend/janji-temu/ubah-janji-temu', $data);
+            $this->load->view('backend/janji_temu/ubah_janji_temu', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             $this->ModelJanjiTemu->ubahJanjiTemu();

@@ -20,7 +20,7 @@ class Dokter extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('backend/dokter/data/list-dokter', $data);
+            $this->load->view('backend/dokter/data/list_dokter', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             // Konfigurasi Sebelum Gambar Di-Upload
@@ -65,7 +65,7 @@ class Dokter extends CI_Controller
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
         $this->load->view('backend/templates/main/topbar', $data);
-        $this->load->view('backend/dokter/data/detail-dokter', $data);
+        $this->load->view('backend/dokter/data/detail_dokter', $data);
         $this->load->view('backend/templates/main/footer');
     }
 
@@ -93,7 +93,7 @@ class Dokter extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('backend/dokter/data/ubah-dokter', $data);
+            $this->load->view('backend/dokter/data/edit_dokter', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             $id = $this->input->post('id', true);
@@ -189,7 +189,7 @@ class Dokter extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('backend/dokter/spesialisasi/list-spesialisasi', $data);
+            $this->load->view('backend/dokter/spesialisasi/list_spesialisasi', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             $this->ModelDokter->tambahSpesialisasi();
@@ -218,7 +218,7 @@ class Dokter extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('backend/dokter/spesialisasi/ubah-spesialisasi', $data);
+            $this->load->view('backend/dokter/spesialisasi/edit_spesialisasi', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             $this->ModelDokter->ubahSpesialisasi();

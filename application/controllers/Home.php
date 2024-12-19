@@ -30,7 +30,7 @@ class Home extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('frontend/templates/main/header', $data);
-            $this->load->view('frontend/janji-temu/index', $data);
+            $this->load->view('frontend/janji_temu/index', $data);
             $this->load->view('frontend/templates/main/footer');
         } else {
             $this->ModelJanjiTemu->tambahJanjiTemu($data);
@@ -86,7 +86,7 @@ class Home extends CI_Controller
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
-        $this->load->view('frontend/riwayat/riwayat-janji-temu', $data);
+        $this->load->view('frontend/riwayat/riwayat_janji_temu', $data);
         $this->load->view('frontend/templates/main/footer');
     }
 
