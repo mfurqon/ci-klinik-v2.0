@@ -10,9 +10,9 @@ class Dokter extends CI_Controller
         cek_akses();
 
         $data['judul'] = "Data Dokter";
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasi();
-        $data['spesialisasi'] = $this->ModelDokter->getAllSpesialisasi();
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasi();
+        $data['spesialisasi'] = $this->DokterModel->getAllSpesialisasi();
 
         set_tambah_dokter_rules();
 
@@ -42,7 +42,7 @@ class Dokter extends CI_Controller
                 redirect('dokter');
             }
 
-            $this->ModelDokter->tambahDokter($gambar);
+            $this->DokterModel->tambahDokter($gambar);
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message">
@@ -59,8 +59,8 @@ class Dokter extends CI_Controller
         cek_akses();
 
         $data['judul'] = 'Detail Dokter';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
 
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
@@ -75,9 +75,9 @@ class Dokter extends CI_Controller
         cek_akses();
 
         $data['judul'] = 'Ubah Dokter';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
-        $data['spesialisasi'] = $this->ModelDokter->getAllSpesialisasi();
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
+        $data['spesialisasi'] = $this->DokterModel->getAllSpesialisasi();
 
         $nip_lama = $data['dokter']['nip'];
         $nip_baru = $this->input->post('nip', true);
@@ -158,13 +158,13 @@ class Dokter extends CI_Controller
         $data['judul'] = 'Hapus Dokter';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['role_id'] = $this->session->userdata('role_id');
-        $data['dokter'] = $this->ModelDokter->getDokterById($id);
+        $data['dokter'] = $this->DokterModel->getDokterById($id);
 
         $gambar_dokter = $data['dokter']['gambar_dokter'];
         unlink(FCPATH . 'assets/img/upload-dokter/' . $gambar_dokter);
 
 
-        $this->ModelDokter->hapusDataDokter($id);
+        $this->DokterModel->hapusDataDokter($id);
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">
@@ -180,8 +180,8 @@ class Dokter extends CI_Controller
         cek_akses();
 
         $data['judul'] = "Data Spesialisasi Dokter";
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['spesialisasi'] = $this->ModelDokter->getAllSpesialisasi();
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['spesialisasi'] = $this->DokterModel->getAllSpesialisasi();
 
         set_tambah_spesialisasi_rules();
 
@@ -192,7 +192,7 @@ class Dokter extends CI_Controller
             $this->load->view('backend/dokter/spesialisasi/list_spesialisasi', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
-            $this->ModelDokter->tambahSpesialisasi();
+            $this->DokterModel->tambahSpesialisasi();
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message">
@@ -209,8 +209,8 @@ class Dokter extends CI_Controller
         cek_akses();
 
         $data['judul'] = 'Ubah Spesialisasi Dokter';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['spesialisasi'] = $this->ModelDokter->getSpesialisasiById(['spesialisasi.id' => $this->uri->segment(3)]);
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['spesialisasi'] = $this->DokterModel->getSpesialisasiById(['spesialisasi.id' => $this->uri->segment(3)]);
 
         set_ubah_spesialisasi_rules();
 
@@ -221,7 +221,7 @@ class Dokter extends CI_Controller
             $this->load->view('backend/dokter/spesialisasi/edit_spesialisasi', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
-            $this->ModelDokter->ubahSpesialisasi();
+            $this->DokterModel->ubahSpesialisasi();
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message">
@@ -237,9 +237,9 @@ class Dokter extends CI_Controller
         cek_login();
         cek_akses();
 
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
 
-        $this->ModelDokter->hapusSpesialisasi($this->uri->segment(3));
+        $this->DokterModel->hapusSpesialisasi($this->uri->segment(3));
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">
@@ -252,9 +252,9 @@ class Dokter extends CI_Controller
     public function lihat_dokter()
     {
         $data['judul'] = 'Detail Dokter';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
-        $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
+        $data['data_keranjang'] = $this->ObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/dokter/detail-dokter', $data);

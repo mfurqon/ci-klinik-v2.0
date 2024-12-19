@@ -6,8 +6,8 @@ class Laporan extends CI_Controller
     public function dokter()
     {
         $data['judul'] = 'Laporan Data Dokter';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasi();
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasi();
 
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
@@ -19,15 +19,15 @@ class Laporan extends CI_Controller
     public function cetak_data_dokter()
     {
         $data['judul'] = 'Laporan Data Dokter';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasi();
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasi();
 
         $this->load->view('backend/laporan/dokter/print_data_dokter', $data);
     }
 
     public function pdf_data_dokter()
     {
-        $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasi();
+        $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasi();
 
         $this->load->view('backend/laporan/dokter/pdf_data_dokter', $data);
 
@@ -44,7 +44,7 @@ class Laporan extends CI_Controller
     {
         $data = [
             'judul' => 'Data Dokter Excel', 
-            'dokter' => $this->ModelDokter->getJoinDokterSpesialisasi()
+            'dokter' => $this->DokterModel->getJoinDokterSpesialisasi()
         ];
         $this->load->view('backend/laporan/dokter/excel_data_dokter', $data);
     }
@@ -54,8 +54,8 @@ class Laporan extends CI_Controller
     public function obat()
     {
         $data['judul'] = 'Laporan Data Obat';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['obat'] = $this->ModelObat->getJoinObatJenisObat();
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['obat'] = $this->ObatModel->getJoinObatJenisObat();
 
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
@@ -67,15 +67,15 @@ class Laporan extends CI_Controller
     public function cetak_data_obat()
     {
         $data['judul'] = 'Laporan Data Obat';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['obat'] = $this->ModelObat->getJoinObatJenisObat();
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['obat'] = $this->ObatModel->getJoinObatJenisObat();
 
         $this->load->view('backend/laporan/obat/print_data_obat', $data);
     }
 
     public function pdf_data_obat()
     {
-        $data['obat'] = $this->ModelObat->getJoinObatJenisObat();
+        $data['obat'] = $this->ObatModel->getJoinObatJenisObat();
 
         $this->load->view('backend/laporan/obat/pdf_data_obat', $data);
 
@@ -92,7 +92,7 @@ class Laporan extends CI_Controller
     {
         $data = [
             'judul' => 'Data Obat Excel', 
-            'obat' => $this->ModelObat->getJoinObatJenisObat()
+            'obat' => $this->ObatModel->getJoinObatJenisObat()
         ];
         $this->load->view('backend/laporan/obat/excel_data_obat', $data);
     }

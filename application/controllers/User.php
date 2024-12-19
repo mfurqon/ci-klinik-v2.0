@@ -24,9 +24,9 @@ class User extends CI_Controller
     public function manage()
     {
         $data['judul'] = 'Data Anggota';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['role'] = $this->ModelUser->getAllRole();
-        $data['anggota'] = $this->ModelUser->getJoinUserRole();
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['role'] = $this->UserModel->getAllRole();
+        $data['anggota'] = $this->UserModel->getJoinUserRole();
 
         set_tambah_user_rules();
 
@@ -49,7 +49,7 @@ class User extends CI_Controller
                 'tanggal_dibuat' => date('d-m-Y')
             ];
 
-            $this->ModelUser->simpanDataUser($data);
+            $this->UserModel->simpanDataUser($data);
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message" role="alert">
@@ -63,8 +63,8 @@ class User extends CI_Controller
     public function role()
     {
         $data['judul'] = 'Data Role';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['role'] = $this->ModelUser->getAllRole();
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['role'] = $this->UserModel->getAllRole();
         
         set_tambah_role_rules();
 
@@ -75,7 +75,7 @@ class User extends CI_Controller
             $this->load->view('backend/user/role/list_role', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
-            $this->ModelUser->tambahRole();
+            $this->UserModel->tambahRole();
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message" role="alert">
@@ -91,9 +91,9 @@ class User extends CI_Controller
         cek_login();
 
         $data['judul'] = 'Ubah Data Anggota';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['anggota'] = $this->ModelUser->getJoinRoleIdById(['user_id' => $this->uri->segment(3)]);
-        $data['role'] = $this->ModelUser->getAllRole();
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['anggota'] = $this->UserModel->getJoinRoleIdById(['user_id' => $this->uri->segment(3)]);
+        $data['role'] = $this->UserModel->getAllRole();
 
         set_ubah_user_rules();
 
@@ -154,8 +154,8 @@ class User extends CI_Controller
         cek_login();
 
         $where = ['id' => $this->uri->segment(3)];
-        $this->ModelUser->hapusAnggota($where);
-        $data['anggota'] = $this->ModelUser->getUserWhere(['id' => $this->uri->segment(3)]);
+        $this->UserModel->hapusAnggota($where);
+        $data['anggota'] = $this->UserModel->getUserWhere(['id' => $this->uri->segment(3)]);
 
         $gambar_user = $data['anggota']['gambar'];
         unlink(FCPATH . 'assets/img/profile/' . $gambar_user);
@@ -173,8 +173,8 @@ class User extends CI_Controller
         cek_login();
 
         $data['judul'] = 'Ubah Role';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->input->post('email')]);
-        $data['role'] = $this->ModelUser->getRoleById(['role.id' => $this->uri->segment(3)]);
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->input->post('email')]);
+        $data['role'] = $this->UserModel->getRoleById(['role.id' => $this->uri->segment(3)]);
 
         set_ubah_role_rules();
 
@@ -185,7 +185,7 @@ class User extends CI_Controller
             $this->load->view('backend/user/role/edit_role', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
-            $this->ModelUser->ubahRole();
+            $this->UserModel->ubahRole();
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message">
@@ -200,9 +200,9 @@ class User extends CI_Controller
     {
         cek_login();
 
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->input->post('email')]);
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->input->post('email')]);
 
-        $this->ModelUser->hapusRole($this->uri->segment(3));
+        $this->UserModel->hapusRole($this->uri->segment(3));
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">

@@ -14,7 +14,7 @@ class Janji_Temu extends CI_Controller
     {
         $data['judul'] = 'Data Janji Temu';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['janji_temu'] = $this->ModelJanjiTemu->getAllJanjiTemu();
+        $data['janji_temu'] = $this->JanjiTemuModel->getAllJanjiTemu();
 
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
@@ -27,7 +27,7 @@ class Janji_Temu extends CI_Controller
     {
         $data['judul'] = 'Detail Janji Temu';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['janji_temu'] = $this->ModelJanjiTemu->janjiTemuWhere(['id' => $this->uri->segment(3)])->row_array();
+        $data['janji_temu'] = $this->JanjiTemuModel->janjiTemuWhere(['id' => $this->uri->segment(3)])->row_array();
 
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
@@ -40,8 +40,8 @@ class Janji_Temu extends CI_Controller
     {
         $data['judul'] = 'Ubah Janji Temu';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['janji_temu'] = $this->ModelJanjiTemu->janjiTemuWhere(['id' => $this->uri->segment(3)])->row_array();
-        $data['nama_dokter'] = $this->ModelDokter->getAllDokter();
+        $data['janji_temu'] = $this->JanjiTemuModel->janjiTemuWhere(['id' => $this->uri->segment(3)])->row_array();
+        $data['nama_dokter'] = $this->DokterModel->getAllDokter();
 
         $email_lama = $data['janji_temu']['email'];
         $email_baru = $this->input->post('email', true);
@@ -64,7 +64,7 @@ class Janji_Temu extends CI_Controller
             $this->load->view('backend/janji_temu/ubah_janji_temu', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
-            $this->ModelJanjiTemu->ubahJanjiTemu();
+            $this->JanjiTemuModel->ubahJanjiTemu();
 
             $this->session->set_flashdata(
                 'pesan',
@@ -79,7 +79,7 @@ class Janji_Temu extends CI_Controller
     public function hapusJanjiTemu()
     {
         $where = ['id' => $this->uri->segment(3)];
-        $this->ModelJanjiTemu->hapusJanjiTemu($where);
+        $this->JanjiTemuModel->hapusJanjiTemu($where);
 
         $this->session->set_flashdata(
             'pesan',

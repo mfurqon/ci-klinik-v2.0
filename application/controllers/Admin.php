@@ -13,11 +13,11 @@ class Admin extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Dashboard';
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['total_dokter'] = $this->ModelDokter->hitungDokter();
-        $data['total_obat'] = $this->ModelObat->hitungObat();
-        $data['total_janji_temu'] = $this->ModelJanjiTemu->hitungJanjiTemu();
-        $data['total_anggota'] = $this->ModelUser->hitungAnggota();
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['total_dokter'] = $this->DokterModel->hitungDokter();
+        $data['total_obat'] = $this->ObatModel->hitungObat();
+        $data['total_janji_temu'] = $this->JanjiTemuModel->hitungJanjiTemu();
+        $data['total_anggota'] = $this->UserModel->hitungAnggota();
 
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);

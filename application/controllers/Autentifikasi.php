@@ -51,7 +51,7 @@ class Autentifikasi extends CI_Controller
                 'tanggal_dibuat' => date('d-m-Y')
             ];
 
-            $this->ModelUser->simpanDataUser($data);
+            $this->UserModel->simpanDataUser($data);
             $this->session->set_flashdata(
                 'pesan', 
                 '<div class="alert alert-success" role="alert">
@@ -85,7 +85,7 @@ class Autentifikasi extends CI_Controller
         $email = htmlspecialchars($this->input->post('email', true));
         $password = $this->input->post('password', true);
 
-        $user = $this->ModelUser->cekDataUser(['email' => $email]);
+        $user = $this->UserModel->cekDataUser(['email' => $email]);
 
         // Jika usernya ada
         if ($user) {

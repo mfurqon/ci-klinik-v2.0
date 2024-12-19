@@ -50,7 +50,7 @@ class Member extends CI_Controller
                 'is_active' => 1,
                 'tanggal_dibuat' => date('d-m-Y')
             ];
-            $this->ModelUser->simpanDataUser($data);
+            $this->UserModel->simpanDataUser($data);
             $this->session->set_flashdata(
                 'pesan', 
                 '<div class="alert alert-success" role="alert">
@@ -64,7 +64,7 @@ class Member extends CI_Controller
     {
         $data['judul'] = 'Profil Saya';
         
-        $user = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
+        $user = $this->UserModel->cekData(['email' => $this->session->userdata('email')])->row_array();
 
         foreach ($user as $a) {
             $data = [
@@ -84,7 +84,7 @@ class Member extends CI_Controller
 
     public function ubah_profil()
     {
-        $user = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array();
+        $user = $this->UserModel->cekData(['email' => $this->session->userdata('email')])->row_array();
 
         foreach ($user as $a) {
             $data = [
@@ -155,8 +155,8 @@ class Member extends CI_Controller
     public function blok()
     {
         $data['judul'] = "Akses Tidak Sah!";
-        $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['data_keranjang'] = $this->ObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
         
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/auth/blok');
@@ -167,7 +167,7 @@ class Member extends CI_Controller
     {
         $email = htmlspecialchars($this->input->post('email', true));
         $password = $this->input->post('password', true);
-        $user = $this->ModelUser->cekDataUser(['email' => $email]);
+        $user = $this->UserModel->cekDataUser(['email' => $email]);
 
         // Jika usernya ada
         if ($user) {
