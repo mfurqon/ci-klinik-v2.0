@@ -16,11 +16,11 @@ class Obat extends CI_Controller
         set_tambah_obat_rules();
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/backend/main/header', $data);
-            $this->load->view('templates/backend/main/sidebar', $data);
-            $this->load->view('templates/backend/main/topbar', $data);
+            $this->load->view('backend/templates/main/header', $data);
+            $this->load->view('backend/templates/main/sidebar', $data);
+            $this->load->view('backend/templates/main/topbar', $data);
             $this->load->view('obat/obat-admin', $data);
-            $this->load->view('templates/backend/main/footer');
+            $this->load->view('backend/templates/main/footer');
         } else {
             $upload_image = $_FILES['gambar_obat'];
 
@@ -65,11 +65,11 @@ class Obat extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ModelObat->getObatJenisObatById(['obat.id' => $this->uri->segment(3)]);
 
-        $this->load->view('templates/backend/main/header', $data);
-        $this->load->view('templates/backend/main/sidebar', $data);
-        $this->load->view('templates/backend/main/topbar', $data);
+        $this->load->view('backend/templates/main/header', $data);
+        $this->load->view('backend/templates/main/sidebar', $data);
+        $this->load->view('backend/templates/main/topbar', $data);
         $this->load->view('obat/detail-obat', $data);
-        $this->load->view('templates/backend/main/footer');
+        $this->load->view('backend/templates/main/footer');
     }
 
     public function ubah_obat()
@@ -85,11 +85,11 @@ class Obat extends CI_Controller
         set_ubah_obat_rules();
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/backend/main/header', $data);
-            $this->load->view('templates/backend/main/sidebar', $data);
-            $this->load->view('templates/backend/main/topbar', $data);
+            $this->load->view('backend/templates/main/header', $data);
+            $this->load->view('backend/templates/main/sidebar', $data);
+            $this->load->view('backend/templates/main/topbar', $data);
             $this->load->view('obat/ubah-obat', $data);
-            $this->load->view('templates/backend/main/footer');
+            $this->load->view('backend/templates/main/footer');
         } else {
             $id = $this->input->post('id', true);
             $nama_obat = $this->input->post('nama_obat', true);
@@ -178,11 +178,11 @@ class Obat extends CI_Controller
         set_tambah_jenis_obat_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/backend/main/header', $data);
-            $this->load->view('templates/backend/main/sidebar', $data);
-            $this->load->view('templates/backend/main/topbar', $data);
+            $this->load->view('backend/templates/main/header', $data);
+            $this->load->view('backend/templates/main/sidebar', $data);
+            $this->load->view('backend/templates/main/topbar', $data);
             $this->load->view('obat/jenis-obat', $data);
-            $this->load->view('templates/backend/main/footer');
+            $this->load->view('backend/templates/main/footer');
         } else {
             $this->ModelObat->tambahJenisObat();
             $this->session->set_flashdata(
@@ -207,11 +207,11 @@ class Obat extends CI_Controller
         set_ubah_jenis_obat_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/backend/main/header', $data);
-            $this->load->view('templates/backend/main/sidebar', $data);
-            $this->load->view('templates/backend/main/topbar', $data);
+            $this->load->view('backend/templates/main/header', $data);
+            $this->load->view('backend/templates/main/sidebar', $data);
+            $this->load->view('backend/templates/main/topbar', $data);
             $this->load->view('obat/ubah-jenis-obat', $data);
-            $this->load->view('templates/backend/main/footer');
+            $this->load->view('backend/templates/main/footer');
         } else {
             $this->ModelObat->ubahJenisObat();
             $this->session->set_flashdata(
@@ -325,9 +325,9 @@ class Obat extends CI_Controller
         // $this->ModelObat->form_validation_beli_obat(); -> tidak digunakan lagi
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/frontend/main/header', $data);
+            $this->load->view('frontend/templates/main/header', $data);
             $this->load->view('obat/beli-obat', $data);
-            $this->load->view('templates/frontend/main/footer', $data);
+            $this->load->view('frontend/templates/main/footer', $data);
         } else {
             $stok = $data['obat']['stok'];
             $jumlah_obat = $this->input->post('jumlah');
@@ -354,11 +354,11 @@ class Obat extends CI_Controller
         $data['role_id'] = $this->session->userdata('role_id');
         $data['pemesanan_obat'] = $this->ModelObat->getAllPemesananObat();
 
-        $this->load->view('templates/backend/main/header', $data);
-        $this->load->view('templates/backend/main/sidebar', $data);
-        $this->load->view('templates/backend/main/topbar', $data);
+        $this->load->view('backend/templates/main/header', $data);
+        $this->load->view('backend/templates/main/sidebar', $data);
+        $this->load->view('backend/templates/main/topbar', $data);
         $this->load->view('obat/pemesanan-obat', $data);
-        $this->load->view('templates/backend/main/footer', $data);
+        $this->load->view('backend/templates/main/footer', $data);
     }
 
     public function detailPemesananObat()
@@ -370,11 +370,11 @@ class Obat extends CI_Controller
         $data['role_id'] = $this->session->userdata('role_id');
         $data['pemesanan_obat'] = $this->ModelObat->pemesananObatWhere(['id' => $this->uri->segment(3)]);
 
-        $this->load->view('templates/backend/main/header', $data);
-        $this->load->view('templates/backend/main/sidebar', $data);
-        $this->load->view('templates/backend/main/topbar', $data);
+        $this->load->view('backend/templates/main/header', $data);
+        $this->load->view('backend/templates/main/sidebar', $data);
+        $this->load->view('backend/templates/main/topbar', $data);
         $this->load->view('obat/detail-pemesanan-obat', $data);
-        $this->load->view('templates/backend/main/footer');
+        $this->load->view('backend/templates/main/footer');
     }
 
     public function hapusPemesananObat($id)

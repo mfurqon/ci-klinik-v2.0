@@ -13,9 +13,9 @@ class Autentifikasi extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/backend/login/header', $data);
+            $this->load->view('backend/templates/login/header', $data);
             $this->load->view('auth/login');
-            $this->load->view('templates/backend/login/footer');
+            $this->load->view('backend/templates/login/footer');
         } else {
             $this->_login();
         }
@@ -35,9 +35,9 @@ class Autentifikasi extends CI_Controller
         $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|trim|matches[password1]');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/backend/login/header', $data);
+            $this->load->view('backend/templates/login/header', $data);
             $this->load->view('auth/registrasi');
-            $this->load->view('templates/backend/login/footer');
+            $this->load->view('backend/templates/login/footer');
         } else {
             $data = [
                 'nama' => htmlspecialchars($this->input->post('nama', true)),

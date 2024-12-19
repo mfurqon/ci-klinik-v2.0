@@ -12,9 +12,9 @@ class Home extends CI_Controller
         $data['dokter_limit'] = $this->ModelDokter->getDokterLimit();
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
-        $this->load->view('templates/frontend/main/header', $data);
+        $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('home/index', $data);
-        $this->load->view('templates/frontend/main/footer');
+        $this->load->view('frontend/templates/main/footer');
     }
 
     public function janji_temu()
@@ -29,9 +29,9 @@ class Home extends CI_Controller
         set_buat_janji_temu_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/frontend/main/header', $data);
+            $this->load->view('frontend/templates/main/header', $data);
             $this->load->view('home/janji-temu', $data);
-            $this->load->view('templates/frontend/main/footer');
+            $this->load->view('frontend/templates/main/footer');
         } else {
             $this->ModelJanjiTemu->tambahJanjiTemu($data);
             $this->session->set_flashdata('pesan', [
@@ -50,9 +50,9 @@ class Home extends CI_Controller
         $data['obat'] = $this->ModelObat->getAllObat();
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
-        $this->load->view('templates/frontend/main/header', $data);
+        $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('obat/index', $data);
-        $this->load->view('templates/frontend/main/footer');
+        $this->load->view('frontend/templates/main/footer');
     }
 
     public function dokter()
@@ -62,9 +62,9 @@ class Home extends CI_Controller
         $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasi();
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
-        $this->load->view('templates/frontend/main/header', $data);
+        $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('dokter/index', $data);
-        $this->load->view('templates/frontend/main/footer');
+        $this->load->view('frontend/templates/main/footer');
     }
 
     public function tentang()
@@ -73,9 +73,9 @@ class Home extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
-        $this->load->view('templates/frontend/main/header', $data);
+        $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('home/tentang');
-        $this->load->view('templates/frontend/main/footer');
+        $this->load->view('frontend/templates/main/footer');
     }
 
     public function riwayat_janji_temu()
@@ -85,9 +85,9 @@ class Home extends CI_Controller
         $data['janji_temu'] = $this->ModelJanjiTemu->getJanjiTemuById($data['user']['id']);
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
-        $this->load->view('templates/frontend/main/header', $data);
+        $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('home/riwayat-janji-temu', $data);
-        $this->load->view('templates/frontend/main/footer');
+        $this->load->view('frontend/templates/main/footer');
     }
 
     public function keranjang()
@@ -113,9 +113,9 @@ class Home extends CI_Controller
             $data['temp_pemesanan_obat'] = $this->ModelObat->joinObatTempPemesananObat($id_user);
         }
 
-        $this->load->view('templates/frontend/main/header', $data);
+        $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('obat/keranjang', $data);
-        $this->load->view('templates/frontend/main/footer');
+        $this->load->view('frontend/templates/main/footer');
     }
 
     public function hapus_keranjang()

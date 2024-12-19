@@ -16,11 +16,11 @@ class Janji_Temu extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['janji_temu'] = $this->ModelJanjiTemu->getAllJanjiTemu();
 
-        $this->load->view('templates/backend/main/header', $data);
-        $this->load->view('templates/backend/main/sidebar', $data);
-        $this->load->view('templates/backend/main/topbar', $data);
+        $this->load->view('backend/templates/main/header', $data);
+        $this->load->view('backend/templates/main/sidebar', $data);
+        $this->load->view('backend/templates/main/topbar', $data);
         $this->load->view('janji-temu/index', $data);
-        $this->load->view('templates/backend/main/footer');
+        $this->load->view('backend/templates/main/footer');
     }
 
     public function detailJanjiTemu()
@@ -29,11 +29,11 @@ class Janji_Temu extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['janji_temu'] = $this->ModelJanjiTemu->janjiTemuWhere(['id' => $this->uri->segment(3)])->row_array();
 
-        $this->load->view('templates/backend/main/header', $data);
-        $this->load->view('templates/backend/main/sidebar', $data);
-        $this->load->view('templates/backend/main/topbar', $data);
+        $this->load->view('backend/templates/main/header', $data);
+        $this->load->view('backend/templates/main/sidebar', $data);
+        $this->load->view('backend/templates/main/topbar', $data);
         $this->load->view('janji-temu/detail-janji-temu', $data);
-        $this->load->view('templates/backend/main/footer');
+        $this->load->view('backend/templates/main/footer');
     }
 
     public function ubahJanjiTemu()
@@ -58,11 +58,11 @@ class Janji_Temu extends CI_Controller
         $this->form_validation->set_rules('jam_temu', 'Jam Temu', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/backend/main/header', $data);
-            $this->load->view('templates/backend/main/sidebar', $data);
-            $this->load->view('templates/backend/main/topbar', $data);
+            $this->load->view('backend/templates/main/header', $data);
+            $this->load->view('backend/templates/main/sidebar', $data);
+            $this->load->view('backend/templates/main/topbar', $data);
             $this->load->view('janji-temu/ubah-janji-temu', $data);
-            $this->load->view('templates/backend/main/footer');
+            $this->load->view('backend/templates/main/footer');
         } else {
             $this->ModelJanjiTemu->ubahJanjiTemu();
 

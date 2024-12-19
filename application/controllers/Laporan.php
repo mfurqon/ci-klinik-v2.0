@@ -9,11 +9,11 @@ class Laporan extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasi();
 
-        $this->load->view('templates/backend/main/header', $data);
-        $this->load->view('templates/backend/main/sidebar', $data);
-        $this->load->view('templates/backend/main/topbar', $data);
+        $this->load->view('backend/templates/main/header', $data);
+        $this->load->view('backend/templates/main/sidebar', $data);
+        $this->load->view('backend/templates/main/topbar', $data);
         $this->load->view('laporan/laporan-dokter', $data);
-        $this->load->view('templates/backend/main/footer');
+        $this->load->view('backend/templates/main/footer');
     }
 
     public function cetak_data_dokter()
@@ -57,11 +57,11 @@ class Laporan extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ModelObat->getJoinObatJenisObat();
 
-        $this->load->view('templates/backend/main/header', $data);
-        $this->load->view('templates/backend/main/sidebar', $data);
-        $this->load->view('templates/backend/main/topbar', $data);
+        $this->load->view('backend/templates/main/header', $data);
+        $this->load->view('backend/templates/main/sidebar', $data);
+        $this->load->view('backend/templates/main/topbar', $data);
         $this->load->view('laporan/laporan-obat', $data);
-        $this->load->view('templates/backend/main/footer');
+        $this->load->view('backend/templates/main/footer');
     }
 
     public function cetak_data_obat()
