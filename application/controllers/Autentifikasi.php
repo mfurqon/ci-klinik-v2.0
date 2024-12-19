@@ -14,7 +14,7 @@ class Autentifikasi extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('backend/templates/login/header', $data);
-            $this->load->view('auth/login');
+            $this->load->view('backend/auth/login');
             $this->load->view('backend/templates/login/footer');
         } else {
             $this->_login();
@@ -36,7 +36,7 @@ class Autentifikasi extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('backend/templates/login/header', $data);
-            $this->load->view('auth/registrasi');
+            $this->load->view('backend/auth/registrasi');
             $this->load->view('backend/templates/login/footer');
         } else {
             $data = [
@@ -77,12 +77,7 @@ class Autentifikasi extends CI_Controller
 
     public function blok()
     {
-        $this->load->view('auth/blok');
-    }
-
-    public function gagal()
-    {
-        $this->load->view('auth/gagal');
+        $this->load->view('backend/auth/blok');
     }
 
     private function _login()

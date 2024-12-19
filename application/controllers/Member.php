@@ -14,7 +14,7 @@ class Member extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('frontend/templates/login/header', $data);
-            $this->load->view('member/login');
+            $this->load->view('frontend/auth/login');
             $this->load->view('frontend/templates/login/footer');
         } else {
             $this->_login();
@@ -36,7 +36,7 @@ class Member extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('frontend/templates/login/header', $data);
-            $this->load->view('member/daftar');
+            $this->load->view('frontend/auth/registrasi');
             $this->load->view('frontend/templates/login/footer');
         } else {
             $data = [
@@ -159,7 +159,7 @@ class Member extends CI_Controller
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
         
         $this->load->view('frontend/templates/main/header', $data);
-        $this->load->view('member/blok');
+        $this->load->view('frontend/auth/blok');
         $this->load->view('frontend/templates/main/footer');
     }
 

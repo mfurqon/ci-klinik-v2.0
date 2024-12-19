@@ -13,7 +13,7 @@ class Home extends CI_Controller
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
-        $this->load->view('home/index', $data);
+        $this->load->view('frontend/home/index', $data);
         $this->load->view('frontend/templates/main/footer');
     }
 
@@ -30,7 +30,7 @@ class Home extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('frontend/templates/main/header', $data);
-            $this->load->view('home/janji-temu', $data);
+            $this->load->view('frontend/janji-temu/index', $data);
             $this->load->view('frontend/templates/main/footer');
         } else {
             $this->ModelJanjiTemu->tambahJanjiTemu($data);
@@ -51,7 +51,7 @@ class Home extends CI_Controller
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
-        $this->load->view('obat/index', $data);
+        $this->load->view('frontend/obat/index', $data);
         $this->load->view('frontend/templates/main/footer');
     }
 
@@ -63,7 +63,7 @@ class Home extends CI_Controller
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
-        $this->load->view('dokter/index', $data);
+        $this->load->view('frontend/dokter/index', $data);
         $this->load->view('frontend/templates/main/footer');
     }
 
@@ -74,7 +74,7 @@ class Home extends CI_Controller
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
-        $this->load->view('home/tentang');
+        $this->load->view('frontend/tentang/index');
         $this->load->view('frontend/templates/main/footer');
     }
 
@@ -86,7 +86,7 @@ class Home extends CI_Controller
         $data['data_keranjang'] = $this->ModelObat->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
-        $this->load->view('home/riwayat-janji-temu', $data);
+        $this->load->view('frontend/riwayat/riwayat-janji-temu', $data);
         $this->load->view('frontend/templates/main/footer');
     }
 
@@ -114,7 +114,7 @@ class Home extends CI_Controller
         }
 
         $this->load->view('frontend/templates/main/header', $data);
-        $this->load->view('obat/keranjang', $data);
+        $this->load->view('frontend/keranjang/index', $data);
         $this->load->view('frontend/templates/main/footer');
     }
 

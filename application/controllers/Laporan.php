@@ -12,7 +12,7 @@ class Laporan extends CI_Controller
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
         $this->load->view('backend/templates/main/topbar', $data);
-        $this->load->view('laporan/laporan-dokter', $data);
+        $this->load->view('backend/laporan/dokter/list-laporan-dokter', $data);
         $this->load->view('backend/templates/main/footer');
     }
 
@@ -22,14 +22,14 @@ class Laporan extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasi();
 
-        $this->load->view('laporan/cetak-data-dokter', $data);
+        $this->load->view('backend/laporan/dokter/cetak-data-dokter', $data);
     }
 
     public function pdf_data_dokter()
     {
         $data['dokter'] = $this->ModelDokter->getJoinDokterSpesialisasi();
 
-        $this->load->view('laporan/pdf-data-dokter', $data);
+        $this->load->view('backend/laporan/dokter/pdf-data-dokter', $data);
 
         $paper_size = 'A4';
         $orientation = 'landscape';
@@ -46,7 +46,7 @@ class Laporan extends CI_Controller
             'judul' => 'Data Dokter Excel', 
             'dokter' => $this->ModelDokter->getJoinDokterSpesialisasi()
         ];
-        $this->load->view('laporan/excel-data-dokter', $data);
+        $this->load->view('backend/laporan/dokter/excel-data-dokter', $data);
     }
 
 
@@ -60,7 +60,7 @@ class Laporan extends CI_Controller
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
         $this->load->view('backend/templates/main/topbar', $data);
-        $this->load->view('laporan/laporan-obat', $data);
+        $this->load->view('backend/laporan/obat/list-laporan-obat', $data);
         $this->load->view('backend/templates/main/footer');
     }
 
@@ -70,14 +70,14 @@ class Laporan extends CI_Controller
         $data['user'] = $this->ModelUser->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ModelObat->getJoinObatJenisObat();
 
-        $this->load->view('laporan/cetak-data-obat', $data);
+        $this->load->view('backend/laporan/obat/cetak-data-obat', $data);
     }
 
     public function pdf_data_obat()
     {
         $data['obat'] = $this->ModelObat->getJoinObatJenisObat();
 
-        $this->load->view('laporan/pdf-data-obat', $data);
+        $this->load->view('backend/laporan/obat/pdf-data-obat', $data);
 
         $paper_size = 'A4';
         $orientation = 'landscape';
@@ -94,6 +94,6 @@ class Laporan extends CI_Controller
             'judul' => 'Data Obat Excel', 
             'obat' => $this->ModelObat->getJoinObatJenisObat()
         ];
-        $this->load->view('laporan/excel-data-obat', $data);
+        $this->load->view('backend/laporan/obat/excel-data-obat', $data);
     }
 }

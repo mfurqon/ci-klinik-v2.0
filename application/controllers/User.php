@@ -17,7 +17,7 @@ class User extends CI_Controller
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
         $this->load->view('backend/templates/main/topbar', $data);
-        $this->load->view('user/index', $data);
+        $this->load->view('backend/profile/index', $data);
         $this->load->view('backend/templates/main/footer');
     }
 
@@ -34,7 +34,7 @@ class User extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('user/anggota', $data);
+            $this->load->view('backend/user/data/list-user', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             $data = [
@@ -72,7 +72,7 @@ class User extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('user/role', $data);
+            $this->load->view('backend/user/role/list-role', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             $this->ModelUser->tambahRole();
@@ -101,7 +101,7 @@ class User extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('user/ubah-anggota', $data);
+            $this->load->view('backend/user/data/ubah-user', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             $nama = $this->input->post('nama', true);
@@ -182,7 +182,7 @@ class User extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('user/ubah-role', $data);
+            $this->load->view('backend/user/role/ubah-role', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             $this->ModelUser->ubahRole();
@@ -225,7 +225,7 @@ class User extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('user/ubah-profil', $data);
+            $this->load->view('backend/profile/ubah-profile', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             $nama = $this->input->post('nama');
@@ -282,7 +282,7 @@ class User extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('user/ubah-password', $data);
+            $this->load->view('backend/profile/ubah-password', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             $password_lama = $this->input->post('password_lama');

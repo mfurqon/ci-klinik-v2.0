@@ -19,7 +19,7 @@ class Obat extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('obat/obat-admin', $data);
+            $this->load->view('backend/obat/data/list-obat', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             $upload_image = $_FILES['gambar_obat'];
@@ -68,7 +68,7 @@ class Obat extends CI_Controller
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
         $this->load->view('backend/templates/main/topbar', $data);
-        $this->load->view('obat/detail-obat', $data);
+        $this->load->view('backend/obat/data/detail-obat', $data);
         $this->load->view('backend/templates/main/footer');
     }
 
@@ -88,7 +88,7 @@ class Obat extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('obat/ubah-obat', $data);
+            $this->load->view('backend/obat/data/ubah-obat', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             $id = $this->input->post('id', true);
@@ -181,7 +181,7 @@ class Obat extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('obat/jenis-obat', $data);
+            $this->load->view('backend/obat/jenis/list-jenis-obat', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             $this->ModelObat->tambahJenisObat();
@@ -210,7 +210,7 @@ class Obat extends CI_Controller
             $this->load->view('backend/templates/main/header', $data);
             $this->load->view('backend/templates/main/sidebar', $data);
             $this->load->view('backend/templates/main/topbar', $data);
-            $this->load->view('obat/ubah-jenis-obat', $data);
+            $this->load->view('backend/obat/jenis/ubah-jenis-obat', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
             $this->ModelObat->ubahJenisObat();
@@ -326,7 +326,7 @@ class Obat extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('frontend/templates/main/header', $data);
-            $this->load->view('obat/beli-obat', $data);
+            $this->load->view('backend/obat/data/beli-obat', $data);
             $this->load->view('frontend/templates/main/footer', $data);
         } else {
             $stok = $data['obat']['stok'];
@@ -357,7 +357,7 @@ class Obat extends CI_Controller
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
         $this->load->view('backend/templates/main/topbar', $data);
-        $this->load->view('obat/pemesanan-obat', $data);
+        $this->load->view('backend/obat/pemesanan/list-pemesanan-obat', $data);
         $this->load->view('backend/templates/main/footer', $data);
     }
 
@@ -373,7 +373,7 @@ class Obat extends CI_Controller
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
         $this->load->view('backend/templates/main/topbar', $data);
-        $this->load->view('obat/detail-pemesanan-obat', $data);
+        $this->load->view('backend/obat/pemesanan/detail-pemesanan-obat', $data);
         $this->load->view('backend/templates/main/footer');
     }
 
