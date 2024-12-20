@@ -160,9 +160,9 @@ class Dokter extends CI_Controller
         $data['role_id'] = $this->session->userdata('role_id');
         $data['dokter'] = $this->DokterModel->getDokterById($id);
 
-        $gambar_dokter = $data['dokter']['gambar_dokter'];
-        unlink(FCPATH . 'assets/img/upload-dokter/' . $gambar_dokter);
+        $gambar_dokter = $data['dokter']['gambar'];
 
+        unlink(FCPATH . 'assets/img/upload-dokter/' . $gambar_dokter);
 
         $this->DokterModel->hapusDataDokter($id);
         $this->session->set_flashdata(
