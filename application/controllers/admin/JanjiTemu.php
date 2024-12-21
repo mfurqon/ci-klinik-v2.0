@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Janji_Temu extends CI_Controller
+class JanjiTemu extends CI_Controller
 {
     public function __construct()
     {
