@@ -24,7 +24,7 @@ class JanjiTemuModel extends CI_Model
         return $query->result_array();
     }
 
-    public function hitungJanjiTemu()
+    public function countJanjiTemu()
     {
         return $this->db->get('janji_temu')->num_rows();
     }
@@ -34,7 +34,7 @@ class JanjiTemuModel extends CI_Model
         return $this->db->get_where('janji_temu', $where);
     }
 
-    public function tambahJanjiTemu()
+    public function insertJanjiTemu()
     {
         $data = [
             'id_user' => $this->input->post('id_user'),
@@ -49,8 +49,7 @@ class JanjiTemuModel extends CI_Model
         $this->db->insert('janji_temu', $data);
     }
 
-
-    public function ubahJanjiTemu()
+    public function updateJanjiTemu()
     {
         $data = [
             'nama' => $this->input->post('nama', true),
@@ -66,7 +65,7 @@ class JanjiTemuModel extends CI_Model
         $this->db->update('janji_temu', $data);
     }
 
-    public function hapusJanjiTemu($where = null)
+    public function deleteJanjiTemu($where = null)
     {
         $this->db->delete('janji_temu', $where);
     }

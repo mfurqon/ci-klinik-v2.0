@@ -1,9 +1,8 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No Direct Script Access Allowed');
 
 class DokterModel extends CI_Model
 {
-    // Pengolahan data pada table dokter
     public function getAllDokter()
     {
         return $this->db->get('dokter')->result_array();
@@ -19,7 +18,7 @@ class DokterModel extends CI_Model
         return $query->result_array();
     }
 
-    public function hitungDokter()
+    public function countDokter()
     {
         return $this->db->get('dokter')->num_rows();
     }
@@ -29,7 +28,7 @@ class DokterModel extends CI_Model
         return $this->db->get_where('dokter', $where);
     }
 
-    public function tambahDokter($gambar)
+    public function insertDokter($gambar)
     {
         $data = [
             "nama" => $this->input->post('nama_dokter', true),
@@ -48,9 +47,8 @@ class DokterModel extends CI_Model
         $this->db->insert('dokter', $data);
     }
 
-    public function hapusDataDokter($id)
+    public function deleteDokter($id)
     {
-        // $this->db->where('id', $id);
         $this->db->delete('dokter', ['id' => $id]);
     }
 
@@ -64,41 +62,6 @@ class DokterModel extends CI_Model
         $keyword = $this->input->post('keyword', true);
         $this->db->like('nama_dokter', $keyword);
         return $this->db->get('dokter')->result_array();
-    }
-
-
-    // Pengolahan data pada table spesialisasi
-    public function getAllSpesialisasi()
-    {
-        return $this->db->get('spesialisasi')->result_array();
-    }
-
-    public function getSpesialisasiById($where)
-    {
-        $this->db->from('spesialisasi');
-        $this->db->where($where);
-        return $this->db->get()->row_array();
-    }
-
-    public function tambahSpesialisasi()
-    {
-        $data = ['nama' => $this->input->post('spesialisasi', true)];
-        $this->db->insert('spesialisasi', $data);
-    }
-
-    public function ubahSpesialisasi()
-    {
-        $data = [
-            "nama" => $this->input->post('spesialisasi', true)
-        ];
-
-        $this->db->where('id', $this->input->post('id'));
-        $this->db->update('spesialisasi', $data);
-    }
-
-    public function hapusSpesialisasi($id)
-    {
-        $this->db->delete('spesialisasi', ['id' => $id]);
     }
 
     public function getJoinDokterSpesialisasi()
