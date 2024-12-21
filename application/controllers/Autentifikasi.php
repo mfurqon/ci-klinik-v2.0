@@ -51,7 +51,7 @@ class Autentifikasi extends CI_Controller
                 'tanggal_dibuat' => date('d-m-Y')
             ];
 
-            $this->UserModel->simpanDataUser($data);
+            $this->UserModel->insertUser($data);
             $this->session->set_flashdata(
                 'pesan', 
                 '<div class="alert alert-success" role="alert">

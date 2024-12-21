@@ -10,7 +10,7 @@ class Home extends CI_Controller
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getAllDokter();
         $data['dokter_limit'] = $this->DokterModel->getDokterLimit();
-        $data['data_keranjang'] = $this->ObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/home/index', $data);
@@ -24,7 +24,7 @@ class Home extends CI_Controller
         $data['judul'] = "Janji Temu";
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getAllDokter();
-        $data['data_keranjang'] = $this->ObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         set_buat_janji_temu_rules();
 
@@ -33,7 +33,7 @@ class Home extends CI_Controller
             $this->load->view('frontend/janji_temu/index', $data);
             $this->load->view('frontend/templates/main/footer');
         } else {
-            $this->JanjiTemuModel->tambahJanjiTemu($data);
+            $this->JanjiTemuModel->insertJanjiTemu($data);
             $this->session->set_flashdata('pesan', [
                 'title' => 'Berhasil',
                 'text' => '🥳 Janji Temu berhasil dibuat',
@@ -48,7 +48,7 @@ class Home extends CI_Controller
         $data['judul'] = "Obat";
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ObatModel->getAllObat();
-        $data['data_keranjang'] = $this->ObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/obat/index', $data);
@@ -60,7 +60,7 @@ class Home extends CI_Controller
         $data['judul'] = "Dokter";
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasi();
-        $data['data_keranjang'] = $this->ObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/dokter/index', $data);
@@ -71,7 +71,7 @@ class Home extends CI_Controller
     {
         $data['judul'] = 'Tentang';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['data_keranjang'] = $this->ObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/tentang/index');
@@ -83,7 +83,7 @@ class Home extends CI_Controller
         $data['judul'] = 'Riwayat Janji Temu';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['janji_temu'] = $this->JanjiTemuModel->getJanjiTemuById($data['user']['id']);
-        $data['data_keranjang'] = $this->ObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/riwayat/riwayat_janji_temu', $data);
@@ -98,9 +98,9 @@ class Home extends CI_Controller
 
         $data['judul'] = "Data Keranjang Obat";
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['data_keranjang'] = $this->ObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
-        $dtb = $this->ObatModel->showTempPemesananObat(['id_user' => $id_user])->num_rows();
+        $dtb = $this->TempPemesananObatModel->getTempPemesananObatWhere(['id_user' => $id_user]);
 
         if ($dtb < 1) {
             $this->session->set_flashdata('pesan', [
@@ -110,7 +110,7 @@ class Home extends CI_Controller
             ]);
             redirect(base_url());
         } else {
-            $data['temp_pemesanan_obat'] = $this->ObatModel->joinObatTempPemesananObat($id_user);
+            $data['temp_pemesanan_obat'] = $this->TempPemesananObatModel->joinObatTempPemesananObat($id_user);
         }
 
         $this->load->view('frontend/templates/main/header', $data);
@@ -122,7 +122,7 @@ class Home extends CI_Controller
     {
         $id_temp = $this->uri->segment(3);
 
-        $this->ObatModel->deleteKeranjang(['id' => $id_temp]);
+        $this->TempPemesananObatModel->deleteTempPemesananObat(['id' => $id_temp]);
 
         redirect('home/keranjang');
     }

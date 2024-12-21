@@ -64,7 +64,7 @@ class Janji_Temu extends CI_Controller
             $this->load->view('backend/janji_temu/ubah_janji_temu', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
-            $this->JanjiTemuModel->ubahJanjiTemu();
+            $this->JanjiTemuModel->updateJanjiTemu();
 
             $this->session->set_flashdata(
                 'pesan',
@@ -79,7 +79,7 @@ class Janji_Temu extends CI_Controller
     public function hapusJanjiTemu()
     {
         $where = ['id' => $this->uri->segment(3)];
-        $this->JanjiTemuModel->hapusJanjiTemu($where);
+        $this->JanjiTemuModel->deleteJanjiTemu($where);
 
         $this->session->set_flashdata(
             'pesan',

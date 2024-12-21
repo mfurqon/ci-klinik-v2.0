@@ -50,7 +50,7 @@ class Member extends CI_Controller
                 'is_active' => 1,
                 'tanggal_dibuat' => date('d-m-Y')
             ];
-            $this->UserModel->simpanDataUser($data);
+            $this->UserModel->insertUser($data);
             $this->session->set_flashdata(
                 'pesan', 
                 '<div class="alert alert-success" role="alert">
@@ -156,7 +156,7 @@ class Member extends CI_Controller
     {
         $data['judul'] = "Akses Tidak Sah!";
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['data_keranjang'] = $this->ObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
         
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/auth/blok');

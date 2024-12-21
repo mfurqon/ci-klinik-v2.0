@@ -14,10 +14,10 @@ class Admin extends CI_Controller
     {
         $data['judul'] = 'Dashboard';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['total_dokter'] = $this->DokterModel->hitungDokter();
-        $data['total_obat'] = $this->ObatModel->hitungObat();
-        $data['total_janji_temu'] = $this->JanjiTemuModel->hitungJanjiTemu();
-        $data['total_anggota'] = $this->UserModel->hitungAnggota();
+        $data['total_dokter'] = $this->DokterModel->countDokter();
+        $data['total_obat'] = $this->ObatModel->countObat();
+        $data['total_janji_temu'] = $this->JanjiTemuModel->countJanjiTemu();
+        $data['total_anggota'] = $this->UserModel->countUser();
 
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);

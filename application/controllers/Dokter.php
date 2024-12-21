@@ -12,7 +12,7 @@ class Dokter extends CI_Controller
         $data['judul'] = "Data Dokter";
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasi();
-        $data['spesialisasi'] = $this->DokterModel->getAllSpesialisasi();
+        $data['spesialisasi'] = $this->SpesialisasiModel->getAllSpesialisasi();
 
         set_tambah_dokter_rules();
 
@@ -36,13 +36,13 @@ class Dokter extends CI_Controller
 
             if ($this->upload->do_upload('gambar_dokter')) {
                 $gambar_obat = $this->upload->data();
-                $gambar = $gambar_obat['file_name']; //digunakan untuk parameter tambahDokter
+                $gambar = $gambar_obat['file_name']; //digunakan untuk parameter insertDokter
             } else {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
                 redirect('dokter');
             }
 
-            $this->DokterModel->tambahDokter($gambar);
+            $this->DokterModel->insertDokter($gambar);
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message">
@@ -77,7 +77,7 @@ class Dokter extends CI_Controller
         $data['judul'] = 'Ubah Dokter';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
-        $data['spesialisasi'] = $this->DokterModel->getAllSpesialisasi();
+        $data['spesialisasi'] = $this->SpesialisasiModel->getAllSpesialisasi();
 
         $nip_lama = $data['dokter']['nip'];
         $nip_baru = $this->input->post('nip', true);
@@ -164,7 +164,7 @@ class Dokter extends CI_Controller
 
         unlink(FCPATH . 'assets/img/upload-dokter/' . $gambar_dokter);
 
-        $this->DokterModel->hapusDataDokter($id);
+        $this->DokterModel->deleteDokter($id);
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">
@@ -181,7 +181,7 @@ class Dokter extends CI_Controller
 
         $data['judul'] = "Data Spesialisasi Dokter";
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['spesialisasi'] = $this->DokterModel->getAllSpesialisasi();
+        $data['spesialisasi'] = $this->SpesialisasiModel->getAllSpesialisasi();
 
         set_tambah_spesialisasi_rules();
 
@@ -192,7 +192,7 @@ class Dokter extends CI_Controller
             $this->load->view('backend/dokter/spesialisasi/list_spesialisasi', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
-            $this->DokterModel->tambahSpesialisasi();
+            $this->SpesialisasiModel->insertSpesialisasi();
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message">
@@ -210,7 +210,7 @@ class Dokter extends CI_Controller
 
         $data['judul'] = 'Ubah Spesialisasi Dokter';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['spesialisasi'] = $this->DokterModel->getSpesialisasiById(['spesialisasi.id' => $this->uri->segment(3)]);
+        $data['spesialisasi'] = $this->SpesialisasiModel->getSpesialisasiById(['spesialisasi.id' => $this->uri->segment(3)]);
 
         set_ubah_spesialisasi_rules();
 
@@ -221,7 +221,7 @@ class Dokter extends CI_Controller
             $this->load->view('backend/dokter/spesialisasi/edit_spesialisasi', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
-            $this->DokterModel->ubahSpesialisasi();
+            $this->SpesialisasiModel->updateSpesialisasi();
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message">
@@ -239,7 +239,7 @@ class Dokter extends CI_Controller
 
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
 
-        $this->DokterModel->hapusSpesialisasi($this->uri->segment(3));
+        $this->SpesialisasiModel->deleteSpesialisasi($this->uri->segment(3));
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">
@@ -254,10 +254,10 @@ class Dokter extends CI_Controller
         $data['judul'] = 'Detail Dokter';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
-        $data['data_keranjang'] = $this->ObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
-        $this->load->view('frontend/dokter/detail-dokter', $data);
+        $this->load->view('frontend/dokter/detail_dokter', $data);
         $this->load->view('frontend/templates/main/footer');
     }
 }

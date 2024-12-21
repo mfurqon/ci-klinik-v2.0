@@ -11,7 +11,7 @@ class Obat extends CI_Controller
         $data['judul'] = "Data Obat";
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ObatModel->getJoinObatJenisObat();
-        $data['jenis_obat'] = $this->ObatModel->getAllJenisObat();
+        $data['jenis_obat'] = $this->JenisObatModel->getAllJenisObat();
 
         set_tambah_obat_rules();
 
@@ -38,14 +38,14 @@ class Obat extends CI_Controller
 
                 if ($this->upload->do_upload('gambar_obat')) {
                     $gambar_obat = $this->upload->data();
-                    $gambar = $gambar_obat['file_name']; //digunakan untuk parameter tambahDataObat
+                    $gambar = $gambar_obat['file_name']; //digunakan untuk parameter insertObat
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
                     redirect('obat');
                 }
             }
 
-            $this->ObatModel->tambahDataObat($gambar); //didapatkan dari variable file_name di atas
+            $this->ObatModel->insertObat($gambar); //didapatkan dari variable file_name di atas
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message">
@@ -80,7 +80,7 @@ class Obat extends CI_Controller
         $data['judul'] = 'Ubah Obat';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ObatModel->getObatJenisObatById(['obat.id' => $this->uri->segment(3)]);
-        $data['jenis_obat'] = $this->ObatModel->getAllJenisObat();
+        $data['jenis_obat'] = $this->JenisObatModel->getAllJenisObat();
 
         set_ubah_obat_rules();
 
@@ -155,7 +155,7 @@ class Obat extends CI_Controller
         echo
         unlink(FCPATH . 'assets/img/upload-obat/' . $gambar_obat);
 
-        $this->ObatModel->hapusDataObat($this->uri->segment(3));
+        $this->ObatModel->deleteObat($this->uri->segment(3));
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">
@@ -172,7 +172,7 @@ class Obat extends CI_Controller
 
         $data['judul'] = "Data Jenis Obat";
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['jenis_obat'] = $this->ObatModel->getAllJenisObat();
+        $data['jenis_obat'] = $this->JenisObatModel->getAllJenisObat();
 
         set_tambah_jenis_obat_rules();
 
@@ -183,7 +183,7 @@ class Obat extends CI_Controller
             $this->load->view('backend/obat/jenis/list_jenis_obat', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
-            $this->ObatModel->tambahJenisObat();
+            $this->JenisObatModel->insertJenisObat();
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message">
@@ -201,7 +201,7 @@ class Obat extends CI_Controller
 
         $data['judul'] = 'Ubah Jenis Obat';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['jenis_obat'] = $this->ObatModel->getJenisObatById(['jenis_obat.id' => $this->uri->segment(3)]);
+        $data['jenis_obat'] = $this->JenisObatModel->getJenisObatById(['jenis_obat.id' => $this->uri->segment(3)]);
 
         set_ubah_jenis_obat_rules();
 
@@ -212,7 +212,7 @@ class Obat extends CI_Controller
             $this->load->view('backend/obat/jenis/edit_jenis_obat', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
-            $this->ObatModel->ubahJenisObat();
+            $this->JenisObatModel->updateJenisObat();
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message">
@@ -230,7 +230,7 @@ class Obat extends CI_Controller
 
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
 
-        $this->ObatModel->hapusJenisObat($this->uri->segment(3));
+        $this->JenisObatModel->deleteJenisObat($this->uri->segment(3));
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">
@@ -300,7 +300,7 @@ class Obat extends CI_Controller
                 'jumlah_obat' => 1,
                 'tanggal_ditambahkan' => date('Y-m-d')
             ];
-            $this->ObatModel->masukKeranjang($isi);
+            $this->TempPemesananObatModel->insertTempPemesananObat($isi);
         }
         // Pesan ketika berhasil memasukkan buku ke keranjang
         $this->session->set_flashdata('pesan', [
@@ -334,7 +334,7 @@ class Obat extends CI_Controller
             $new_stok = $stok - $jumlah_obat;
             $this->ObatModel->updateStokObat($data['obat']['id'], $new_stok);
 
-            $this->ObatModel->tambahPemesananObat();
+            $this->PemesananObatModel->insertPemesananObat();
             echo "<script>
                     alert('Obat berhasil dipesan');
                     window.location.href='" . base_url('obat') . "';
@@ -351,7 +351,7 @@ class Obat extends CI_Controller
         $data['judul'] = "Data Pemesanan Obat";
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['role_id'] = $this->session->userdata('role_id');
-        $data['pemesanan_obat'] = $this->ObatModel->getAllPemesananObat();
+        $data['pemesanan_obat'] = $this->PemesananObatModel->getAllPemesananObat();
 
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
@@ -367,7 +367,7 @@ class Obat extends CI_Controller
         $data['judul'] = 'Detail Pemesanan Obat';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['role_id'] = $this->session->userdata('role_id');
-        $data['pemesanan_obat'] = $this->ObatModel->pemesananObatWhere(['id' => $this->uri->segment(3)]);
+        $data['pemesanan_obat'] = $this->PemesananObatModel->pemesananObatWhere(['id' => $this->uri->segment(3)]);
 
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
@@ -385,7 +385,7 @@ class Obat extends CI_Controller
         $data['role_id'] = $this->session->userdata('role_id');
         $data['pemesanan_obat'] = $this->ObatModel->obatWhere(['obat.id' => $this->uri->segment(3)]);
 
-        $this->ObatModel->hapusPemesananObat($id);
+        $this->PemesananObatModel->deletePemesananObat($id);
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">

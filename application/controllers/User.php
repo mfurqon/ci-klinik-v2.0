@@ -25,7 +25,7 @@ class User extends CI_Controller
     {
         $data['judul'] = 'Data Anggota';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['role'] = $this->UserModel->getAllRole();
+        $data['role'] = $this->RoleModel->getAllRole();
         $data['anggota'] = $this->UserModel->getJoinUserRole();
 
         set_tambah_user_rules();
@@ -49,7 +49,7 @@ class User extends CI_Controller
                 'tanggal_dibuat' => date('d-m-Y')
             ];
 
-            $this->UserModel->simpanDataUser($data);
+            $this->UserModel->insertUser($data);
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message" role="alert">
@@ -64,7 +64,7 @@ class User extends CI_Controller
     {
         $data['judul'] = 'Data Role';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['role'] = $this->UserModel->getAllRole();
+        $data['role'] = $this->RoleModel->getAllRole();
         
         set_tambah_role_rules();
 
@@ -75,7 +75,7 @@ class User extends CI_Controller
             $this->load->view('backend/user/role/list_role', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
-            $this->UserModel->tambahRole();
+            $this->RoleModel->insertRole();
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message" role="alert">
@@ -92,8 +92,8 @@ class User extends CI_Controller
 
         $data['judul'] = 'Ubah Data Anggota';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['anggota'] = $this->UserModel->getJoinRoleIdById(['user_id' => $this->uri->segment(3)]);
-        $data['role'] = $this->UserModel->getAllRole();
+        $data['anggota'] = $this->RoleModel->getJoinRoleIdById(['user_id' => $this->uri->segment(3)]);
+        $data['role'] = $this->RoleModel->getAllRole();
 
         set_ubah_user_rules();
 
@@ -154,7 +154,7 @@ class User extends CI_Controller
         cek_login();
 
         $where = ['id' => $this->uri->segment(3)];
-        $this->UserModel->hapusAnggota($where);
+        $this->UserModel->deleteUser($where);
         $data['anggota'] = $this->UserModel->getUserWhere(['id' => $this->uri->segment(3)]);
 
         $gambar_user = $data['anggota']['gambar'];
@@ -174,7 +174,7 @@ class User extends CI_Controller
 
         $data['judul'] = 'Ubah Role';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->input->post('email')]);
-        $data['role'] = $this->UserModel->getRoleById(['role.id' => $this->uri->segment(3)]);
+        $data['role'] = $this->RoleModel->getRoleById(['role.id' => $this->uri->segment(3)]);
 
         set_ubah_role_rules();
 
@@ -185,7 +185,7 @@ class User extends CI_Controller
             $this->load->view('backend/user/role/edit_role', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
-            $this->UserModel->ubahRole();
+            $this->RoleModel->updateRole();
             $this->session->set_flashdata(
                 'pesan',
                 '<div class="alert alert-success alert-message">
@@ -202,7 +202,7 @@ class User extends CI_Controller
 
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->input->post('email')]);
 
-        $this->UserModel->hapusRole($this->uri->segment(3));
+        $this->RoleModel->deleteRole($this->uri->segment(3));
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">
