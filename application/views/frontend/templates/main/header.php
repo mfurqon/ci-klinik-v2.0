@@ -58,31 +58,31 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="<?= base_url(); ?>" class="nav-item nav-link <?= ($judul == 'Beranda') ? 'text-primary' : ''; ?>">Beranda</a>
-                <a href="<?= base_url('home/dokter'); ?>" class="nav-item nav-link <?= ($judul == 'Dokter') ? 'text-primary' : ''; ?>">Dokter</a>
-                <a href="<?= base_url('home/obat'); ?>" class="nav-item nav-link <?= ($judul == 'Obat') ? 'text-primary' : ''; ?> ">Obat</a>
-                <a href="<?= base_url('home/tentang'); ?>" class="nav-item nav-link <?= ($judul == 'Tentang') ? 'text-primary' : ''; ?>">Tentang</a>
+                <a href="<?= base_url('dokter'); ?>" class="nav-item nav-link <?= ($judul == 'Dokter') ? 'text-primary' : ''; ?>">Dokter</a>
+                <a href="<?= base_url('obat'); ?>" class="nav-item nav-link <?= ($judul == 'Obat') ? 'text-primary' : ''; ?> ">Obat</a>
+                <a href="<?= base_url('tentang'); ?>" class="nav-item nav-link <?= ($judul == 'Tentang') ? 'text-primary' : ''; ?>">Tentang</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         Riwayat
                     </a>
                     <div class="dropdown-menu rounded-0 rounded-top rounded-bottom m-0">
-                        <a href="<?= base_url('home/riwayat_janji_temu'); ?>" class="dropdown-item">Riwayat Janji Temu</a>
-                        <a href="<?= base_url('home/riwayat_beli_obat'); ?>" class="dropdown-item">Riwayat Pembelian</a>
+                        <a href="<?= base_url('riwayat/janji-temu'); ?>" class="dropdown-item">Riwayat Janji Temu</a>
+                        <a href="<?= base_url('riwayat/pembelian-obat'); ?>" class="dropdown-item">Riwayat Pembelian</a>
                     </div>
                 </div>
                 <?php if ($user) : ?>
-                    <a href="<?= base_url('member/logout'); ?>" class="nav-item nav-link">
+                    <a href="<?= base_url('auth/logout'); ?>" class="nav-item nav-link">
                         Logout
                     </a>
                 <?php else : ?>
-                    <a href="<?= base_url('member'); ?>" class="nav-item nav-link">Login</a>
-                    <a href="<?= base_url('home/keranjang'); ?>" class="nav-item nav-link position-relative">
+                    <a href="<?= base_url('auth'); ?>" class="nav-item nav-link">Login</a>
+                    <a href="<?= base_url('keranjang'); ?>" class="nav-item nav-link position-relative">
                         <i class="fa-solid fa-lg fa-cart-shopping"></i>
                     </a>
                 <?php endif; ?>
                 <?php if ($user) : ?>
                     <?php if ($data_keranjang > 0) : ?>
-                        <a href="<?= base_url('home/keranjang'); ?>" class="nav-item nav-link position-relative">
+                        <a href="<?= base_url('keranjang'); ?>" class="nav-item nav-link position-relative">
                             <i class="fa-solid fa-lg fa-cart-shopping"></i>
                             <span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">
                                 <?= $data_keranjang; ?>
@@ -90,16 +90,16 @@
                             </span>
                         </a>
                     <?php else : ?>
-                        <a href="<?= base_url('home/keranjang'); ?>" class="nav-item nav-link position-relative">
+                        <a href="<?= base_url('keranjang'); ?>" class="nav-item nav-link position-relative">
                             <i class="fa-solid fa-lg fa-cart-shopping"></i>
                         </a>
                     <?php endif; ?>
-                    <a class="nav-item nav-link" href="<?= base_url('home/user/' . $user['id']); ?>">
+                    <a class="nav-item nav-link" href="<?= base_url('profile/' . $user['id']); ?>">
                         <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>" style="max-width: 25px; max-height: 25px; border: 1px solid gray; position: relative; top: -3px;">
                     </a>
                 <?php endif; ?>
             </div>
-            <a href="<?= base_url('home/janji_temu'); ?>" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Janji Temu<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="<?= base_url('janji-temu'); ?>" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Janji Temu<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
 

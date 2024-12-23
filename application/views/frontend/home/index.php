@@ -102,7 +102,7 @@
                             <p><i class="far fa-check-circle text-primary me-3"></i>Quality health care</p>
                             <p><i class="far fa-check-circle text-primary me-3"></i>Only Qualified Doctors</p>
                             <p><i class="far fa-check-circle text-primary me-3"></i>Medical Research Professionals</p>
-                            <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="<?= base_url('home/janji_temu'); ?>">Buat Janji Temu</a>
+                            <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="<?= base_url('janji-temu'); ?>">Buat Janji Temu</a>
                         </div>
                     </div>
                 </div>

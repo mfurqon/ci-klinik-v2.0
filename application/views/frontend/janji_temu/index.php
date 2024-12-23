@@ -32,7 +32,7 @@
 
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="bg-light rounded h-100 d-flex align-items-center p-5">
-                    <form action="<?= base_url('home/janji_temu'); ?>" method="post">
+                    <form action="<?= base_url('janji-temu'); ?>" method="post">
                         <input type="text" id="id_user" name="id_user" value="<?= $user['id']; ?>" hidden>
 
                         <div class="row g-3">

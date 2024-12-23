@@ -30,7 +30,7 @@
                             <h5><?= $o['nama']; ?></h5>
                             <p class="text-primary">Rp <?= $o['harga']; ?></p>
                             <div class="team-social text-center">
-                                <a href="<?= base_url('obat/masuk_keranjang/') . $o['id']; ?>" class="btn btn-primary">
+                                <a href="<?= base_url('keranjang/tambah/') . $o['id']; ?>" class="btn btn-primary">
                                     <i class="fas fa-shopping-cart"></i>
                                 </a>
                             </div>

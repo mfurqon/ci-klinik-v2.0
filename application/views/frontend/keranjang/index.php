@@ -23,7 +23,7 @@
                                 <a href="javascript:void(0);" class="btn btn-outline-primary plus-btn" data-id="<?= $tpo['id']; ?>" data-stok="<?= $tpo['stok']; ?>"><i class="fa-solid fa-plus fa-2xs"></i></a>
                             </div>
                             <div class="col">Rp <?= number_format($tpo['harga_obat']); ?></div>
-                            <div class="col"><a href="<?= base_url('home/hapus_keranjang/' . $tpo['id']); ?>" class="btn btn-warning"><i class="fa-solid fa-xmark fa-xs"></i></a></div>
+                            <div class="col"><a href="<?= base_url('keranjang/hapus/' . $tpo['id']); ?>" class="btn btn-warning"><i class="fa-solid fa-xmark fa-xs"></i></a></div>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -31,7 +31,7 @@
                     <button class="btn btn-primary col-3 mt-4" onclick="window.history.go(-1)">
                         <i class="fa-solid fa-arrow-left-long"></i> Kembali
                     </button>
-                    <a href="<?= base_url('home/pembayaran'); ?>" class="btn btn-success col-3 mt-4"><i class="fa-solid fa-cart-shopping fa-sm"></i> Lanjutkan Bayar</a>
+                    <a href="<?= base_url('pembayaran'); ?>" class="btn btn-success col-3 mt-4"><i class="fa-solid fa-cart-shopping fa-sm"></i> Lanjutkan Bayar</a>
                 </div>
             </div>
 
@@ -41,7 +41,7 @@
             <h3 class="text-primary">Keranjang Anda Masih Kosong 😥</h3>
             <p class="lead">Silakan lanjutkan belanja dan tambahkan obat ke keranjang Anda.</p>
             <i class="fa-solid fa-cart-shopping fa-5x fa-beat-fade my-5 text-primary"></i>
-            <a href="<?= base_url('home/obat'); ?>" class="btn btn-primary btn-lg">
+            <a href="<?= base_url('obat'); ?>" class="btn btn-primary btn-lg">
                 <i class="fa-solid fa-arrow-right"></i> Mulai Belanja
             </a>
         </div>

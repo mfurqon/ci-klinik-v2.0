@@ -30,7 +30,7 @@
                             <h5><?= $d['nama_dokter']; ?></h5>
                             <p class="text-primary">Spesialisasi <?= $d['nama_spesialisasi']; ?></p>
                             <div class="team-social text-center">
-                                <a href="<?= base_url('dokter/lihat_dokter/') . $d['id_dokter']; ?>" class="btn btn-primary">
+                                <a href="<?= base_url('dokter/detail/') . $d['id_dokter']; ?>" class="btn btn-primary">
                                     <i class="fas fa-eye align-items-center"></i>
                                     Lihat
                                 </a>

@@ -34,7 +34,7 @@
 
                         <div class="col-lg-3 col-md-3">
                                 <h5 class="text-light mb-4">Services</h5>
-                                <a class="btn btn-link" href="<?= base_url('home/janji_temu'); ?>">
+                                <a class="btn btn-link" href="<?= base_url('janji-temu'); ?>">
                                         Janji Temu
                                 </a>
                                 <a class="btn btn-link" href="<?= base_url('home/obat#beli-obat'); ?>">
@@ -43,13 +43,13 @@
                         </div>
                         <div class="col-lg-3 col-md-3">
                                 <h5 class="text-light mb-4">Quick Links</h5>
-                                <a class="btn btn-link" href="<?= base_url('home/dokter'); ?>">
+                                <a class="btn btn-link" href="<?= base_url('dokter'); ?>">
                                         Dokter
                                 </a>
-                                <a class="btn btn-link" href="<?= base_url('home/obat'); ?>">
+                                <a class="btn btn-link" href="<?= base_url('obat'); ?>">
                                         Obat
                                 </a>
-                                <a class="btn btn-link" href="<?= base_url('home/tentang'); ?>">
+                                <a class="btn btn-link" href="<?= base_url('tentang'); ?>">
                                         Tentang
                                 </a>
                         </div>

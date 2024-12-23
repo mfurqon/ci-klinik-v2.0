@@ -17,7 +17,7 @@
 
                                 <?= $this->session->flashdata('pesan'); ?>
 
-                                <form class="user" method="post" action="<?= base_url('member'); ?>">
+                                <form class="user" method="post" action="<?= base_url('auth'); ?>">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Masukkan alamat email..." value="<?= set_value('email'); ?>">
                                         <?= form_error('email', '<small class="text-danger pl-3">', '</small>') ?>
@@ -32,10 +32,10 @@
                                     <hr>
                                 </form>
                                 <div class="text-center">
-                                    <a class="small text-primary" href="<?= base_url('member/daftar'); ?>">Buat akun!</a>
+                                    <a class="small text-primary" href="<?= base_url('auth/daftar'); ?>">Buat akun!</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small text-primary" href="<?= base_url('home'); ?>">Kembali ke Beranda</a>
+                                    <a class="small text-primary" href="<?= base_url(); ?>">Kembali ke Beranda</a>
                                 </div>
                             </div>
                         </div>
