@@ -52,3 +52,58 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// routes untuk halaman user/frontend
+// routes untuk home
+$route['tentang'] = 'home/tentang';
+
+// routes untuk dokter
+$route['dokter'] = 'user/dokter';
+$route['dokter/detail/(:num)'] = 'user/dokter/detail/$1';
+
+// routes untuk profile user
+$route['profile'] = 'user/profile';
+$route['profile/ubah-profile'] = 'user/profile/ubahProfile';
+
+// routes untuk obat
+$route['obat'] = 'user/obat';
+
+// routes untuk janji temu
+$route['janji-temu'] = 'user/janjitemu';
+
+// routes untuk riwayat
+$route['riwayat/janji-temu'] = 'user/riwayat/janjitemu';
+
+// routes untuk keranjang
+$route['keranjang'] = 'user/keranjang';
+$route['keranjang/(:any)/(:num)'] = 'user/keranjang/$1/$2';
+
+// routes untuk auth user
+$route['auth'] = 'user/auth';
+$route['auth/daftar'] = 'user/auth/daftar';
+$route['auth/logout'] = 'user/auth/logout';
+$route['auth/blok'] = 'user/auth/blok';
+
+
+// routes untuk halaman admin/backend
+$route['admin/jenis-obat'] = 'admin/jenisobat/index';
+$route['admin/jenis-obat/(:any)/(:num)'] = 'admin/jenisobat/$1/$2';
+$route['admin/janji-temu'] = 'admin/janjitemu/index';
+$route['admin/pemesanan-obat'] = 'admin/pemesananobat/index';
+
+// routes untuk profile admin
+$route['admin/profile/ubah-profile'] = 'admin/profile/ubahprofile';
+$route['admin/profile/ubah-password'] = 'admin/profile/ubahpassword';
+
+// routes untuk laporan
+// routes untuk laporan dokter
+$route['admin/laporan/dokter'] = 'admin/laporan/laporandokter';
+$route['admin/laporan/print-dokter'] = 'admin/laporan/laporandokter/print';
+$route['admin/laporan/export-pdf-dokter'] = 'admin/laporan/laporandokter/exportpdf';
+$route['admin/laporan/export-excel-dokter'] = 'admin/laporan/laporandokter/exportexcel';
+
+// routes untuk laporan obat
+$route['admin/laporan/obat'] = 'admin/laporan/laporanobat';
+$route['admin/laporan/print-obat'] = 'admin/laporan/laporanobat/print';
+$route['admin/laporan/export-pdf-obat'] = 'admin/laporan/laporanobat/exportpdf';
+$route['admin/laporan/export-excel-obat'] = 'admin/laporan/laporanobat/exportexcel';
