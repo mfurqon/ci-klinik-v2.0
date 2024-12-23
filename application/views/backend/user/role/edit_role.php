@@ -3,7 +3,7 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-9">
-            <?= form_open_multipart('user/ubah_role/' . $role['id']); ?>
+            <?= form_open_multipart('admin/role/ubah/' . $role['id']); ?>
             <input type="hidden" name="id" value="<?= $role['id']; ?>">
 
             <div class="card shadow mt-3">

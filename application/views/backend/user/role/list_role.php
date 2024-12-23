@@ -33,10 +33,10 @@
                             <th scope="row"><?= $n++; ?></th>
                             <td><?= $r['role']; ?></td>
                             <td>
-                                <a href="<?= base_url('user/ubah_role/') . $r['id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
+                                <a href="<?= base_url('admin/role/ubah/') . $r['id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
                                     <i class="fas fa-pen"></i>
                                 </a>
-                                <a href="<?= base_url('user/hapus_role/') . $r['id']; ?>" onclick="return confirm('Apakah kamu yakin akan menghapus <?= 'role' . ' ' . $r['role']; ?> ?');" class="badge bg-gradient-light text-danger p-2" title="Hapus">
+                                <a href="<?= base_url('admin/role/hapus/') . $r['id']; ?>" onclick="return confirm('Apakah kamu yakin akan menghapus <?= 'role' . ' ' . $r['role']; ?> ?');" class="badge bg-gradient-light text-danger p-2" title="Hapus">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>
@@ -64,7 +64,7 @@
                 </button>
             </div>
 
-            <form action="<?= base_url('user/role'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('admin/role'); ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="role" name="role" placeholder="Masukkan Role" value="<?= set_value('role'); ?>">

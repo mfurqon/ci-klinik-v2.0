@@ -32,10 +32,10 @@
                             <th scope="row" class="text-center"><?= $a++; ?></th>
                             <td class="text-center"><?= $jo['nama']; ?></td>
                             <td class="text-center">
-                                <a href="<?= base_url('obat/ubah_jenis_obat/') . $jo['id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
+                                <a href="<?= base_url('admin/jenis-obat/ubah/') . $jo['id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
                                     <i class="fas fa-fw fa-pen"></i>
                                 </a>
-                                <a href="<?= base_url('obat/hapus_jenis_obat/') . $jo['id']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus jenis obat <?= $jo['nama']; ?> ?');">
+                                <a href="<?= base_url('admin/jenis-obat/hapus/') . $jo['id']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus jenis obat <?= $jo['nama']; ?> ?');">
                                     <i class="fas fa-fw fa-trash"></i>
                                 </a>
                             </td>
@@ -66,7 +66,7 @@
                 </button>
             </div>
 
-            <form action="<?= base_url('obat/jenis_obat'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('admin/jenis-obat'); ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="jenis_obat" class="form-label">Jenis Obat</label>

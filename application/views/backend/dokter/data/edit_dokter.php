@@ -3,7 +3,7 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-9">
-            <?= form_open_multipart('dokter/ubah_dokter/' . $dokter['id_dokter']); ?>
+            <?= form_open_multipart('admin/dokter/ubah/' . $dokter['id_dokter']); ?>
             <input type="hidden" name="id" value="<?= $dokter['id_dokter']; ?>">
 
             <div class="card shadow mt-3">
@@ -114,7 +114,7 @@
                         <div class="col-sm-9">
                             <button type="submit" class="btn btn-primary">Ubah</button>
                             <button class="btn btn-dark" onclick="window.history.go(-1)">Kembali</button>
-                            <!-- <a href="<?= base_url('dokter/dokterAdmin'); ?>" class="btn btn-dark">Kembali</a> -->
+                            <!-- <a href="<?= base_url('admin/dokter'); ?>" class="btn btn-dark">Kembali</a> -->
                         </div>
                     </div>
                 </div>

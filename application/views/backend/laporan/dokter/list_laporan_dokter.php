@@ -17,13 +17,13 @@
                 <div class="card-header py-3 d-flex justify-content-between">
                     <h5 class="font-weight-bold text-primary d-inline-block mt-3">Data Dokter</h5>
                     <div>
-                        <a href="<?= base_url('laporan/cetak_data_dokter'); ?>" class="btn btn-warning mb-3">
+                        <a href="<?= base_url('admin/laporan/print-dokter'); ?>" class="btn btn-warning mb-3">
                             <i class="fas fa-print"></i> Print
                         </a>
-                        <a href="<?= base_url('laporan/pdf_data_dokter'); ?>" class="btn btn-danger mb-3">
+                        <a href="<?= base_url('admin/laporan/export-pdf-dokter'); ?>" class="btn btn-danger mb-3">
                             <i class="far fa-file-pdf"></i> Download PDF
                         </a>
-                        <a href="<?= base_url('laporan/excel_data_dokter'); ?>" class="btn btn-success mb-3">
+                        <a href="<?= base_url('admin/laporan/export-excel-dokter'); ?>" class="btn btn-success mb-3">
                             <i class="far fa-file-excel"></i> Export ke Excel
                         </a>
                     </div>

@@ -32,7 +32,7 @@
             <div class="modal-body">Pilih 'Logout' dibawah jika anda sudah selesai</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                <a class="btn btn-primary" href="<?= base_url('autentifikasi/logout'); ?>">Logout</a>
+                <a class="btn btn-primary" href="<?= base_url('admin/auth/logout'); ?>">Logout</a>
             </div>
         </div>
     </div>

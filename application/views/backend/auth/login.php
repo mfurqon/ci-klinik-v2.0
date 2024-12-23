@@ -17,7 +17,7 @@
 
                                 <?= $this->session->flashdata('pesan'); ?>
 
-                                <form class="user" method="post" action="<?= base_url('autentifikasi'); ?>">
+                                <form class="user" method="post" action="<?= base_url('admin/auth'); ?>">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Masukkan alamat email..." value="<?= set_value('email'); ?>">
                                         <?= form_error('email', '<small class="text-danger pl-3">', '</small>') ?>
@@ -35,7 +35,7 @@
                                     <a class="small" href="forgot-password.html">Lupa Password?</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="<?= base_url('autentifikasi/registrasi'); ?>">Buat akun!</a>
+                                    <a class="small" href="<?= base_url('admin/auth/daftar'); ?>">Buat akun!</a>
                                 </div>
                             </div>
                         </div>

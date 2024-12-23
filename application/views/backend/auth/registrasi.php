@@ -9,7 +9,7 @@
                         <div class="text-center">
                             <h1 class="h4 text-white mb-4">Buat Akun</h1>
                         </div>
-                        <form class="user" method="post" action="<?= base_url('autentifikasi/registrasi'); ?>">
+                        <form class="user" method="post" action="<?= base_url('admin/auth/daftar'); ?>">
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Lengkap" value="<?= set_value('nama'); ?>">
                                 <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -47,7 +47,7 @@
                             <a class="small" href="forgot-password.html">Lupa Password?</a>
                         </div>
                         <div class="text-center">
-                            <a class="small" href="<?= base_url('autentifikasi'); ?>">Sudah memiliki akun? Login!</a>
+                            <a class="small" href="<?= base_url('admin/auth'); ?>">Sudah memiliki akun? Login!</a>
                         </div>
                     </div>
                 </div>

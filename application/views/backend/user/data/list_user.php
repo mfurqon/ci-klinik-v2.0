@@ -47,10 +47,10 @@
                                             </picture>
                                         </td>
                                         <td>
-                                            <a href="<?= base_url('user/ubah_anggota/') . $a['user_id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
+                                            <a href="<?= base_url('admin/users/ubah/') . $a['user_id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
                                                 <i class="fas fa-pen"></i>
                                             </a>
-                                            <a href="<?= base_url('user/hapus_anggota/') . $a['user_id']; ?>" onclick="return confirm('Apakah kamu yakin akan menghapus <?= 'anggota' . ' ' . $a['nama']; ?> ?');" class="badge bg-gradient-light text-danger p-2" title="Hapus">
+                                            <a href="<?= base_url('admin/users/hapus/') . $a['user_id']; ?>" onclick="return confirm('Apakah kamu yakin akan menghapus <?= 'anggota' . ' ' . $a['nama']; ?> ?');" class="badge bg-gradient-light text-danger p-2" title="Hapus">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
@@ -81,7 +81,7 @@
                 </button>
             </div>
 
-            <form action="<?= base_url('user/manage'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('admin/users'); ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Masukkan Nama Anggota" value="<?= set_value('nama'); ?>">

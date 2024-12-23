@@ -3,7 +3,7 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-9">
-            <?= form_open_multipart('obat/ubah_obat/' . $obat['id_obat']); ?>
+            <?= form_open_multipart('admin/obat/ubah/' . $obat['id_obat']); ?>
             <input type="hidden" name="id" value="<?= $obat['id_obat']; ?>">
 
             <div class="card shadow mt-3">

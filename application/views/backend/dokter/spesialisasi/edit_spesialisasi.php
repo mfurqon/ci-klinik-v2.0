@@ -3,7 +3,7 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-9">
-            <?= form_open_multipart('dokter/ubah_spesialisasi/' . $spesialisasi['id']); ?>
+            <?= form_open_multipart('admin/spesialisasi/ubah/' . $spesialisasi['id']); ?>
             <input type="hidden" name="id" value="<?= $spesialisasi['id']; ?>">
 
             <div class="card shadow mt-3">

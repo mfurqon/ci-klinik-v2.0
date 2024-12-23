@@ -32,10 +32,10 @@
                             <th scope="row" class="text-center"><?= $a++; ?></th>
                             <td class="text-center"><?= $s['nama']; ?></td>
                             <td class="text-center">
-                                <a href="<?= base_url('dokter/ubah_spesialisasi/') . $s['id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
+                                <a href="<?= base_url('admin/spesialisasi/ubah/') . $s['id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
                                     <i class="fas fa-fw fa-pen"></i>
                                 </a>
-                                <a href="<?= base_url('dokter/hapus_spesialis/') . $s['id']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus spesialisasi <?= $s['nama']; ?> ?');">
+                                <a href="<?= base_url('admin/spesialisasi/hapus/') . $s['id']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus spesialisasi <?= $s['nama']; ?> ?');">
                                     <i class="fas fa-fw fa-trash"></i>
                                 </a>
                             </td>
@@ -66,7 +66,7 @@
                 </button>
             </div>
 
-            <form action="<?= base_url('dokter/spesialisasi'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('admin/spesialisasi'); ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="spesialisasi" class="form-label">Spesialisasi</label>

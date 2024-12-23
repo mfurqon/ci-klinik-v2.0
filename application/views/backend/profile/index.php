@@ -18,11 +18,11 @@
                     <p class="card-text"><small class="text-body-secondary">Bergabung sejak <?= date('d F Y', strtotime($user['tanggal_dibuat'])); ?></small></p>
 
                     <div style="margin-top: 30px;">
-                        <a href="<?= base_url('user/ubah_profil'); ?>" class="btn btn-primary" style="border-radius: 20px; font-size: 0.80em; margin-right: 10px;">
+                        <a href="<?= base_url('admin/profile/ubah-profile'); ?>" class="btn btn-primary" style="border-radius: 20px; font-size: 0.80em; margin-right: 10px;">
                             <i class="fas fa-fw fa-user-edit"></i>
                             Ubah Profil
                         </a>
-                        <a href="<?= base_url('user/ubah_password'); ?>" class="btn btn-success" style="border-radius: 20px; font-size: 0.80em;">
+                        <a href="<?= base_url('admin/profile/ubah-password'); ?>" class="btn btn-success" style="border-radius: 20px; font-size: 0.80em;">
                             <i class="fas fa-fw fa-key"></i>
                             Ubah Password
                         </a>

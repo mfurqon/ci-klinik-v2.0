@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-9">
 
-            <?= form_open_multipart('user/ubah_profil'); ?>
+            <?= form_open_multipart('admin/profile/ubah-profile'); ?>
 
             <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>

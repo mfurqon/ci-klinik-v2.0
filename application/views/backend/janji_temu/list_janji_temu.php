@@ -46,7 +46,7 @@
                                                     Ubah Status
                                                 </a>
                                             <?php else : ?>
-                                                <a href="<?= base_url('janji_temu/ubah_status/' . $jt['id']); ?>" class="btn btn-sm btn-outline-primary">
+                                                <a href="<?= base_url('admin/janji-temu/ubah-status/' . $jt['id']); ?>" class="btn btn-sm btn-outline-primary">
                                                     <i class="fas fa-fw fa-edit"></i>
                                                     Ubah Status
                                                 </a>

@@ -25,43 +25,43 @@
 
     <?php if ($user['role_id'] == 1) : ?>
         <li class="nav-item <?= ($judul == "Dashboard") ? 'active' : ''; ?>">
-            <a href="<?= base_url('admin'); ?>" class="nav-link pb-0">
+            <a href="<?= base_url('admin/dashboard'); ?>" class="nav-link pb-0">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
         </li>
         <li class="nav-item <?= ($judul == "Data Obat") ? 'active' : ''; ?>">
-            <a href="<?= base_url('obat'); ?>" class="nav-link pb-0">
+            <a href="<?= base_url('admin/obat'); ?>" class="nav-link pb-0">
                 <i class="fas fa-fw fa-pills"></i>
                 <span>Data Obat</span>
             </a>
         </li>
         <li class="nav-item <?= ($judul == "Data Jenis Obat") ? 'active' : ''; ?>">
-            <a href="<?= base_url('obat/jenis_obat'); ?>" class="nav-link pb-0">
+            <a href="<?= base_url('admin/jenis-obat'); ?>" class="nav-link pb-0">
                 <i class="fas fa-fw fa-tablets"></i>
                 <span>Data Jenis Obat</span>
             </a>
         </li>
         <li class="nav-item <?= ($judul == "Data Dokter") ? 'active' : ''; ?>">
-            <a href="<?= base_url('dokter'); ?>" class="nav-link pb-0">
+            <a href="<?= base_url('admin/dokter'); ?>" class="nav-link pb-0">
                 <i class="fas fa-fw fa-user-doctor"></i>
                 <span>Data Dokter</span>
             </a>
         </li>
         <li class="nav-item <?= ($judul == "Data Spesialisasi Dokter") ? 'active' : ''; ?>">
-            <a href="<?= base_url('dokter/spesialisasi'); ?>" class="nav-link pb-0">
+            <a href="<?= base_url('admin/spesialisasi'); ?>" class="nav-link pb-0">
                 <i class="fas fa-fw fa-hospital-user"></i>
                 <span>Data Spesialisasi Dokter</span>
             </a>
         </li>
         <li class="nav-item <?= ($judul == "Data Anggota") ? 'active' : ''; ?>">
-            <a href="<?= base_url('user/manage'); ?>" class="nav-link pb-0">
+            <a href="<?= base_url('admin/users'); ?>" class="nav-link pb-0">
                 <i class="fas fa-fw fa-user"></i>
                 <span>Data Anggota</span>
             </a>
         </li>
         <li class="nav-item <?= ($judul == "Data Role") ? 'active' : ''; ?>">
-            <a href="<?= base_url('user/role'); ?>" class="nav-link pb-0">
+            <a href="<?= base_url('admin/role'); ?>" class="nav-link pb-0">
                 <i class="fas fa-fw fa-user-tie"></i>
                 <span>Data Role</span>
             </a>
@@ -76,13 +76,13 @@
     </div>
 
     <li class="nav-item <?= ($judul == "Data Janji Temu") ? 'active' : ''; ?>">
-        <a href="<?= base_url('janji_temu'); ?>" class="nav-link pb-0">
+        <a href="<?= base_url('admin/janji-temu'); ?>" class="nav-link pb-0">
             <i class="fa-fw fa-regular fa-clipboard"></i>
             <span>Data Janji Temu</span>
         </a>
     </li>
     <li class="nav-item <?= ($judul == "Data Pemesanan Obat") ? 'active' : ''; ?>">
-        <a href="<?= base_url('obat/pemesanan_obat'); ?>" class="nav-link pb-0">
+        <a href="<?= base_url('admin/pemesanan-obat'); ?>" class="nav-link pb-0">
             <i class="fas fa-fw fa-receipt"></i>
             <span>Data Pemesanan Obat</span>
         </a>
@@ -96,25 +96,25 @@
     </div>
 
     <li class="nav-item <?= ($judul == "Laporan Data Obat") ? 'active' : ''; ?>">
-        <a href="<?= base_url('laporan/obat'); ?>" class="nav-link pb-0">
+        <a href="<?= base_url('admin/laporan/obat'); ?>" class="nav-link pb-0">
             <i class="fa-fw fa-solid fa-clipboard"></i>
             <span>Laporan Data Obat</span>
         </a>
     </li>
     <li class="nav-item <?= ($judul == "Laporan Data Dokter") ? 'active' : ''; ?>">
-        <a href="<?= base_url('laporan/dokter'); ?>" class="nav-link pb-0">
+        <a href="<?= base_url('admin/laporan/dokter'); ?>" class="nav-link pb-0">
             <i class="fa-fw fa-solid fa-clipboard"></i>
             <span>Laporan Data Dokter</span>
         </a>
     </li>
     <li class="nav-item <?= ($judul == "Laporan Janji Temu") ? 'active' : ''; ?>">
-        <a href="<?= base_url('laporan/janji_temu'); ?>" class="nav-link pb-0">
+        <a href="<?= base_url('admin/laporan/janji-temu'); ?>" class="nav-link pb-0">
             <i class="fa-fw fa-solid fa-clipboard"></i>
             <span>Laporan Janji Temu</span>
         </a>
     </li>
     <li class="nav-item <?= ($judul == "Laporan Pemesanan Obat") ? 'active' : ''; ?>">
-        <a href="<?= base_url('laporan/pemesanan_obat'); ?>" class="nav-link pb-0">
+        <a href="<?= base_url('admin/laporan/pemesanan-obat'); ?>" class="nav-link pb-0">
             <i class="fa-fw fa-solid fa-clipboard"></i>
             <span>Laporan Pemesanan Obat</span>
         </a>
@@ -128,13 +128,13 @@
     </div>
 
     <li class="nav-item <?= ($judul == "Beranda") ? 'active' : ''; ?>">
-        <a href="<?= base_url('home'); ?>" class="nav-link pb-0">
+        <a href="<?= base_url(); ?>" class="nav-link pb-0">
             <i class="fas fa-fw fa-home"></i>
             <span>Beranda</span>
         </a>
     </li>
     <li class="nav-item <?= ($judul == "Logout") ? 'active' : ''; ?>">
-        <a href="<?= base_url('autentifikasi/logout'); ?>" class="nav-link pb-0">
+        <a href="<?= base_url('admin/auth/logout'); ?>" class="nav-link pb-0">
             <i class="fas fa-fw fa-sign-out"></i>
             <span>Logout</span>
         </a>

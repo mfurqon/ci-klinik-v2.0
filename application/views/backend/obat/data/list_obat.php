@@ -42,13 +42,13 @@
                                         <td><?= $o['stok']; ?></td>
                                         <td><?= date('d-m-Y', strtotime($o['tanggal_kedaluwarsa'])); ?></td>
                                         <td>
-                                            <a href="<?= base_url('obat/detail_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light p-2" title="Lihat">
+                                            <a href="<?= base_url('admin/obat/detail/') . $o['id_obat']; ?>" class="badge bg-gradient-light p-2" title="Lihat">
                                                 <i class="fas fa-fw fa-search"></i>
                                             </a>
-                                            <a href="<?= base_url('obat/ubah_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
+                                            <a href="<?= base_url('admin/obat/ubah/') . $o['id_obat']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
                                                 <i class="fas fa-fw fa-pen"></i>
                                             </a>
-                                            <a href="<?= base_url('obat/hapus_obat/') . $o['id_obat']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus obat <?= $o['nama_obat']; ?> ?');">
+                                            <a href="<?= base_url('admin/obat/hapus/') . $o['id_obat']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus obat <?= $o['nama_obat']; ?> ?');">
                                                 <i class="fas fa-fw fa-trash"></i>
                                             </a>
                                         </td>
@@ -82,7 +82,7 @@
                 </button>
             </div>
 
-            <form action="<?= base_url('obat'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('admin/obat'); ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama_obat" class="form-label">Nama Obat</label>

@@ -42,13 +42,13 @@
                                         <td><?= $d['jenis_kelamin']; ?></td>
                                         <td><?= date('d-m-Y', strtotime($d['tanggal_ditambahkan'])); ?></td>
                                         <td>
-                                            <a href="<?= base_url('dokter/detail_dokter/') . $d['id_dokter']; ?>" class="badge bg-gradient-light p-2" title="Lihat">
+                                            <a href="<?= base_url('admin/dokter/detail/') . $d['id_dokter']; ?>" class="badge bg-gradient-light p-2" title="Lihat">
                                                 <i class="fas fa-fw fa-search"></i>
                                             </a>
-                                            <a href="<?= base_url('dokter/ubah_dokter/') . $d['id_dokter']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
+                                            <a href="<?= base_url('admin/dokter/ubah/') . $d['id_dokter']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
                                                 <i class="fas fa-fw fa-pen"></i>
                                             </a>
-                                            <a href="<?= base_url('dokter/hapus_dokter/') . $d['id_dokter']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus dokter <?= $d['nama_dokter']; ?> ?');">
+                                            <a href="<?= base_url('admin/dokter/hapus/') . $d['id_dokter']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Apakah kamu yakin akan menghapus dokter <?= $d['nama_dokter']; ?> ?');">
                                                 <i class="fas fa-fw fa-trash"></i>
                                             </a>
                                         </td>
@@ -82,7 +82,7 @@
                 </button>
             </div>
 
-            <form action="<?= base_url('dokter'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('admin/dokter'); ?>" method="post" enctype="multipart/form-data">
                 <?php
                 $date = date('Y-m-d'); ?>
                 <input type="date" class="form-control" id="tanggal_ditambahkan" name="tanggal_ditambahkan" value="<?= $date; ?>" hidden>

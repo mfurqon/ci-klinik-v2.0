@@ -39,7 +39,7 @@
                         <div class="error mx-auto" data-text="403">403</div>
                         <p class="lead text-gray-800 mb-5">Akses ditolak</p>
                         <p class="text-gray-500 mb-0">Sepertinya anda berada di halaman yang salah</p>
-                        <a href="<?= base_url('user'); ?>">&larr; Kembali ke Dashboard</a>
+                        <a href="<?= base_url('admin/dashboard'); ?>">&larr; Kembali ke Dashboard</a>
                     </div>
 
                 </div>
