@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('no direct script access allowed');
 
 class Profile extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        cek_belum_login_user();
+    }
+    
     public function index()
     {
         $data['judul'] = 'Profil Saya';
@@ -79,7 +85,7 @@ class Profile extends CI_Controller
             $this->db->update('user');
 
             $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Profil berhasil diubah</div>');
-            redirect('member/myProfile');
+            redirect('profile');
         }
     }
 }

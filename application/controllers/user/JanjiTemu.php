@@ -3,10 +3,14 @@ defined('BASEPATH') OR exit('no direct script access allowed');
 
 class JanjiTemu extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        cek_belum_login_user();
+    }
+    
     public function index()
     {
-        cek_belum_login();
-
         $data['judul'] = "Janji Temu";
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getAllDokter();

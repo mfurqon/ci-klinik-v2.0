@@ -3,10 +3,14 @@ defined('BASEPATH') OR exit('no direct script access allowed');
 
 class Keranjang extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        cek_belum_login_user();
+    }
+    
     public function index()
     {
-        cek_belum_login();
-
         $id_user = $this->session->userdata('id_user');
 
         $data['judul'] = "Data Keranjang Obat";
@@ -33,8 +37,6 @@ class Keranjang extends CI_Controller
 
     public function tambah()
     {
-        cek_belum_login();
-
         $id_obat = $this->uri->segment(3);
 
         // Memilih data obat untuk dimasukkan ke table temp_pemesana_obat/keranjang melalui variable $isi
@@ -57,7 +59,7 @@ class Keranjang extends CI_Controller
                     'text' => '😞 Stok obat tidak mencukupi untuk ditambahkan lebih banyak ke keranjang',
                     'icon' => 'error'
                 ]);
-                redirect(base_url('home/obat'));
+                redirect(base_url('obat'));
                 return; // Hentikan eksekusi fungsi
             }
 
@@ -76,7 +78,7 @@ class Keranjang extends CI_Controller
                     'text' => '😞 Stok obat habis',
                     'icon' => 'error'
                 ]);
-                redirect(base_url('home/obat'));
+                redirect(base_url('obat'));
                 return; // Hentikan eksekusi fungsi
             }
             // Berupa data-data yang akan disimpan ke dalam teble temp/keranjang
@@ -97,7 +99,7 @@ class Keranjang extends CI_Controller
             'text' => '🥳 Obat berhasil ditambahkan ke keranjang',
             'icon' => 'success'
         ]);
-        redirect(base_url('home/obat'));
+        redirect(base_url('obat'));
     }
 
     public function hapus()
@@ -106,7 +108,7 @@ class Keranjang extends CI_Controller
 
         $this->TempPemesananObatModel->deleteTempPemesananObat(['id' => $id_temp]);
 
-        redirect('home/keranjang');
+        redirect('keranjang');
     }
 
     public function update()

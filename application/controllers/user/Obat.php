@@ -17,7 +17,7 @@ class Obat extends CI_Controller
 
     public function beli_obat($id)
     {
-        cek_belum_login();
+        cek_belum_login_user();
 
         $data['judul'] = "Beli Obat";
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();

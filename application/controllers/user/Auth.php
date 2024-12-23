@@ -1,11 +1,11 @@
 <?php
-defined('BASEPATH') OR exit('no direct script access allowed');
+defined('BASEPATH') or exit('no direct script access allowed');
 
 class Auth extends CI_Controller
 {
     public function index()
     {
-        cek_sudah_login_member();
+        cek_sudah_login_user();
 
         $data['judul'] = "Login Member";
 
@@ -21,9 +21,9 @@ class Auth extends CI_Controller
         }
     }
 
-    public function registrasi()
+    public function daftar()
     {
-        cek_sudah_login_member();
+        cek_sudah_login_user();
 
         $data['judul'] = "Daftar Member";
 
@@ -52,11 +52,12 @@ class Auth extends CI_Controller
             ];
             $this->UserModel->insertUser($data);
             $this->session->set_flashdata(
-                'pesan', 
+                'pesan',
                 '<div class="alert alert-success" role="alert">
                     &#129395; Selamat!! akun anda sudah berhasil ditambahkan. Silakan login
-                </div>');
-            redirect('member');
+                </div>'
+            );
+            redirect('auth');
         }
     }
 
@@ -77,7 +78,7 @@ class Auth extends CI_Controller
         $data['judul'] = "Akses Tidak Sah!";
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
-        
+
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/auth/blok');
         $this->load->view('frontend/templates/main/footer');
@@ -111,15 +112,15 @@ class Auth extends CI_Controller
                     redirect('home');
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Password salah!!</div>');
-                    redirect('member');
+                    redirect('auth');
                 }
             } else {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">User belum diaktifasi!!</div>');
-                redirect('member');
+                redirect('auth');
             }
         } else {
             $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-message" role="alert">Email tidak terdaftar!!</div>');
-            redirect('member');
+            redirect('auth');
         }
     }
 }
