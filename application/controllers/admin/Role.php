@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('no direct script access allowed');
 
 class Role extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        cek_belum_login_admin();
+        cek_akses();
+    }
+    
     public function index()
     {
         $data['judul'] = 'Data Role';
@@ -25,17 +32,15 @@ class Role extends CI_Controller
                     &#129395; Data role baru berhasil ditambah
                 </div>'
             );
-            redirect('user/role');
+            redirect('admin/role');
         }
     }
 
     public function ubah()
     {
-        cek_login();
-
         $data['judul'] = 'Ubah Role';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->input->post('email')]);
-        $data['role'] = $this->RoleModel->getRoleById(['role.id' => $this->uri->segment(3)]);
+        $data['role'] = $this->RoleModel->getRoleById(['role.id' => $this->uri->segment(4)]);
 
         set_ubah_role_rules();
 
@@ -53,23 +58,21 @@ class Role extends CI_Controller
                     &#129395; Data Role Berhasil diubah
                 </div>'
             );
-            redirect('user/role');
+            redirect('admin/role');
         }
     }
 
     public function hapus()
     {
-        cek_login();
-
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->input->post('email')]);
 
-        $this->RoleModel->deleteRole($this->uri->segment(3));
+        $this->RoleModel->deleteRole($this->uri->segment(4));
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">
                 &#129395; Data Role Berhasil dihapus
             </div>'
         );
-        redirect('user/role');
+        redirect('admin/role');
     }
 }

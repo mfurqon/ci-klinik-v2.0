@@ -3,11 +3,15 @@ defined('BASEPATH') OR exit('no direct script access allowed');
 
 class JenisObat extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        cek_belum_login_admin();
+        cek_akses();
+    }
+
     public function index()
     {
-        cek_login();
-        cek_akses();
-
         $data['judul'] = "Data Jenis Obat";
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['jenis_obat'] = $this->JenisObatModel->getAllJenisObat();
@@ -28,18 +32,15 @@ class JenisObat extends CI_Controller
                     &#129395; Data Jenis Obat Berhasil ditambah
                 </div>'
             );
-            redirect('obat/jenis_obat');
+            redirect('admin/jenis-obat');
         }
     }
 
     public function ubah()
     {
-        cek_login();
-        cek_akses();
-
         $data['judul'] = 'Ubah Jenis Obat';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['jenis_obat'] = $this->JenisObatModel->getJenisObatById(['jenis_obat.id' => $this->uri->segment(3)]);
+        $data['jenis_obat'] = $this->JenisObatModel->getJenisObatById(['jenis_obat.id' => $this->uri->segment(4)]);
 
         set_ubah_jenis_obat_rules();
 
@@ -57,24 +58,21 @@ class JenisObat extends CI_Controller
                     &#129395; Data Jenis Obat Berhasil diubah
                 </div>'
             );
-            redirect('obat/jenis_obat');
+            redirect('admin/jenis-obat');
         }
     }
 
     public function hapus()
     {
-        cek_login();
-        cek_akses();
-
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
 
-        $this->JenisObatModel->deleteJenisObat($this->uri->segment(3));
+        $this->JenisObatModel->deleteJenisObat($this->uri->segment(4));
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">
                 &#129395; Data Jenis Obat Berhasil dihapus
             </div>'
         );
-        redirect('obat/jenis_obat');
+        redirect('admin/jenis-obat');
     }
 }

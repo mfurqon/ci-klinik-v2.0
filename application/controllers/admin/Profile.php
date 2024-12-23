@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('no direct script access allowed');
 
 class Profile extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        cek_belum_login_admin();
+        cek_akses();
+    }
+
     public function index()
     {
         $data['judul'] = 'Profil Saya';
@@ -17,8 +24,6 @@ class Profile extends CI_Controller
 
     public function ubahProfile()
     {
-        cek_login();
-
         $data['judul'] = 'Ubah Profil';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
@@ -68,14 +73,12 @@ class Profile extends CI_Controller
                         &#129395; Profil anda berhasil diperbarui;
                     </div>
                 ');
-            redirect('user');
+            redirect('admin/profile');
         }
     }
 
     public function ubahPassword()
     {
-        cek_login();
-
         $data['judul'] = 'Ubah Password';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
@@ -98,7 +101,7 @@ class Profile extends CI_Controller
                         Password salah! ;
                     </div>
                 ');
-                redirect('user/ubah_password');
+                redirect('admin/profile/ubah-password');
             } else {
                 // jika password lama benar
                 if ($password_lama == $password_baru) {
@@ -108,7 +111,7 @@ class Profile extends CI_Controller
                         Password lama tidak boleh sama, dengan password baru! ;
                     </div>
                 ');
-                    redirect('user/ubah_password');
+                    redirect('admin/profile/ubah-password');
                 } else {
                     // jika password sudah benar
                     $password_hash = password_hash($password_baru, PASSWORD_DEFAULT);
@@ -122,7 +125,7 @@ class Profile extends CI_Controller
                         &#129395; Password berhasil diubah;
                     </div>
                 ');
-                    redirect('user/ubah_password');
+                    redirect('admin/profile/ubah-password');
                 }
             }
         }

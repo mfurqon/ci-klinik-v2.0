@@ -4,11 +4,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Dokter extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        cek_belum_login_admin();
+        cek_akses();
+    }
+    
     public function index()
     {
-        cek_login();
-        cek_akses();
-
         $data['judul'] = "Data Dokter";
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasi();
@@ -39,7 +43,7 @@ class Dokter extends CI_Controller
                 $gambar = $gambar_obat['file_name']; //digunakan untuk parameter insertDokter
             } else {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
-                redirect('dokter');
+                redirect('admin/dokter');
             }
 
             $this->DokterModel->insertDokter($gambar);
@@ -49,18 +53,15 @@ class Dokter extends CI_Controller
                     &#129395; Data Dokter Berhasil ditambah
                 </div>'
             );
-            redirect('dokter');
+            redirect('admin/dokter');
         }
     }
 
     public function detail()
     {
-        cek_login();
-        cek_akses();
-
         $data['judul'] = 'Detail Dokter';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
+        $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(4)]);
 
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
@@ -71,12 +72,9 @@ class Dokter extends CI_Controller
 
     public function ubah()
     {
-        cek_login();
-        cek_akses();
-
         $data['judul'] = 'Ubah Dokter';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
+        $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(4)]);
         $data['spesialisasi'] = $this->SpesialisasiModel->getAllSpesialisasi();
 
         $nip_lama = $data['dokter']['nip'];
@@ -146,15 +144,12 @@ class Dokter extends CI_Controller
                     &#129395; Data Dokter Berhasil diubah
                 </div>'
             );
-            redirect('dokter');
+            redirect('admin/dokter');
         }
     }
 
     public function hapus($id)
     {
-        cek_login();
-        cek_akses();
-
         $data['judul'] = 'Hapus Dokter';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['role_id'] = $this->session->userdata('role_id');
@@ -171,6 +166,6 @@ class Dokter extends CI_Controller
                 &#129395; Data Dokter Berhasil dihapus
             </div>'
         );
-        redirect('dokter');
+        redirect('admin/dokter');
     }
 }

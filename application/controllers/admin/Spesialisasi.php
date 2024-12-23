@@ -3,11 +3,15 @@ defined('BASEPATH') OR exit('no direct script access allowed');
 
 class Spesialisasi extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        cek_belum_login_admin();
+        cek_akses();
+    }
+
     public function index()
     {
-        cek_login();
-        cek_akses();
-
         $data['judul'] = "Data Spesialisasi Dokter";
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
         $data['spesialisasi'] = $this->SpesialisasiModel->getAllSpesialisasi();
@@ -28,18 +32,15 @@ class Spesialisasi extends CI_Controller
                     &#129395; Data Spesialisasi Dokter Berhasil ditambah
                 </div>'
             );
-            redirect('dokter/spesialisasi');
+            redirect('admin/spesialisasi');
         }
     }
 
     public function ubah()
     {
-        cek_login();
-        cek_akses();
-
         $data['judul'] = 'Ubah Spesialisasi Dokter';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['spesialisasi'] = $this->SpesialisasiModel->getSpesialisasiById(['spesialisasi.id' => $this->uri->segment(3)]);
+        $data['spesialisasi'] = $this->SpesialisasiModel->getSpesialisasiById(['spesialisasi.id' => $this->uri->segment(4)]);
 
         set_ubah_spesialisasi_rules();
 
@@ -57,24 +58,21 @@ class Spesialisasi extends CI_Controller
                     &#129395; Data Spesialisasi Dokter Berhasil diubah
                 </div>'
             );
-            redirect('dokter/spesialisasi');
+            redirect('admin/spesialisasi');
         }
     }
 
     public function hapus()
     {
-        cek_login();
-        cek_akses();
-
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
 
-        $this->SpesialisasiModel->deleteSpesialisasi($this->uri->segment(3));
+        $this->SpesialisasiModel->deleteSpesialisasi($this->uri->segment(4));
         $this->session->set_flashdata(
             'pesan',
             '<div class="alert alert-success alert-message">
                 &#129395; Data Spesialisasi Dokter Berhasil dihapus
             </div>'
         );
-        redirect('dokter/spesialisasi');
+        redirect('admin/spesialisasi');
     }
 }

@@ -5,7 +5,7 @@ class PemesananObat extends CI_Controller
 {
     public function index()
     {
-        cek_login();
+        cek_belum_login_admin();
         cek_akses();
 
         $data['judul'] = "Data Pemesanan Obat";
@@ -52,6 +52,6 @@ class PemesananObat extends CI_Controller
                 &#129395; Data Pemesanan Obat Berhasil dihapus
             </div>'
         );
-        redirect('obat/pemesananObat');
+        redirect('admin/pemesanan-obat');
     }
 }

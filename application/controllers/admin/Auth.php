@@ -5,7 +5,7 @@ class Auth extends CI_Controller
 {
     public function index()
     {
-        cek_sudah_login();
+        cek_sudah_login_admin();
 
         $data['judul'] = 'Login';
 
@@ -21,10 +21,10 @@ class Auth extends CI_Controller
         }
     }
 
-    public function registrasi()
+    public function daftar()
     {
-        cek_sudah_login();
-
+        cek_sudah_login_admin();
+        
         $data['judul'] = 'Halaman Registrasi';
 
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
@@ -58,7 +58,7 @@ class Auth extends CI_Controller
                     &#129395; Selamat!! akun anda sudah berhasil ditambahkan. Silakan login
                 </div>
             ');
-            redirect('autentifikasi');
+            redirect('admin/auth');
         }
     }
 
@@ -72,7 +72,7 @@ class Auth extends CI_Controller
                 &#129395; Anda berhasil logout
             </div>'
         );
-        redirect('autentifikasi');
+        redirect('admin/auth');
     }
 
     public function blok()
@@ -101,16 +101,16 @@ class Auth extends CI_Controller
                     $this->session->set_userdata($data);
 
                     if ($user['role_id'] == 1) {
-                        redirect('admin');
+                        redirect('admin/dashboard');
                     } else {
                         if ($user['image'] == 'default.jpg') {
                             $this->session->set_flashdata(
                                 'pesan',
                                 '<div class="alert alert-info alert-message" role="alert">Silakan Ubah Foto Profil Anda</div>'
                             );
-                            redirect('user');
+                            redirect('admin/profile');
                         }
-                        redirect('user');
+                        redirect('admin/profile');
                     }
                 } else {
                     $this->session->set_flashdata(
@@ -119,7 +119,7 @@ class Auth extends CI_Controller
                         Password anda salah &#128542;
                     </div>'
                     );
-                    redirect('autentifikasi');
+                    redirect('admin/auth');
                 }
             } else {
                 $this->session->set_flashdata('pesan', '
@@ -127,7 +127,7 @@ class Auth extends CI_Controller
                         Email anda belum diaktivasi &#128542;
                     </div>
                 ');
-                redirect('autentifikasi');
+                redirect('admin/auth');
             }
         } else {
             $this->session->set_flashdata('pesan', 
@@ -135,7 +135,7 @@ class Auth extends CI_Controller
                     Email anda belum terdaftar &#128542;
                 </div>'
             );
-            redirect('autentifikasi');
+            redirect('admin/auth');
         }
     }
 }

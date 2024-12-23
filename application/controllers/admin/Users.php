@@ -6,6 +6,7 @@ class Users extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        cek_belum_login_admin();
         cek_akses();
     }
 
@@ -44,17 +45,15 @@ class Users extends CI_Controller
                     &#129395; Data anggota baru berhasil ditambah
                 </div>'
             );
-            redirect('user/manage');
+            redirect('admin/users');
         }
     }
 
     public function ubah()
     {
-        cek_login();
-
         $data['judul'] = 'Ubah Data Anggota';
         $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
-        $data['anggota'] = $this->RoleModel->getJoinRoleIdById(['user_id' => $this->uri->segment(3)]);
+        $data['anggota'] = $this->RoleModel->getJoinRoleIdById(['user_id' => $this->uri->segment(4)]);
         $data['role'] = $this->RoleModel->getAllRole();
 
         set_ubah_user_rules();
@@ -107,17 +106,15 @@ class Users extends CI_Controller
                     &#129395; Data anggota berhasil diubah
                 </div>'
             );
-            redirect('user/manage');
+            redirect('admin/users');
         }
     }
 
     public function hapus()
     {
-        cek_login();
-
-        $where = ['id' => $this->uri->segment(3)];
+        $where = ['id' => $this->uri->segment(4)];
         $this->UserModel->deleteUser($where);
-        $data['anggota'] = $this->UserModel->getUserWhere(['id' => $this->uri->segment(3)]);
+        $data['anggota'] = $this->UserModel->getUserWhere(['id' => $this->uri->segment(4)]);
 
         $gambar_user = $data['anggota']['gambar'];
         unlink(FCPATH . 'assets/img/profile/' . $gambar_user);
@@ -127,6 +124,6 @@ class Users extends CI_Controller
                 &#129395; Data anggota berhasil dihapus
             </div>'
         );
-        redirect('user/manage');
+        redirect('admin/users');
     }
 }
