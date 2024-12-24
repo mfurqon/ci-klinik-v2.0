@@ -6,7 +6,7 @@ class Obat extends CI_Controller
     public function index()
     {
         $data['judul'] = "Obat";
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ObatModel->getAllObat();
         $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 

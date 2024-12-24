@@ -12,7 +12,7 @@ class JanjiTemu extends CI_Controller
     public function index()
     {
         $data['judul'] = "Janji Temu";
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getAllDokter();
         $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 

@@ -13,7 +13,7 @@ class LaporanJanjiTemu extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Laporan Janji Temu';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['janji_temu'] = $this->JanjiTemuModel->getAllJanjiTemu();
 
         $this->load->view('backend/templates/main/header', $data);
@@ -26,7 +26,7 @@ class LaporanJanjiTemu extends CI_Controller
     public function print()
     {
         $data['judul'] = 'Print Data Janji Temu';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['janji_temu'] = $this->JanjiTemuModel->getAllJanjiTemu();
 
         $this->load->view('backend/laporan/janji_temu/print_data_janji_temu', $data);

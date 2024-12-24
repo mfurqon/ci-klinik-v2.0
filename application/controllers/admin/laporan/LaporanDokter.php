@@ -13,7 +13,7 @@ class LaporanDokter extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Laporan Data Dokter';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasi();
 
         $this->load->view('backend/templates/main/header', $data);
@@ -26,7 +26,7 @@ class LaporanDokter extends CI_Controller
     public function print()
     {
         $data['judul'] = 'Laporan Data Dokter';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasi();
 
         $this->load->view('backend/laporan/dokter/print_data_dokter', $data);

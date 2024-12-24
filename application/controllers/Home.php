@@ -7,7 +7,7 @@ class Home extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Beranda';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getAllDokter();
         $data['dokter_limit'] = $this->DokterModel->getDokterLimit();
         $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
@@ -20,7 +20,7 @@ class Home extends CI_Controller
     public function tentang()
     {
         $data['judul'] = 'Tentang';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);

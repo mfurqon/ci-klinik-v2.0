@@ -6,7 +6,7 @@ class Riwayat extends CI_Controller
     public function janjiTemu()
     {
         $data['judul'] = 'Riwayat Janji Temu';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['janji_temu'] = $this->JanjiTemuModel->getJanjiTemuById($data['user']['id']);
         $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 

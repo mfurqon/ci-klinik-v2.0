@@ -13,7 +13,7 @@ class LaporanObat extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Laporan Data Obat';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ObatModel->getJoinObatJenisObat();
 
         $this->load->view('backend/templates/main/header', $data);
@@ -26,7 +26,7 @@ class LaporanObat extends CI_Controller
     public function print()
     {
         $data['judul'] = 'Laporan Data Obat';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ObatModel->getJoinObatJenisObat();
 
         $this->load->view('backend/laporan/obat/print_data_obat', $data);

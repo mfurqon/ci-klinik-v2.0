@@ -13,7 +13,7 @@ class Spesialisasi extends CI_Controller
     public function index()
     {
         $data['judul'] = "Data Spesialisasi Dokter";
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['spesialisasi'] = $this->SpesialisasiModel->getAllSpesialisasi();
 
         set_tambah_spesialisasi_rules();
@@ -39,7 +39,7 @@ class Spesialisasi extends CI_Controller
     public function ubah()
     {
         $data['judul'] = 'Ubah Spesialisasi Dokter';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['spesialisasi'] = $this->SpesialisasiModel->getSpesialisasiById(['spesialisasi.id' => $this->uri->segment(4)]);
 
         set_ubah_spesialisasi_rules();
@@ -64,7 +64,7 @@ class Spesialisasi extends CI_Controller
 
     public function hapus()
     {
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
 
         $this->SpesialisasiModel->deleteSpesialisasi($this->uri->segment(4));
         $this->session->set_flashdata(

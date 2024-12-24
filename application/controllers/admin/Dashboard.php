@@ -13,7 +13,7 @@ class Dashboard extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Dashboard';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['total_dokter'] = $this->DokterModel->countDokter();
         $data['total_obat'] = $this->ObatModel->countObat();
         $data['total_janji_temu'] = $this->JanjiTemuModel->countJanjiTemu();

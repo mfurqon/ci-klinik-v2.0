@@ -13,7 +13,7 @@ class JenisObat extends CI_Controller
     public function index()
     {
         $data['judul'] = "Data Jenis Obat";
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['jenis_obat'] = $this->JenisObatModel->getAllJenisObat();
 
         set_tambah_jenis_obat_rules();
@@ -39,7 +39,7 @@ class JenisObat extends CI_Controller
     public function ubah()
     {
         $data['judul'] = 'Ubah Jenis Obat';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['jenis_obat'] = $this->JenisObatModel->getJenisObatById(['jenis_obat.id' => $this->uri->segment(4)]);
 
         set_ubah_jenis_obat_rules();
@@ -64,7 +64,7 @@ class JenisObat extends CI_Controller
 
     public function hapus()
     {
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
 
         $this->JenisObatModel->deleteJenisObat($this->uri->segment(4));
         $this->session->set_flashdata(

@@ -13,7 +13,7 @@ class Role extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Data Role';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['role'] = $this->RoleModel->getAllRole();
         
         set_tambah_role_rules();
@@ -39,7 +39,7 @@ class Role extends CI_Controller
     public function ubah()
     {
         $data['judul'] = 'Ubah Role';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->input->post('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->input->post('email')]);
         $data['role'] = $this->RoleModel->getRoleById(['role.id' => $this->uri->segment(4)]);
 
         set_ubah_role_rules();
@@ -64,7 +64,7 @@ class Role extends CI_Controller
 
     public function hapus()
     {
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->input->post('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->input->post('email')]);
 
         $this->RoleModel->deleteRole($this->uri->segment(4));
         $this->session->set_flashdata(

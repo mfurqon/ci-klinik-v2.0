@@ -13,7 +13,7 @@ class Users extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Data Anggota';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['role'] = $this->RoleModel->getAllRole();
         $data['anggota'] = $this->UserModel->getJoinUserRole();
 
@@ -52,7 +52,7 @@ class Users extends CI_Controller
     public function ubah()
     {
         $data['judul'] = 'Ubah Data Anggota';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['anggota'] = $this->RoleModel->getJoinRoleIdById(['user_id' => $this->uri->segment(4)]);
         $data['role'] = $this->RoleModel->getAllRole();
 

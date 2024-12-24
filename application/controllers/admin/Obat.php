@@ -13,7 +13,7 @@ class Obat extends CI_Controller
     public function index()
     {
         $data['judul'] = "Data Obat";
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ObatModel->getJoinObatJenisObat();
         $data['jenis_obat'] = $this->JenisObatModel->getAllJenisObat();
 
@@ -63,7 +63,7 @@ class Obat extends CI_Controller
     public function detail()
     {
         $data['judul'] = 'Detail Obat';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ObatModel->getObatJenisObatById(['obat.id' => $this->uri->segment(4)]);
 
         $this->load->view('backend/templates/main/header', $data);
@@ -76,7 +76,7 @@ class Obat extends CI_Controller
     public function ubah()
     {
         $data['judul'] = 'Ubah Obat';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ObatModel->getObatJenisObatById(['obat.id' => $this->uri->segment(4)]);
         $data['jenis_obat'] = $this->JenisObatModel->getAllJenisObat();
 
@@ -143,7 +143,7 @@ class Obat extends CI_Controller
     public function hapus()
     {
         $data['judul'] = 'Hapus Obat';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ObatModel->getObatJenisObatById(['obat.id' => $this->uri->segment(4)]);
 
         $gambar_obat = $data['obat']['gambar'];

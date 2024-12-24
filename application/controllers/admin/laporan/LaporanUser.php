@@ -13,7 +13,7 @@ class LaporanUser extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Laporan Data User';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['users'] = $this->UserModel->getJoinUserRole();
 
         $this->load->view('backend/templates/main/header', $data);
@@ -26,7 +26,7 @@ class LaporanUser extends CI_Controller
     public function print()
     {
         $data['judul'] = 'Print Data User';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['users'] = $this->UserModel->getJoinUserRole();
 
         $this->load->view('backend/laporan/user/print_data_user', $data);

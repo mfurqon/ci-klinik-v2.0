@@ -14,7 +14,7 @@ class Dokter extends CI_Controller
     public function index()
     {
         $data['judul'] = "Data Dokter";
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasi();
         $data['spesialisasi'] = $this->SpesialisasiModel->getAllSpesialisasi();
 
@@ -60,7 +60,7 @@ class Dokter extends CI_Controller
     public function detail()
     {
         $data['judul'] = 'Detail Dokter';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(4)]);
 
         $this->load->view('backend/templates/main/header', $data);
@@ -73,7 +73,7 @@ class Dokter extends CI_Controller
     public function ubah()
     {
         $data['judul'] = 'Ubah Dokter';
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(4)]);
         $data['spesialisasi'] = $this->SpesialisasiModel->getAllSpesialisasi();
 

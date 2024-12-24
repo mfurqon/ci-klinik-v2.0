@@ -14,7 +14,7 @@ class Keranjang extends CI_Controller
         $id_user = $this->session->userdata('id_user');
 
         $data['judul'] = "Data Keranjang Obat";
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $dtb = $this->TempPemesananObatModel->getTempPemesananObatWhere(['id_user' => $id_user]);

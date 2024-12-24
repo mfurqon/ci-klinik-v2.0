@@ -76,7 +76,7 @@ class Auth extends CI_Controller
     public function blok()
     {
         $data['judul'] = "Akses Tidak Sah!";
-        $data['user'] = $this->UserModel->cekDataUser(['email' => $this->session->userdata('email')]);
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
@@ -88,7 +88,7 @@ class Auth extends CI_Controller
     {
         $email = htmlspecialchars($this->input->post('email', true));
         $password = $this->input->post('password', true);
-        $user = $this->UserModel->cekDataUser(['email' => $email]);
+        $user = $this->UserModel->getUserWhere(['email' => $email]);
 
         // Jika usernya ada
         if ($user) {
