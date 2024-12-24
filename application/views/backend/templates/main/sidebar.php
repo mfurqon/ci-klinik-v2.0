@@ -107,6 +107,12 @@
             <span>Laporan Data Dokter</span>
         </a>
     </li>
+    <li class="nav-item <?= ($judul == "Laporan Data User") ? 'active' : ''; ?>">
+        <a href="<?= base_url('admin/laporan/user'); ?>" class="nav-link pb-0">
+            <i class="fa-fw fa-solid fa-clipboard"></i>
+            <span>Laporan Data User</span>
+        </a>
+    </li>
     <li class="nav-item <?= ($judul == "Laporan Janji Temu") ? 'active' : ''; ?>">
         <a href="<?= base_url('admin/laporan/janji-temu'); ?>" class="nav-link pb-0">
             <i class="fa-fw fa-solid fa-clipboard"></i>
@@ -131,6 +137,12 @@
         <a href="<?= base_url(); ?>" class="nav-link pb-0">
             <i class="fas fa-fw fa-home"></i>
             <span>Beranda</span>
+        </a>
+    </li>
+    <li class="nav-item <?= ($judul == "Profil Saya") ? 'active' : ''; ?>">
+        <a href="<?= base_url('admin/profile'); ?>" class="nav-link pb-0">
+            <i class="fa-regular fa-user"></i>
+            <span>Profil Saya</span>
         </a>
     </li>
     <li class="nav-item <?= ($judul == "Logout") ? 'active' : ''; ?>">
