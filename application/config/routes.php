@@ -107,3 +107,15 @@ $route['admin/laporan/obat'] = 'admin/laporan/laporanobat';
 $route['admin/laporan/print-obat'] = 'admin/laporan/laporanobat/print';
 $route['admin/laporan/export-pdf-obat'] = 'admin/laporan/laporanobat/exportpdf';
 $route['admin/laporan/export-excel-obat'] = 'admin/laporan/laporanobat/exportexcel';
+
+// routes untuk laporan user
+$route['admin/laporan/user'] = 'admin/laporan/laporanuser';
+$route['admin/laporan/print-user'] = 'admin/laporan/laporanuser/print';
+$route['admin/laporan/export-pdf-user'] = 'admin/laporan/laporanuser/exportpdf';
+$route['admin/laporan/export-excel-user'] = 'admin/laporan/laporanuser/exportexcel';
+
+// routes untuk laporan janji temu
+$route['admin/laporan/janji-temu'] = 'admin/laporan/laporanjanjitemu';
+$route['admin/laporan/print-janji-temu'] = 'admin/laporan/laporanjanjitemu/print';
+$route['admin/laporan/export-pdf-janji-temu'] = 'admin/laporan/laporanjanjitemu/exportpdf';
+$route['admin/laporan/export-excel-janji-temu'] = 'admin/laporan/laporanjanjitemu/exportexcel';
