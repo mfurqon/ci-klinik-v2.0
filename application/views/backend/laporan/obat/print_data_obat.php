@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cetak Data Obat</title>
+    <title>Print Data Obat</title>
 </head>
 
 <body>
@@ -60,7 +60,7 @@
     </div>
 
     <h3>
-        <center>Cetak Data Obat CI Klinik</center>
+        <center>Print Data Obat CI Klinik</center>
     </h3>
     <br />
     <table class="table-data">
@@ -86,7 +86,7 @@
                     <td><?= number_format($o['harga']) ?></td>
                     <td><?= $o['deskripsi']; ?></td>
                     <td><?= $o['stok']; ?></td>
-                    <td><?= $o['tanggal_kedaluwarsa']; ?></td>
+                    <td><?= date('d-m-Y', strtotime($o['tanggal_kedaluwarsa'])); ?></td>
                     <td>
                         <img src="<?= base_url('assets/img/upload-obat/' . $o['gambar']); ?>" alt="gambar-obat">
                     </td>

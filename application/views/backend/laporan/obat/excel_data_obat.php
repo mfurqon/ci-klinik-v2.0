@@ -7,7 +7,7 @@ header("Expires: 0");
 
 ?>
 <h3>
-    <center>Cetak Excel Data Obat CI Klinik</center>
+    <center>Export Excel Data Obat CI Klinik</center>
 </h3>
 <br />
 <table class="table-data">

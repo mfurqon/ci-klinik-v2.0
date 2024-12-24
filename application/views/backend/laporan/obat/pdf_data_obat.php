@@ -11,7 +11,7 @@ $gambar_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cetak Data Obat</title>
+    <title>Export PDF Data Obat</title>
 </head>
 
 <body>
@@ -58,7 +58,7 @@ $gambar_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
     </center>
 
     <h3>
-        <center>Cetak PDF Data Obat CI Klinik</center>
+        <center>Export PDF Data Obat CI Klinik</center>
     </h3>
     <br />
     <table class="table-data">
@@ -84,7 +84,7 @@ $gambar_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
                     <td><?= number_format($o['harga']) ?></td>
                     <td><?= $o['deskripsi']; ?></td>
                     <td><?= $o['stok']; ?></td>
-                    <td><?= $o['tanggal_kedaluwarsa']; ?></td>
+                    <td><?= date('d-m-Y', strtotime($o['tanggal_kedaluwarsa'])); ?></td>
 
                     <?php //konversi gambar menjadi format base64 agar dompdf bisa membaca gambar
                     $path = base_url('assets/img/upload-obat/' . $o['gambar']);

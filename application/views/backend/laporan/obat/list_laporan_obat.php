@@ -33,6 +33,7 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Nama Obat</th>
                                     <th>Jenis Obat</th>
                                     <th>Harga (Rp)</th>
@@ -43,14 +44,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($obat as $o) : ?>
+                                <?php $no = 1;
+                                foreach ($obat as $o) : ?>
                                     <tr>
+                                        <td><?= $no++; ?></td>
                                         <td><?= $o['nama_obat']; ?></td>
                                         <td><?= $o['nama_jenis_obat']; ?></td>
                                         <td><?= number_format($o['harga']); ?></td>
                                         <td><?= $o['deskripsi']; ?></td>
                                         <td><?= $o['stok']; ?></td>
-                                        <td><?= $o['tanggal_kedaluwarsa']; ?></td>
+                                        <td><?= date('d-m-Y', strtotime($o['tanggal_kedaluwarsa'])); ?></td>
                                         <td>
                                             <picture>
                                                 <img src="<?= base_url('assets/img/upload-obat/' . $o['gambar']); ?>" alt="gambar_obat" style="max-width: 100px; max-height: 100px;">
