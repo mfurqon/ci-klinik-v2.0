@@ -32,11 +32,6 @@ class UserModel extends CI_Model
         $this->db->delete('user', $where);
     }
 
-    public function cekDataUser($where = null)
-    {
-        return $this->db->get_where('user', $where)->row_array();
-    }
-
     public function getUserWhere($where = null)
     {
         return $this->db->get_where('user', $where)->row_array();
