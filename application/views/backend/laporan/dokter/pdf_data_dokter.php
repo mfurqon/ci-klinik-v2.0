@@ -11,7 +11,7 @@ $gambar_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cetak Data Dokter</title>
+    <title>Export PDF Data Dokter</title>
 </head>
 
 <body>
@@ -58,7 +58,7 @@ $gambar_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
     </center>
 
     <h3>
-        <center>Cetak PDF Data Dokter CI Klinik</center>
+        <center>Export PDF Data Dokter CI Klinik</center>
     </h3>
     <br />
     <table class="table-data">
@@ -92,7 +92,7 @@ $gambar_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
                     <td><?= $d['alamat']; ?></td>
                     <td><?= $d['jam_masuk']; ?></td>
                     <td><?= $d['jam_keluar']; ?></td>
-                    <td><?= $d['tanggal_ditambahkan']; ?></td>
+                    <td><?= date('d-m-Y', strtotime($d['tanggal_ditambahkan'])); ?></td>
 
                     <?php //konversi gambar menjadi format base64 agar dompdf bisa membaca gambar
                     $path = base_url('assets/img/upload-dokter/' . $d['gambar']);

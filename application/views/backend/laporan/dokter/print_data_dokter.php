@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cetak Data Dokter</title>
+    <title>Print Data Dokter</title>
 </head>
 
 <body>
@@ -60,7 +60,7 @@
     </div>
 
     <h3>
-        <center>Cetak Data Dokter CI Klinik</center>
+        <center>Print Data Dokter CI Klinik</center>
     </h3>
     <br />
     <table class="table-data">
@@ -94,7 +94,7 @@
                     <td><?= $d['alamat']; ?></td>
                     <td><?= $d['jam_masuk']; ?></td>
                     <td><?= $d['jam_keluar']; ?></td>
-                    <td><?= $d['tanggal_ditambahkan']; ?></td>
+                    <td><?= date('d-m-Y', strtotime($d['tanggal_ditambahkan'])); ?></td>
                     <td>
                         <img src="<?= base_url('assets/img/upload-dokter/' . $d['gambar']); ?>" alt="gambar-dokter">
                     </td>

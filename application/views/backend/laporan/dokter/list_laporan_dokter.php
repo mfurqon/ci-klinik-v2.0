@@ -33,6 +33,7 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Nama Dokter</th>
                                     <th>NIP</th>
                                     <th>Spesialisasi</th>
@@ -43,11 +44,14 @@
                                     <th>Jam Masuk</th>
                                     <th>Jam Keluar</th>
                                     <th>Tanggal Ditambahkan</th>
+                                    <th>Gambar</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($dokter as $d) : ?>
+                                <?php $no = 1;
+                                foreach ($dokter as $d) : ?>
                                     <tr>
+                                        <td><?= $no++; ?></td>
                                         <td><?= $d['nama_dokter']; ?></td>
                                         <td><?= $d['nip']; ?></td>
                                         <td><?= $d['nama_spesialisasi']; ?></td>
@@ -58,6 +62,11 @@
                                         <td><?= $d['jam_masuk']; ?></td>
                                         <td><?= $d['jam_keluar']; ?></td>
                                         <td><?= date('d-m-Y', strtotime($d['tanggal_ditambahkan'])); ?></td>
+                                        <td>
+                                            <picture>
+                                                <img src="<?= base_url('assets/img/upload-dokter/' . $d['gambar']); ?>" alt="gambar_dokter" style="max-width: 100px; max-height: 100px;">
+                                            </picture>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
