@@ -5,7 +5,7 @@ class JanjiTemuModel extends CI_Model
 {
     public function getAllJanjiTemu()
     {
-        $this->db->select('janji_temu.*, user.nama AS nama_user, dokter.nama AS nama_dokter, user.email AS email_user, dokter.email AS email_dokter');
+        $this->db->select('janji_temu.*, user.nama AS nama_user, user.telepon AS telepon_user, dokter.nama AS nama_dokter, user.email AS email_user, dokter.email AS email_dokter, dokter.telepon AS telepon_dokter');
         $this->db->from('janji_temu');
         $this->db->join('user', 'janji_temu.id_user = user.id');
         $this->db->join('dokter', 'janji_temu.id_dokter = dokter.id');
