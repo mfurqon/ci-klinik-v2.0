@@ -13,7 +13,7 @@ class Profile extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Profil Saya';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
 
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
@@ -25,7 +25,7 @@ class Profile extends CI_Controller
     public function ubahProfile()
     {
         $data['judul'] = 'Ubah Profil';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
 
         set_ubah_user_rules();
 
@@ -36,29 +36,40 @@ class Profile extends CI_Controller
             $this->load->view('backend/profile/edit_profile', $data);
             $this->load->view('backend/templates/main/footer');
         } else {
-            $nama = $this->input->post('nama');
-            $email = $this->input->post('email');
-            $telepon = $this->input->post('telepon');
-            $alamat = $this->input->post('alamat');
+            $nama = $this->input->post('nama', true);
+            $email = $this->input->post('email', true);
+            $telepon = $this->input->post('telepon', true);
+            $alamat = $this->input->post('alamat', true);
 
-            // cek jika ada gambar yang akan diupload
+            // cek jika ada gambar yang akan di-upload
             $upload_image = $_FILES['gambar'];
 
             if ($upload_image) {
-                $config['allowed_types'] = 'gif|jpg|png|jpeg';
-                $config['max_size'] = '2048';
                 $config['upload_path'] = './assets/img/profile/';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg|webp';
+                $config['max_size'] = '3000';
+                $config['max_width'] = '1024';
+                $config['max_height'] = '2048';
+                $config['file_name'] = $nama . time();
 
                 $this->load->library('upload', $config);
 
                 if ($this->upload->do_upload('gambar')) {
                     $gambar_lama = $data['user']['gambar'];
+
                     if ($gambar_lama != 'default.jpg') {
                         unlink(FCPATH . 'assets/img/profile/' . $gambar_lama);
                     }
 
                     $gambar_baru = $this->upload->data('file_name');
+
                     $this->db->set('gambar', $gambar_baru);
+                }
+                else {
+                    // Menangkap pesan error jika upload gagal
+                    $error = strip_tags($this->upload->display_errors());
+                    $this->session->set_flashdata('pesan', '<div class="alert alert-message alert-danger">' . $error . '</div>');
+                    redirect('admin/profile/ubah-profile');
                 }
             }
 
@@ -80,7 +91,7 @@ class Profile extends CI_Controller
     public function ubahPassword()
     {
         $data['judul'] = 'Ubah Password';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
 
         set_ubah_password_rules();
 
