@@ -9,7 +9,7 @@
     <div class="card mb-3 col-lg-8">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>" class="img-fluid rounded-start" alt="gambar profil">
+                <img src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>" class="img-fluid rounded-start" alt="gambar profil" style="width: 200px; height: 200px; object-fit: cover;">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
