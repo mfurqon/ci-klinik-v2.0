@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('no direct script access allowed');
+defined('BASEPATH') or exit('no direct script access allowed');
 
 class Profile extends CI_Controller
 {
@@ -8,60 +8,42 @@ class Profile extends CI_Controller
         parent::__construct();
         cek_belum_login_user();
     }
-    
+
     public function index()
     {
         $data['judul'] = 'Profil Saya';
-        
-        $user = $this->UserModel->cekData(['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
-        foreach ($user as $a) {
-            $data = [
-                'judul' => 'Profil Saya', //untuk title di header
-                'image' => $user['image'],
-                'user' => $user['nama'],
-                'email' => $user['email'],
-                'tanggal_input' => $user['tanggal_input']
-            ];
-        }
-
-        $this->load->view('templates/templates-user/header', $data);
-        $this->load->view('member/index', $data);
-        $this->load->view('templates/templates-user/modal');
-        $this->load->view('templates/templates-user/footer', $data);
+        $this->load->view('frontend/templates/main/header.php', $data);
+        $this->load->view('frontend/profile/index', $data);
+        $this->load->view('frontend/templates/main/footer.php', $data);
     }
 
     public function ubahProfile()
     {
-        $user = $this->UserModel->cekData(['email' => $this->session->userdata('email')])->row_array();
+        $data['judul'] = 'Ubah Profil';
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
 
-        foreach ($user as $a) {
-            $data = [
-                'judul' => 'Profil Saya', //untuk title di header
-                'image' => $user['image'],
-                'user' => $user['nama'],
-                'email' => $user['email'],
-                'tanggal_input' => $user['tanggal_input']
-            ];
-        }
-
-        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
+        set_ubah_user_rules();
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/templates-user/header', $data);
-            $this->load->view('member/ubah-anggota', $data);
-            $this->load->view('templates/templates-user/modal', $data);
-            $this->load->view('templates/templates-user/footer', $data);
+            $this->load->view('frontend/templates/main/header.php', $data);
+            $this->load->view('frontend/profile/edit_profile', $data);
+            $this->load->view('frontend/templates/main/footer.php', $data);
         } else {
             $nama = $this->input->post('nama', true);
             $email = $this->input->post('email', true);
+            $telepon = $this->input->post('telepon', true);
+            $alamat = $this->input->post('alamat', true);
 
-            // Jika ada gambar yang akan di-upload
-            $upload_immage = $_FILES['image']['name'];
+            // cek jika ada gambar yang akan di-upload
+            $upload_immage = $_FILES['gambar']['name'];
 
             if ($upload_immage) {
                 $config['upload_path'] = './assets/img/profile/';
-                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg|webp';
                 $config['max_size'] = '3000';
                 $config['max_width'] = '1024';
                 $config['max_height'] = '2048';
@@ -69,22 +51,39 @@ class Profile extends CI_Controller
 
                 $this->load->library('upload', $config);
 
-                if ($this->upload->do_upload('image')) {
-                    $gambar_lama = $data['user']['image'];
+                if ($this->upload->do_upload('gambar')) {
+                    $gambar_lama = $data['user']['gambar'];
+
                     if ($gambar_lama != 'default.jpg') {
                         unlink(FCPATH . 'assets/img/profile/' . $gambar_lama);
                     }
 
                     $gambar_baru = $this->upload->data('file_name');
-                    $this->db->set('image', $gambar_baru);
+
+                    $this->db->set('gambar', $gambar_baru);
+                } else {
+                    // Menangkap pesan error jika upload gagal 
+                    $error = strip_tags($this->upload->display_errors());
+                    $this->session->set_flashdata('pesan', [
+                        'title' => 'Gagal',
+                        'text' => $error,
+                        'icon' => 'error'
+                    ]);
+                    redirect('profile/ubah-profile');
                 }
             }
 
             $this->db->set('nama', $nama);
+            $this->db->set('telepon', $telepon);
+            $this->db->set('alamat', $alamat);
             $this->db->where('email', $email);
             $this->db->update('user');
 
-            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Profil berhasil diubah</div>');
+            $this->session->set_flashdata('pesan', [
+                'title' => 'Berhasil',
+                'text' => 'Profil Anda berhasil diubah',
+                'icon' => 'success'
+            ]);
             redirect('profile');
         }
     }
