@@ -77,13 +77,13 @@
                 <?php else : ?>
                     <a href="<?= base_url('auth'); ?>" class="nav-item nav-link">Login</a>
                     <a href="<?= base_url('keranjang'); ?>" class="nav-item nav-link position-relative">
-                        <i class="fa-solid fa-lg fa-cart-shopping"></i>
+                        <i class="fa-solid fa-cart-shopping fa-lg"></i>
                     </a>
                 <?php endif; ?>
                 <?php if ($user) : ?>
                     <?php if ($data_keranjang > 0) : ?>
                         <a href="<?= base_url('keranjang'); ?>" class="nav-item nav-link position-relative">
-                            <i class="fa-solid fa-lg fa-cart-shopping"></i>
+                            <i id="cartIcon" class="fa-solid fa-cart-shopping fa-lg" data-judul="<?= $judul; ?>"></i>
                             <span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">
                                 <?= $data_keranjang; ?>
                                 <span class="visually-hidden">jumlah obat dalam keranjang</span>
@@ -91,11 +91,11 @@
                         </a>
                     <?php else : ?>
                         <a href="<?= base_url('keranjang'); ?>" class="nav-item nav-link position-relative">
-                            <i class="fa-solid fa-lg fa-cart-shopping"></i>
+                            <i id="cartIcon" class="fa-solid fa-cart-shopping fa-lg" data-judul="<?= $judul; ?>"></i>
                         </a>
                     <?php endif; ?>
-                    <a class="nav-item nav-link" href="<?= base_url('profile/' . $user['id']); ?>">
-                        <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>" style="max-width: 25px; max-height: 25px; border: 1px solid gray; position: relative; top: -3px;">
+                    <a class="nav-item nav-link" href="<?= base_url('profile'); ?>">
+                        <img class="img-profile rounded-circle" id="profileImage" src="<?= base_url('assets/img/profile/') . $user['gambar']; ?>" style="width: 25px; height: 25px; object-fit: cover; border: 2px solid gray; position: relative; top: -3px;" data-judul="<?= $judul; ?>">
                     </a>
                 <?php endif; ?>
             </div>
