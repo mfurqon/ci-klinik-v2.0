@@ -70,6 +70,7 @@ $route['obat'] = 'user/obat';
 
 // routes untuk janji temu
 $route['janji-temu'] = 'user/janjitemu';
+$route['janji-temu/batalkan-janji-temu/(:num)'] = 'user/riwayat/batalkanjanjitemu/$1';
 
 // routes untuk riwayat
 $route['riwayat/janji-temu'] = 'user/riwayat/janjitemu';
@@ -88,8 +89,11 @@ $route['auth/blok'] = 'user/auth/blok';
 // routes untuk halaman admin/backend
 $route['admin/jenis-obat'] = 'admin/jenisobat/index';
 $route['admin/jenis-obat/(:any)/(:num)'] = 'admin/jenisobat/$1/$2';
-$route['admin/janji-temu'] = 'admin/janjitemu/index';
 $route['admin/pemesanan-obat'] = 'admin/pemesananobat/index';
+
+// routes untuk janji temu admin
+$route['admin/janji-temu'] = 'admin/janjitemu/index';
+$route['admin/janji-temu/ubah-status/(:num)'] = 'admin/janjitemu/ubahstatus/$1';
 
 // routes untuk profile admin
 $route['admin/profile/ubah-profile'] = 'admin/profile/ubahprofile';
