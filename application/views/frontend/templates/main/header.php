@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
@@ -29,16 +28,17 @@
     <link href="<?= base_url('assets/css/style-klinik.css'); ?>" rel="stylesheet">
 
     <!-- Custom styles Datatables -->
-    <link href="<?= base_url('assets/vendor/DataTablesKlinik/datatables.min.css'); ?>" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
     <!-- My Font Awesome API -->
     <script src="https://kit.fontawesome.com/30e4c5624e.js" crossorigin="anonymous"></script>
 
-    <title><?= $judul ?></title>
-
     <!-- Include the Bootstrap 4 Sweet Alert theme -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <title><?= $judul ?></title>
+    
 </head>
 
 <body>
