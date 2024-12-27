@@ -32,7 +32,7 @@
 
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="bg-light rounded h-100 d-flex align-items-center p-5">
-                    <form action="<?= base_url('janji-temu'); ?>" method="post">
+                    <form action="<?= base_url('janji-temu'); ?>" method="post" id="formJanjiTemu">
                         <input type="text" id="id_user" name="id_user" value="<?= $user['id']; ?>" hidden>
 
                         <div class="row g-3">
@@ -73,7 +73,13 @@
                             </div>
 
                             <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" id="buat-janji-temu">Buat Janji Temu</button>
+                                <button type="button" class="btn btn-primary w-100 py-3" id="buat-janji-temu" onclick="showConfirmAlert(
+                                'Konfirmasi Buat Janji Temu',
+                                'Apakah Anda yakin ingin buat janji temu?',
+                                'javascript:document.getElementById(\'formJanjiTemu\').submit()'
+                                )">
+                                    Buat Janji Temu
+                                </button>
                             </div>
                         </div>
                     </form>
