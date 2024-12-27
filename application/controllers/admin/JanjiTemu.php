@@ -13,7 +13,10 @@ class JanjiTemu extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Data Janji Temu';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
+
+        $this->JanjiTemuModel->updateJanjiTemuOtomatis();
+
         $data['janji_temu'] = $this->JanjiTemuModel->getAllJanjiTemu();
 
         $this->load->view('backend/templates/main/header', $data);
@@ -23,10 +26,32 @@ class JanjiTemu extends CI_Controller
         $this->load->view('backend/templates/main/footer');
     }
 
+    public function ubahStatus()
+    {
+        $id_janji_temu = $this->uri->segment(4);
+
+        // Validasi ID janji temu
+        if (!is_numeric($id_janji_temu) || empty($id_janji_temu)) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-message alert-danger">ID tidak valid!</div>');
+            redirect('admin/janji-temu');
+            return;
+        }
+
+        $update = $this->JanjiTemuModel->updateStatusJanjiTemu($id_janji_temu);
+
+        if ($update) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-message alert-success">Status berhasil diubah!</div>');
+        } else {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-message alert-danger">Gagal mengubah status!</div>');
+        }
+        
+        redirect('admin/janji-temu');
+    }
+
     public function detailJanjiTemu()
     {
         $data['judul'] = 'Detail Janji Temu';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['janji_temu'] = $this->JanjiTemuModel->janjiTemuWhere(['id' => $this->uri->segment(3)])->row_array();
 
         $this->load->view('backend/templates/main/header', $data);
@@ -39,7 +64,7 @@ class JanjiTemu extends CI_Controller
     public function ubahJanjiTemu()
     {
         $data['judul'] = 'Ubah Janji Temu';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['janji_temu'] = $this->JanjiTemuModel->janjiTemuWhere(['id' => $this->uri->segment(3)])->row_array();
         $data['nama_dokter'] = $this->DokterModel->getAllDokter();
 
