@@ -10,7 +10,7 @@ class Dokter extends CI_Controller
         cek_belum_login_admin();
         cek_akses();
     }
-    
+
     public function index()
     {
         $data['judul'] = "Data Dokter";
@@ -82,7 +82,7 @@ class Dokter extends CI_Controller
         if ($nip_lama != $nip_baru) {
             $this->form_validation->set_rules('nip', 'NIP', 'required|trim|numeric|is_unique[dokter.nip]|min_length[8]');
         } else {
-            $this->form_validation->set_rules('nip', 'NIP', 'required|trim|numeric|min_length[8]');            
+            $this->form_validation->set_rules('nip', 'NIP', 'required|trim|numeric|min_length[8]');
         }
 
         set_ubah_dokter_rules();
@@ -151,7 +151,7 @@ class Dokter extends CI_Controller
     public function hapus($id)
     {
         $data['judul'] = 'Hapus Dokter';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['role_id'] = $this->session->userdata('role_id');
         $data['dokter'] = $this->DokterModel->getDokterById($id);
 

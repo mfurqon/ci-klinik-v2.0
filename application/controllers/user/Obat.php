@@ -20,7 +20,7 @@ class Obat extends CI_Controller
         cek_belum_login_user();
 
         $data['judul'] = "Beli Obat";
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['role_id'] = $this->session->userdata('role_id');
         $data['obat'] = $this->ObatModel->getObatById($id);
 

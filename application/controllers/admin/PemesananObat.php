@@ -9,7 +9,7 @@ class PemesananObat extends CI_Controller
         cek_akses();
 
         $data['judul'] = "Data Pemesanan Obat";
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['role_id'] = $this->session->userdata('role_id');
         $data['pemesanan_obat'] = $this->PemesananObatModel->getAllPemesananObat();
 
@@ -25,7 +25,7 @@ class PemesananObat extends CI_Controller
         cek_masuk();
 
         $data['judul'] = 'Detail Pemesanan Obat';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['role_id'] = $this->session->userdata('role_id');
         $data['pemesanan_obat'] = $this->PemesananObatModel->pemesananObatWhere(['id' => $this->uri->segment(3)]);
 
@@ -41,7 +41,7 @@ class PemesananObat extends CI_Controller
         cek_masuk();
 
         $data['judul'] = 'Hapus Obat';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['role_id'] = $this->session->userdata('role_id');
         $data['pemesanan_obat'] = $this->ObatModel->obatWhere(['obat.id' => $this->uri->segment(3)]);
 
