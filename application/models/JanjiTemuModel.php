@@ -49,6 +49,33 @@ class JanjiTemuModel extends CI_Model
         $this->db->insert('janji_temu', $data);
     }
 
+    public function updateStatusJanjiTemu($id)
+    {
+        $this->db->set('status', 'Dijadwalkan');
+        $this->db->where('id', $id);
+        $this->db->update('janji_temu');
+
+        return $this->db->affected_rows() > 0;  // Kembalikan true jika update berhasil
+    }
+
+    public function updateJanjiTemuOtomatis()
+    {
+        $today = date('Y-m-d');
+        $this->db->set('status', 'Selesai');
+        $this->db->where('tanggal_temu <', $today);
+        $this->db->where('status !=', 'Selesai');
+        $this->db->update('janji_temu');
+    }
+
+    public function cancelJanjiTemu($id)
+    {
+        $this->db->set('status', 'Dibatalkan');
+        $this->db->where('id', $id);
+        $this->db->update('janji_temu');
+
+        return $this->db->affected_rows() > 0;  // Kembalikan true jika update berhasil
+    }
+
     public function updateJanjiTemu()
     {
         $data = [
