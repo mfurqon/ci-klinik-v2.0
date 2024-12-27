@@ -78,14 +78,11 @@
 <a href="" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
 
 
-
-<!-- Optional JavaScript -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Javascript CDN -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Javascript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url('assets/lib/wow/wow.min.js'); ?>"></script>
 <script src="<?= base_url('assets/lib/easing/easing.min.js'); ?>"></script>
 <script src="<?= base_url('assets/lib/waypoints/waypoints.min.js'); ?>"></script>
@@ -104,15 +101,15 @@
 <!-- Button Quantity Javascript -->
 <script src="<?= base_url('assets/js/button-quantity.js'); ?>"></script>
 
-<!-- Sweet Alert Javascript -->
-<script src="<?= base_url('assets/js/sweetalert.js'); ?>"></script>
+<!-- Reusable Sweet Alert Javascript -->
+<script src="<?= base_url('assets/js/custom-sweetalert.js'); ?>"></script>
 
 <!-- Datatables -->
-<script src="<?= base_url('assets/vendor/datatables/jquery.dataTables.min.js'); ?>"></script>
-<script src="<?= base_url('assets/vendor/DataTablesKlinik/datatables.min.js'); ?>"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.min.js"></script>
 
 <!-- Panggil Datatables -->
-<script src="<?= base_url('assets/js/panggil-datatables.js'); ?>"></script>
+<script src="<?= base_url('assets/js/init-datatables.js'); ?>"></script>
 
 </body>
 
