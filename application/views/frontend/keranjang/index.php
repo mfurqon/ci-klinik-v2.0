@@ -31,7 +31,7 @@
                     <button class="btn btn-primary col-3 mt-4" onclick="window.history.go(-1)">
                         <i class="fa-solid fa-arrow-left-long"></i> Kembali
                     </button>
-                    <a href="<?= base_url('pembayaran'); ?>" class="btn btn-success col-3 mt-4"><i class="fa-solid fa-cart-shopping fa-sm"></i> Lanjutkan Bayar</a>
+                    <a href="<?= base_url('checkout-obat'); ?>" class="btn btn-success col-3 mt-4"><i class="fa-solid fa-cart-shopping fa-sm"></i> Lanjutkan Bayar</a>
                 </div>
             </div>
 
