@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('no direct script access allowed');
+defined('BASEPATH') or exit('no direct script access allowed');
 
 class Keranjang extends CI_Controller
 {
@@ -8,27 +8,16 @@ class Keranjang extends CI_Controller
         parent::__construct();
         cek_belum_login_user();
     }
-    
+
     public function index()
     {
         $id_user = $this->session->userdata('id_user');
 
         $data['judul'] = "Data Keranjang Obat";
         $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
-        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataPemesananObatWhere(['id_user' => $this->session->userdata('id_user')]);
 
-        $dtb = $this->TempPemesananObatModel->getTempPemesananObatWhere(['id_user' => $id_user]);
-
-        if ($dtb < 1) {
-            $this->session->set_flashdata('pesan', [
-                'title' => 'Kosong',
-                'text' => 'Tidak ada apapun di keranjang 😞',
-                'icon' => 'error'
-            ]);
-            redirect(base_url());
-        } else {
-            $data['temp_pemesanan_obat'] = $this->TempPemesananObatModel->joinObatTempPemesananObat($id_user);
-        }
+        $data['temp_pemesanan_obat'] = $this->TempPemesananObatModel->joinObatTempPemesananObat($id_user);
 
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/keranjang/index', $data);
@@ -106,7 +95,7 @@ class Keranjang extends CI_Controller
     {
         $id_temp = $this->uri->segment(3);
 
-        $this->TempPemesananObatModel->deleteTempPemesananObat(['id' => $id_temp]);
+        $this->TempPemesananObatModel->deleteTempPemesananObatById($id_temp);
 
         redirect('keranjang');
     }
