@@ -7,7 +7,7 @@ class Riwayat extends CI_Controller
     {
         $data['judul'] = 'Riwayat Janji Temu';
         $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
-        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataPemesananObatWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->JanjiTemuModel->updateJanjiTemuOtomatis();
 

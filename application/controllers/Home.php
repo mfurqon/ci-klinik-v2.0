@@ -10,7 +10,7 @@ class Home extends CI_Controller
         $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getAllDokter();
         $data['dokter_limit'] = $this->DokterModel->getDokterLimit();
-        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataPemesananObatWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/home/index', $data);
@@ -21,7 +21,7 @@ class Home extends CI_Controller
     {
         $data['judul'] = 'Tentang';
         $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
-        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataPemesananObatWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/tentang/index');

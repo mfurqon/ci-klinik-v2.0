@@ -13,7 +13,7 @@ class Profile extends CI_Controller
     {
         $data['judul'] = 'Profil Saya';
         $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
-        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataPemesananObatWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header.php', $data);
         $this->load->view('frontend/profile/index', $data);
@@ -24,7 +24,7 @@ class Profile extends CI_Controller
     {
         $data['judul'] = 'Ubah Profil';
         $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
-        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataPemesananObatWhere(['id_user' => $this->session->userdata('id_user')]);
 
         set_ubah_user_rules();
 

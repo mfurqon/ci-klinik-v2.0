@@ -8,7 +8,7 @@ class Obat extends CI_Controller
         $data['judul'] = "Obat";
         $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['obat'] = $this->ObatModel->getAllObat();
-        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataPemesananObatWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/obat/index', $data);

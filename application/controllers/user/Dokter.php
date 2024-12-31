@@ -8,7 +8,7 @@ class Dokter extends CI_Controller
         $data['judul'] = "Dokter";
         $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasi();
-        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataPemesananObatWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/dokter/index', $data);
@@ -20,7 +20,7 @@ class Dokter extends CI_Controller
         $data['judul'] = 'Detail Dokter';
         $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
         $data['dokter'] = $this->DokterModel->getJoinDokterSpesialisasiById(['dokter.id' => $this->uri->segment(3)]);
-        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataPemesananObatWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/dokter/detail_dokter', $data);

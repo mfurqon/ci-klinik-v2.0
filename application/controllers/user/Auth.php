@@ -77,7 +77,7 @@ class Auth extends CI_Controller
     {
         $data['judul'] = "Akses Tidak Sah!";
         $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
-        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataWhere(['id_user' => $this->session->userdata('id_user')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataPemesananObatWhere(['id_user' => $this->session->userdata('id_user')]);
 
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/auth/blok');
