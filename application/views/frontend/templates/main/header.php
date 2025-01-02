@@ -21,14 +21,15 @@
     <link href="<?= base_url('assets/lib/owlcarousel/assets/owl.carousel.min.css'); ?>" rel="stylesheet">
     <link href="<?= base_url('assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css'); ?>" rel="stylesheet" />
 
+    <!-- Custom styles Datatables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="<?= base_url('assets/css/bootstrap-klinik.min.css'); ?>" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="<?= base_url('assets/css/style-klinik.css'); ?>" rel="stylesheet">
-
-    <!-- Custom styles Datatables -->
-    <link href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
     <!-- My Font Awesome API -->
     <script src="https://kit.fontawesome.com/30e4c5624e.js" crossorigin="anonymous"></script>
@@ -67,7 +68,7 @@
                     </a>
                     <div class="dropdown-menu rounded-0 rounded-top rounded-bottom m-0">
                         <a href="<?= base_url('riwayat/janji-temu'); ?>" class="dropdown-item">Riwayat Janji Temu</a>
-                        <a href="<?= base_url('riwayat/pembelian-obat'); ?>" class="dropdown-item">Riwayat Pembelian</a>
+                        <a href="<?= base_url('riwayat/pemesanan-obat'); ?>" class="dropdown-item">Riwayat Pemesanan</a>
                     </div>
                 </div>
                 <?php if ($user) : ?>
