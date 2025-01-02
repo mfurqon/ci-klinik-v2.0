@@ -74,10 +74,20 @@ $route['janji-temu/batalkan-janji-temu/(:num)'] = 'user/riwayat/batalkanjanjitem
 
 // routes untuk riwayat
 $route['riwayat/janji-temu'] = 'user/riwayat/janjitemu';
+$route['riwayat/pemesanan-obat'] = 'user/riwayat/pemesananobat';
+$route['riwayat/pemesanan-obat/print/(:num)'] = 'user/riwayat/printinvoice/$1';
+$route['riwayat/pemesanan-obat/export-pdf/(:num)'] = 'user/riwayat/exportpdfinvoice/$1';
 
 // routes untuk keranjang
 $route['keranjang'] = 'user/keranjang';
 $route['keranjang/(:any)/(:num)'] = 'user/keranjang/$1/$2';
+
+// routes untuk pemesanan obat
+$route['checkout-obat'] = 'user/pemesananobat/checkout';
+$route['proses-pemesanan-obat'] = 'user/pemesananobat/prosespemesanan';
+$route['pemesanan-obat/invoice'] = 'user/pemesananobat/invoice';
+$route['pemesanan-obat/cetak-invoice'] = 'user/pemesananobat/printinvoice';
+$route['pemesanan-obat/export-pdf-invoice'] = 'user/pemesananobat/exportpdfinvoice';
 
 // routes untuk auth user
 $route['auth'] = 'user/auth';
