@@ -119,6 +119,21 @@ if (!function_exists('set_buat_janji_temu_rules')) {
 }
 
 
+// Form validation pemesanan_obat
+if (!function_exists('set_buat_pemesanan_obat_rules')) {
+    function set_buat_pemesanan_obat_rules()
+    {
+        $CI = get_instance();
+
+        $CI->form_validation->set_rules('nama', 'Nama', 'required|trim');
+        $CI->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric|min_length[5]');
+        $CI->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+        $CI->form_validation->set_rules('metode_pembelian', 'Metode Pembelian', 'required|trim');
+        $CI->form_validation->set_rules('metode_pembayaran', 'Metode Pembayaran', 'required|trim');
+    }
+}
+
+
 // Form validation user
 if (!function_exists('set_tambah_user_rules')) {
     function set_tambah_user_rules()
