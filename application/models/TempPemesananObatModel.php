@@ -8,21 +8,29 @@ class TempPemesananObatModel extends CI_Model
         $this->db->insert('temp_pemesanan_obat', $data);
     }
 
-    public function getDataWhere($where)
+    // mengembalikan nilai baris pada table temp_pemesanan_obat where id_user
+    public function getDataPemesananObatWhere($id_user)
     {
-        $this->db->where($where);
+        $this->db->where($id_user);
         return $this->db->get('temp_pemesanan_obat')->num_rows();
     }
 
-    public function getTempPemesananObatWhere($where)
+    // mengembalikan seluruh data dari table temp_pemesanan_obat where id_user
+    public function getTempPemesananObatWhere($id_user)
     {
-        return $this->db->get('temp_pemesanan_obat', $where)->num_rows();
+        return $this->db->get_where('temp_pemesanan_obat', ['id_user' => $id_user])->result_array();
     }
 
-    public function deleteTempPemesananObat($where)
+    // menghapus data table temp_pemesanan_obat where id_user
+    public function deleteTempPemesananObat($id_user)
     {
-        $this->db->where($where);
-        $this->db->delete('temp_pemesanan_obat');
+        $this->db->delete('temp_pemesanan_obat', ['id_user' => $id_user]);
+    }
+
+    // menghapus data table temp_pemesanan_obat where id_temp
+    public function deleteTempPemesananObatById($id_temp)
+    {
+        $this->db->delete('temp_pemesanan_obat', ['id' => $id_temp]);
     }
 
     // Lakukan join antara temp_pemesanan_obat dan obat untuk mendapatkan stok
