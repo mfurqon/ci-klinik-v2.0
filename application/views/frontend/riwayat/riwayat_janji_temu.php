@@ -25,8 +25,8 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <?php foreach ($janji_temu as $jt) : ?>
-                        <tbody>
+                    <tbody>
+                        <?php foreach ($janji_temu as $jt) : ?>
                             <tr>
                                 <td><?= $jt['nama_user']; ?></td>
                                 <td><?= $jt['nama_dokter']; ?></td>
@@ -52,8 +52,8 @@
                                     <?php endif; ?>
                                 </td>
                             </tr>
-                        </tbody>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </tbody>
                 </table>
             </div>
         </div>
