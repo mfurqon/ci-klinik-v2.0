@@ -5,12 +5,6 @@
     <?= $this->session->flashdata('pesan'); ?>
     <div class="row">
         <div class="col-lg-12">
-            <?php if (validation_errors()) : ?>
-                <div class="alert alert-message alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php endif; ?>
-            <?= $this->session->flashdata('pesan'); ?>
 
             <!-- DataTales Dokter -->
             <div class="card shadow mb-4">
@@ -50,7 +44,7 @@
                             <tbody>
                                 <?php $no = 1;
                                 foreach ($dokter as $d) : ?>
-                                    <tr>
+                                    <tr class="text-center">
                                         <td><?= $no++; ?></td>
                                         <td><?= $d['nama_dokter']; ?></td>
                                         <td><?= $d['nip']; ?></td>
