@@ -32,7 +32,7 @@
         </li>
         <li class="nav-item <?= ($judul == "Data Obat") ? 'active' : ''; ?>">
             <a href="<?= base_url('admin/obat'); ?>" class="nav-link pb-0">
-                <i class="fas fa-fw fa-pills"></i>
+                <i class="fas fa-fw fa-capsules"></i>
                 <span>Data Obat</span>
             </a>
         </li>
@@ -50,7 +50,7 @@
         </li>
         <li class="nav-item <?= ($judul == "Data Spesialisasi Dokter") ? 'active' : ''; ?>">
             <a href="<?= base_url('admin/spesialisasi'); ?>" class="nav-link pb-0">
-                <i class="fas fa-fw fa-hospital-user"></i>
+                <i class="fas fa-fw fa-stethoscope"></i>
                 <span>Data Spesialisasi Dokter</span>
             </a>
         </li>
@@ -77,13 +77,13 @@
 
     <li class="nav-item <?= ($judul == "Data Janji Temu") ? 'active' : ''; ?>">
         <a href="<?= base_url('admin/janji-temu'); ?>" class="nav-link pb-0">
-            <i class="fa-fw fa-regular fa-clipboard"></i>
+            <i class="fas fa-fw fa-calendar-days"></i>
             <span>Data Janji Temu</span>
         </a>
     </li>
     <li class="nav-item <?= ($judul == "Data Pemesanan Obat") ? 'active' : ''; ?>">
         <a href="<?= base_url('admin/pemesanan-obat'); ?>" class="nav-link pb-0">
-            <i class="fas fa-fw fa-receipt"></i>
+            <i class="fas fa-fw fa-pills"></i>
             <span>Data Pemesanan Obat</span>
         </a>
     </li>
