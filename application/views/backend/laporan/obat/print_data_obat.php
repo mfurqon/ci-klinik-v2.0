@@ -14,6 +14,10 @@
             border-collapse: collapse;
         }
 
+        .table-data td {
+            text-align: center;
+        }
+
         .table-data tr th,
         .table-data tr td {
             border: 1px solid black;
@@ -83,7 +87,7 @@
                     <th scope="row"><?= $no++; ?></th>
                     <td><?= $o['nama_obat']; ?></td>
                     <td><?= $o['nama_jenis_obat']; ?></td>
-                    <td><?= number_format($o['harga']) ?></td>
+                    <td><?= number_format($o['harga'], 0, ',', '.') ?></td>
                     <td><?= $o['deskripsi']; ?></td>
                     <td><?= $o['stok']; ?></td>
                     <td><?= date('d-m-Y', strtotime($o['tanggal_kedaluwarsa'])); ?></td>
