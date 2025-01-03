@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No Direct Script Access Allowed');
 
 class TempPemesananObatModel extends CI_Model
 {
+    public function countTempPemesananObat()
+    {
+        return $this->db->get('temp_pemesanan_obat')->num_rows();
+    }
+
     public function insertTempPemesananObat($data)
     {
         $this->db->insert('temp_pemesanan_obat', $data);

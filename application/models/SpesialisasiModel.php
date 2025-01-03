@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No Direct Script Access Allowed');
 
 class SpesialisasiModel extends CI_Model
 {
+    public function countSpesialisasi()
+    {
+        return $this->db->get('spesialisasi')->num_rows();
+    }
+
     public function getAllSpesialisasi()
     {
         return $this->db->get('spesialisasi')->result_array();

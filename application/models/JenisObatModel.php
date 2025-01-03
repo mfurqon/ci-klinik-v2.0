@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No Direct Script Access Allowed');
 
 class JenisObatModel extends CI_Model
 {
+    public function countJenisObat()
+    {
+        return $this->db->get('jenis_obat')->num_rows();
+    }
+
     public function getAllJenisObat()
     {
         return $this->db->get('jenis_obat')->result_array();
