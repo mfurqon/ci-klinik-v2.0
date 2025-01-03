@@ -21,7 +21,7 @@
                     <div class="form-group row justify-content-end">
                         <div class="col-sm-9">
                             <button type="submit" class="btn btn-primary">Ubah</button>
-                            <button class="btn btn-dark" onclick="window.history.go(-1)">Kembali</button>
+                            <button type="button" class="btn btn-dark" onclick="window.location.href='<?= base_url('admin/spesialisasi'); ?>'">Kembali</button>
                         </div>
                     </div>
                 </div>

@@ -53,7 +53,7 @@
                                 <input type="file" class="custom-file-input mb-3" id="gambar" name="gambar">
                                 <label class="custom-file-label" for="gambar">Pilih Gambar</label>
                                 <button type="submit" class="btn btn-primary">Ubah</button>
-                                <button type="button" class="btn btn-outline-primary" onclick="window.history.go(-1)">Batal</button>
+                                <button type="button" class="btn btn-outline-primary" onclick="window.location.href='<?= base_url('admin/profile'); ?>'">Batal</button>
                             </div>
                         </div>
                     </div>
