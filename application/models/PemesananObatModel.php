@@ -3,9 +3,20 @@ defined('BASEPATH') OR exit('No Direct Script Access Allowed');
 
 class PemesananObatModel extends CI_Model
 {
+    public function countPemesananObat()
+    {
+        return $this->db->get('pemesanan_obat')->num_rows();
+    }
+
     public function getAllPemesananObat()
     {
-        return $this->db->get('pemesanan_obat')->result_array();
+        $this->db->select('po.*, f.*, u.*, p.*, DATE(po.tanggal_pemesanan) AS tanggal, TIME(po.tanggal_pemesanan) AS jam');
+        $this->db->from('pemesanan_obat po');
+        $this->db->join('faktur f', 'po.id_pemesanan = f.id_pemesanan', 'left');
+        $this->db->join('pembayaran p', 'po.id_pemesanan = p.id_pemesanan', 'left');
+        $this->db->join('user u', 'u.id = po.id_user');
+
+        return $this->db->get()->result_array();
     }
 
     public function pemesananObatWhere($where)
