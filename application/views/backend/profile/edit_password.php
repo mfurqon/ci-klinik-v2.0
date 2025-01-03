@@ -29,6 +29,7 @@
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Ubah Password</button>
+                    <button type="button" class="btn btn-outline-primary" onclick="window.location.href='<?= base_url('admin/profile'); ?>'">Batal</button>
                 </div>
             </form>
         </div>
