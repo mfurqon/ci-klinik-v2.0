@@ -5,12 +5,6 @@
     <?= $this->session->flashdata('pesan'); ?>
     <div class="row">
         <div class="col-lg-12">
-            <?php if (validation_errors()) : ?>
-                <div class="alert alert-message alert-danger" role="alert">
-                    <?= validation_errors(); ?>
-                </div>
-            <?php endif; ?>
-            <?= $this->session->flashdata('pesan'); ?>
 
             <!-- DataTales Obat -->
             <div class="card shadow mb-4">
@@ -46,11 +40,11 @@
                             <tbody>
                                 <?php $no = 1;
                                 foreach ($obat as $o) : ?>
-                                    <tr>
+                                    <tr class="text-center">
                                         <td><?= $no++; ?></td>
                                         <td><?= $o['nama_obat']; ?></td>
                                         <td><?= $o['nama_jenis_obat']; ?></td>
-                                        <td><?= number_format($o['harga']); ?></td>
+                                        <td><?= number_format($o['harga'], 0, ',', '.'); ?></td>
                                         <td><?= $o['deskripsi']; ?></td>
                                         <td><?= $o['stok']; ?></td>
                                         <td><?= date('d-m-Y', strtotime($o['tanggal_kedaluwarsa'])); ?></td>
