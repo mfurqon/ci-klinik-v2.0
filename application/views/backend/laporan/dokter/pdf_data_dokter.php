@@ -28,6 +28,10 @@ $gambar_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
             border-collapse: collapse;
         }
 
+        .table-data td {
+            text-align: center;
+        }
+
         .table-data tr th,
         .table-data tr td {
             border: 1px solid black;

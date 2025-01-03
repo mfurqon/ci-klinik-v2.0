@@ -14,6 +14,10 @@
             border-collapse: collapse;
         }
 
+        .table-data td {
+            text-align: center;
+        }
+
         .table-data tr th,
         .table-data tr td {
             border: 1px solid black;
