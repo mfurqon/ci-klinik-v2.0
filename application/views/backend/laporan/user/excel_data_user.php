@@ -6,6 +6,12 @@ header("Pragma: no-cache");
 header("Expires: 0");
 
 ?>
+<style>
+    .table-data td {
+        text-align: center;
+    }
+</style>
+
 <h3>
     <center>Export Excel Data User CI Klinik</center>
 </h3>
