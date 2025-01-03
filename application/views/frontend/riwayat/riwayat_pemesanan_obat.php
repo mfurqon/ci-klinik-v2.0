@@ -15,14 +15,14 @@
                     <thead class="align-middle">
                         <tr>
                             <th>No</th>
-                            <th>Nama Pengguna</th>
-                            <th>No Invoice</th>
-                            <th>Tanggal Pemesanan</th>
-                            <th>Jam Pemesanan</th>
-                            <th>Status Pembayaran</th>
-                            <th>Total Pembayaran (Rp)</th>
-                            <th>Metode Pemesanan</th>
-                            <th>Pilihan Pembayaran</th>
+                            <th nowrap>Nama Pengguna</th>
+                            <th nowrap>No Invoice</th>
+                            <th nowrap>Tanggal Pemesanan</th>
+                            <th nowrap>Jam Pemesanan</th>
+                            <th nowrap>Status Pembayaran</th>
+                            <th nowrap>Total Pembayaran (Rp)</th>
+                            <th nowrap>Metode Pemesanan</th>
+                            <th nowrap>Pilihan Pembayaran</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -39,19 +39,13 @@
                                 <td><?= number_format($po['total_pembayaran'], 0, ',', '.'); ?></td>
                                 <td><?= $po['metode_pembelian']; ?></td>
                                 <td><?= $po['metode_pembayaran']; ?></td>
-                                <td style="width: 300px;">
-                                    <ul class="list-inline m-0">
-                                        <li class="list-inline-item">
-                                            <a class="btn btn-sm btn-primary" href="<?= base_url('riwayat/pemesanan-obat/print/') . $po['id_pemesanan']; ?>" title="Print Invoice">
-                                                <i class="fas fa-fw fa-print"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="btn btn-sm btn-danger" href="<?= base_url('riwayat/pemesanan-obat/export-pdf/') . $po['id_pemesanan']; ?>" title="Export to PDF Invoice">
-                                                <i class="fas fa-fw fa-file-pdf"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <td nowrap>
+                                    <a class="btn btn-sm btn-primary" href="<?= base_url('riwayat/pemesanan-obat/print/') . $po['id_pemesanan']; ?>" title="Print Invoice">
+                                        <i class="fas fa-fw fa-print"></i>
+                                    </a>
+                                    <a class="btn btn-sm btn-danger" href="<?= base_url('riwayat/pemesanan-obat/export-pdf/') . $po['id_pemesanan']; ?>" title="Export to PDF Invoice">
+                                        <i class="fas fa-fw fa-file-pdf"></i>
+                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
