@@ -18,6 +18,10 @@ class Dashboard extends CI_Controller
         $data['total_obat'] = $this->ObatModel->countObat();
         $data['total_janji_temu'] = $this->JanjiTemuModel->countJanjiTemu();
         $data['total_anggota'] = $this->UserModel->countUser();
+        $data['total_pemesanan_obat'] = $this->PemesananObatModel->countPemesananObat();
+        $data['total_keranjang_obat'] = $this->TempPemesananObatModel->countTempPemesananObat();
+        $data['total_jenis_obat'] = $this->JenisObatModel->countJenisObat();
+        $data['total_spesialisasi_dokter'] = $this->SpesialisasiModel->countSpesialisasi();
 
         $this->load->view('backend/templates/main/header', $data);
         $this->load->view('backend/templates/main/sidebar', $data);
