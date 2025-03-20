@@ -82,7 +82,6 @@ class Keranjang extends CI_Controller
             ];
             $this->TempPemesananObatModel->insertTempPemesananObat($isi);
         }
-        // Pesan ketika berhasil memasukkan buku ke keranjang
         $this->session->set_flashdata('pesan', [
             'title' => 'Sukses',
             'text' => '🥳 Obat berhasil ditambahkan ke keranjang',
@@ -102,11 +101,19 @@ class Keranjang extends CI_Controller
 
     public function update()
     {
-        $data = json_decode(file_get_contents('php://input'), true);
-        $id = $data['id'];
-        $quantity = $data['quantity'];
-        $this->db->where('id', $id);
-        $this->db->update('temp_pemesanan_obat', ['jumlah_obat' => $quantity]);
-        echo json_encode(['success' => true]);
+        $id_user = $this->session->userdata('id_user');
+        $jumlah_obat = $this->input->post('jumlah_obat');
+
+        if ($jumlah_obat) {
+            foreach ($jumlah_obat as $id_temp => $jumlah) {
+                // Update jumlah di temp_pemesanan_obat berdasarkan id
+                $this->db->set('jumlah_obat', $jumlah);
+                $this->db->where('id', $id_temp);
+                $this->db->where('id_user', $id_user);
+                $this->db->update('temp_pemesanan_obat');
+            }
+        }
+
+        redirect('keranjang');
     }
 }

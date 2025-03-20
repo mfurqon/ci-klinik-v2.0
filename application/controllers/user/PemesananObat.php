@@ -12,7 +12,7 @@ class PemesananObat extends CI_Controller
     public function checkout()
     {
         $this->session->unset_userdata('id_pemesanan');
-        
+
         $id_user = $this->session->userdata('id_user');
 
         $data['judul'] = "Menu Pembayaran";
@@ -35,10 +35,13 @@ class PemesananObat extends CI_Controller
                 $this->load->view('frontend/pemesanan_obat/pembayaran', $data);
                 $this->load->view('frontend/templates/main/footer');
             } else {
+                // Menghapus session userdata id_pemesanan dahulu
                 $this->session->unset_userdata('id_pemesanan');
+
                 // jika form validation tidak error maka transaksi akan dimulai
 
                 $this->db->trans_start(); // Mulai transaksi
+                
                 $id_user = $this->session->userdata('id_user');
 
                 // 1. Tambahkan data ke tabel pemesanan_obat
@@ -52,6 +55,7 @@ class PemesananObat extends CI_Controller
                     'status_pemesanan' => 'Berhasil'
                 ];
                 $this->db->insert('pemesanan_obat', $data_pemesanan);
+
                 $id_pemesanan = $this->db->insert_id();
                 $this->session->set_userdata('id_pemesanan', $id_pemesanan);
 
@@ -64,6 +68,7 @@ class PemesananObat extends CI_Controller
                     'tanggal_pembayaran' => date('Y-m-d H:i:s')
                 ];
                 $this->db->insert('pembayaran', $data_pembayaran);
+
                 $id_pembayaran = $this->db->insert_id();
 
                 // 3. Tambahkan data ke tabel faktur
@@ -82,6 +87,7 @@ class PemesananObat extends CI_Controller
 
                 // 4. Pindahkan data dari temp_pemesanan_obat ke pemesanan_detail
                 $temp_pemesanan = $this->TempPemesananObatModel->getTempPemesananObatWhere($id_user);
+                
                 foreach ($temp_pemesanan as $item) {
                     $data_detail = [
                         'id_pemesanan' => $id_pemesanan,
@@ -93,7 +99,17 @@ class PemesananObat extends CI_Controller
                     $this->db->insert('detail_pemesanan_obat', $data_detail);
                 }
 
-                // 5. Hapus keranjang sementara
+                // 5. Memperbarui stok obat di table obat
+                $temp_pemesanan = $this->TempPemesananObatModel->getTempPemesananObatWhere($id_user);
+
+                foreach ($temp_pemesanan as $item) {
+                    // Kurangi stok obat sesuai dengan jumlah obat yang dibeli
+                    $this->db->set('stok', 'stok - ' . $item['jumlah_obat'], FALSE);
+                    $this->db->where('id', $item['id_obat']);
+                    $this->db->update('obat');
+                }
+
+                // 6. Hapus keranjang sementara
                 $this->TempPemesananObatModel->deleteTempPemesananObat($id_user);
 
                 $this->db->trans_complete(); // Selesaikan transaksi

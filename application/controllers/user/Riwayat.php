@@ -11,10 +11,23 @@ class Riwayat extends CI_Controller
 
         $this->JanjiTemuModel->updateJanjiTemuOtomatis();
 
-        $data['janji_temu'] = $this->JanjiTemuModel->getJanjiTemuById($data['user']['id']);
+        $data['janji_temu'] = $this->JanjiTemuModel->getJanjiTemuByIdUser($data['user']['id']);
 
         $this->load->view('frontend/templates/main/header', $data);
         $this->load->view('frontend/riwayat/riwayat_janji_temu', $data);
+        $this->load->view('frontend/templates/main/footer');
+    }
+
+    public function detailJanjiTemu($id_janji_temu)
+    {
+        $data['judul'] = 'Riwayat Janji Temu';
+        $data['user'] = $this->UserModel->getUserWhere(['email' => $this->session->userdata('email')]);
+        $data['data_keranjang'] = $this->TempPemesananObatModel->getDataPemesananObatWhere(['id_user' => $this->session->userdata('id_user')]);
+        
+        $data['janji_temu'] = $this->JanjiTemuModel->getJanjiTemuById($id_janji_temu);
+
+        $this->load->view('frontend/templates/main/header', $data);
+        $this->load->view('frontend/riwayat/detail_janji_temu', $data);
         $this->load->view('frontend/templates/main/footer');
     }
 
