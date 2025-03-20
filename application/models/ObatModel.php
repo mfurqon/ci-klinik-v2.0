@@ -5,7 +5,7 @@ class ObatModel extends CI_Model
 {
     public function getAllObat()
     {
-        $this->db->select('obat.*, jenis_obat.nama');
+        $this->db->select('obat.*, jenis_obat.nama AS nama_jenis, obat.nama AS nama_obat');
         $this->db->from('obat');
         $this->db->join('jenis_obat', 'obat.id_jenis_obat = jenis_obat.id');
         return $this->db->get()->result_array();

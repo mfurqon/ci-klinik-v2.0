@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No Direct Script Access Allowed');
+defined('BASEPATH') or exit('No Direct Script Access Allowed');
 
 class PemesananObatModel extends CI_Model
 {
@@ -24,9 +24,25 @@ class PemesananObatModel extends CI_Model
         return $this->db->get_where('pemesanan_obat', $where)->row_array();
     }
 
-    public function deletePemesananObat($id)
+    public function deletePemesananObat($id_pemesanan)
     {
-        $this->db->delete('pemesanan_obat', ['id' => $id]);
+        $this->db->trans_start();  // Mulai transaksi
+
+        // Hapus data terkait di tabel faktur, pembayaran, dan detail_pemesanan_obat terlebih dahulu
+        $this->db->delete('faktur', ['id_pemesanan' => $id_pemesanan]);
+        $this->db->delete('pembayaran', ['id_pemesanan' => $id_pemesanan]);
+        $this->db->delete('detail_pemesanan_obat', ['id_pemesanan' => $id_pemesanan]);
+
+        // Hapus data utama di tabel pemesanan_obat
+        $this->db->delete('pemesanan_obat', ['id_pemesanan' => $id_pemesanan]);
+
+        $this->db->trans_complete();  // Selesaikan transaksi
+
+        // Cek apakah transaksi berhasil
+        if ($this->db->trans_status() === FALSE) {
+            return false;  // Jika ada kegagalan
+        }
+        return true;  // Jika semua query berhasil
     }
 
     public function insertPemesananObat()
@@ -69,7 +85,7 @@ class PemesananObatModel extends CI_Model
 
         return $this->db->get()->row_array();
     }
-    
+
     public function getDetailPemesananByIdPemesanan($id_pemesanan)
     {
         $this->db->select('dpo.nama_obat, dpo.jumlah_obat, dpo.harga_obat');
