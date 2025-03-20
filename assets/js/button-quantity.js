@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	function updateQuantity(id, quantity) {
-		fetch(`${base_url}home/update_keranjang`, {
+		fetch(`ci-klinik-v2.0/user/keranjang/update`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
