@@ -43,6 +43,26 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
+                                <option value="" disabled selected>Pilih Jenis Kelamin</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                            <?= form_error('jenis_kelamin', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="tanggal_lahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control datetimepicker-input" placeholder="Pilih Hari" data-target="#date" data-toggle="datetimepicker" id="tanggal_lahir" name="tanggal_lahir" value="<?= $anggota['tanggal_lahir_user']; ?>">
+                            <?= form_error('tanggal_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="role_id" class="col-sm-3 col-form-label">Ubah Role</label>
                         <div class="col-sm-9">
                             <select name="role_id" id="role_id" class="form-control">

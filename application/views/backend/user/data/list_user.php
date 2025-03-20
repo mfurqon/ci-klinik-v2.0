@@ -29,6 +29,8 @@
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>Role</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Tanggal Lahir</th>
                                     <th>Tanggal Gabung</th>
                                     <th>Gambar</th>
                                     <th>Aksi</th>
@@ -40,6 +42,8 @@
                                         <td><?= $a['nama']; ?></td>
                                         <td><?= $a['email']; ?></td>
                                         <td><?= $a['role_nama']; ?></td>
+                                        <td><?= $a['jenis_kelamin_user']; ?></td>
+                                        <td><?= date('d-m-Y', strtotime($a['tanggal_lahir_user'])); ?></td>
                                         <td><?= date('d-m-Y', strtotime($a['tanggal_dibuat'])); ?></td>
                                         <td>
                                             <picture>
@@ -107,6 +111,20 @@
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="telepon" name="telepon" placeholder="Masukkan Nomor Telepon" value="<?= set_value('telepon'); ?>">
                         <?= form_error('telepon', '<small class="text-danger pl-3>', '</small>') ?>
+                    </div>
+
+                    <div class="form-group">
+                        <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
+                            <option value="">Pilih Jenis Kelamin</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                        <?= form_error('jenis_kelamin', '<small class="text-danger pl-3>', '</small>') ?>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="date" class="form-control" placeholder="Pilih Hari" data-target="#date" data-toggle="datetimepicker" style="height: 55px;" id="tanggal_lahir" name="tanggal_lahir" value="<?= set_value('tanggal_lahir'); ?>">
+                        <?= form_error('tanggal_lahir', '<small class="text-danger pl-3>', '</small>') ?>
                     </div>
 
                     <div class="form-group">

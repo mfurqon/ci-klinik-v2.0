@@ -23,6 +23,8 @@ header("Expires: 0");
             <th>Nama User</th>
             <th>Alamat Email</th>
             <th>Nomor Telepon</th>
+            <th>Jenis Kelamin</th>
+            <th>Tanggal Lahir</th>
             <th>Alamat</th>
             <th>Role</th>
             <th>Tanggal Gabung</th>
@@ -36,6 +38,8 @@ header("Expires: 0");
                 <td><?= $user['nama']; ?></td>
                 <td><?= $user['email']; ?></td>
                 <td style="mso-number-format:'\@';"><?= $user['telepon']; ?></td> <!-- Ini agar angka nol di depan dapat terbaca -->
+                <td><?= $user['jenis_kelamin_user']; ?></td>
+                <td><?= date('d-m-Y', strtotime($user['tanggal_lahir_user'])); ?></td>
                 <td><?= $user['alamat']; ?></td>
                 <td><?= $user['role_nama']; ?></td>
                 <td><?= $user['tanggal_dibuat']; ?></td>

@@ -26,6 +26,16 @@
                                         <p class="text-muted"><?= $user['telepon']; ?></p>
                                     </div>
                                 </div>
+                                <div class="row pt-1">
+                                    <div class="col-6 mb-3">
+                                        <h6>Jenis Kelamin</h6>
+                                        <p class="text-muted"><?= $user['jenis_kelamin_user']; ?></p>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <h6>Tanggal Lahir</h6>
+                                        <p class="text-muted"><?= $user['tanggal_lahir_user']; ?></p>
+                                    </div>
+                                </div>
                                 <div class="row mb-3">
                                     <h6>Alamat</h6>
                                     <p class="text-muted"><?= $user['alamat']; ?></p>

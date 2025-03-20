@@ -34,6 +34,26 @@
             </div>
 
             <div class="form-group row">
+                <label for="jenis_kelamin" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
+                        <option value="">Pilih Jenis Kelamin</option>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
+                    <?= form_error('jenis_kelamin', '<small class="text-danger pl-3">', '</small>'); ?>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="telepon" class="col-sm-2 form-label mb-0">Tanggal Lahir</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control datetimepicker-input" placeholder="Pilih Hari" data-target="#date" data-toggle="datetimepicker" id="tanggal_lahir" name="tanggal_lahir" value="<?= $user['tanggal_lahir_user']; ?>">
+                    <?= form_error('tanggal_lahir', '<small class="text-danger ps-2">', '</small>'); ?>
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label for="alamat" class="col-sm-2 col-form-label">Alamat Lengkap</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $user['alamat']; ?>">

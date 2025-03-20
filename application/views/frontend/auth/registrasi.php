@@ -1,6 +1,24 @@
-<div class="container vh-100 d-flex justify-content-center align-items-center">
+<style>
+    .form-control-select {
+        display: block;
+        width: 100%;
+        height: calc(2.9em + .75rem + 2px);
+        padding: 0.375rem .75rem;
+        font-size: 0.8rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 50px;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+</style>
 
-    <div class="card o-hidden border-0 shadow-lg my-5 col-lg-7 mx-auto bg-transparent-blur">
+<div class="container d-flex justify-content-center align-items-center">
+
+    <div class="card overflow-scroll o-hidden border-0 shadow-lg my-5 col-lg-7 mx-auto bg-transparent-blur">
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
@@ -26,6 +44,20 @@
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control form-control-user" id="telepon" name="telepon" placeholder="Nomor Telepon" value="<?= set_value('telepon'); ?>">
                                     <?= form_error('telepon', '<small class="text-danger pl-3">', '</small>'); ?>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <select class="form-control form-control-select" name="jenis_kelamin" id="jenis_kelamin">
+                                        <option value="" disabled selected>Pilih Jenis Kelamin</option>
+                                        <option value="Laki-laki">Laki-laki</option>
+                                        <option value="Perempuan">Perempuan</option>
+                                    </select>
+                                    <?= form_error('jenis_kelamin', '<small class="text-danger pl-3">', '</small>'); ?>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="date" class="form-control form-control-user" placeholder="Pilih Hari" data-target="#date" data-toggle="datetimepicker" id="tanggal_lahir" name="tanggal_lahir" value="<?= set_value('tanggal_lahir'); ?>">
+                                    <?= form_error('tanggal_lahir', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </div>
                             </div>
                             <div class="form-group row">
