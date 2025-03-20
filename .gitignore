@@ -119,3 +119,4 @@ $RECYCLE.BIN/
 /assets/img/upload-dokter/
 /assets/img/upload-obat/
 /assets/img/profile/
+application/third_party/dompdf/dompdf/dompdf/lib/fonts/*.json
