@@ -25,14 +25,9 @@ class Auth extends CI_Controller
     {
         cek_sudah_login_user();
 
-        $data['judul'] = "Daftar Member";
+        $data['judul'] = "Registrasi User";
 
-        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
-        $this->form_validation->set_rules('email', 'Alamat Email', 'required|trim|valid_email|is_unique[user.email]');
-        $this->form_validation->set_rules('alamat', 'Alamat Tempat Tinggal', 'required');
-        $this->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric|min_length[5]');
-        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]');
-        $this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|trim|matches[password1]');
+        set_buat_akun_user();
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('frontend/templates/login/header', $data);
@@ -44,6 +39,8 @@ class Auth extends CI_Controller
                 'alamat' => htmlspecialchars($this->input->post('alamat', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'telepon' => htmlspecialchars($this->input->post('telepon', true)),
+                'jenis_kelamin_user' => htmlspecialchars($this->input->post('jenis_kelamin', true)),
+                'tanggal_lahir_user' => htmlspecialchars($this->input->post('tanggal_lahir', true)),
                 'gambar' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => 2,

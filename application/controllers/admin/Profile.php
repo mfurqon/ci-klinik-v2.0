@@ -39,10 +39,12 @@ class Profile extends CI_Controller
             $nama = $this->input->post('nama', true);
             $email = $this->input->post('email', true);
             $telepon = $this->input->post('telepon', true);
+            $jenis_kelamin = $this->input->post('jenis_kelamin', true);
+            $tanggal_lahir = $this->input->post('tanggal_lahir', true);
             $alamat = $this->input->post('alamat', true);
 
             // cek jika ada gambar yang akan di-upload
-            $upload_image = $_FILES['gambar'];
+            $upload_image = $_FILES['gambar']['name'];
 
             if ($upload_image) {
                 $config['upload_path'] = './assets/img/profile/';
@@ -75,6 +77,8 @@ class Profile extends CI_Controller
 
             $this->db->set('nama', $nama);
             $this->db->set('telepon', $telepon);
+            $this->db->set('jenis_kelamin_user', $jenis_kelamin);
+            $this->db->set('tanggal_lahir_user', $tanggal_lahir);
             $this->db->set('alamat', $alamat);
             $this->db->where('email', $email);
             $this->db->update('user');
