@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Catatan (Opsional)</label>
-                                        <textarea class="form-control" rows="2" placeholder="Tambahkan catatan untuk pesanan" name="catatan" id="catatan"></textarea>
+                                        <textarea class="form-control" rows="2" placeholder="Tambahkan catatan untuk pesanan" name="catatan" id="catatan"><?= set_value('catatan'); ?></textarea>
                                     </div>
 
                                     <h5 class="card-title h4 mt-4">Metode Pembelian</h5>
@@ -146,7 +146,8 @@
                                         </div>
                                         <?php foreach ($daftar_ewallet as $de) : ?>
                                             <div class="col-md-12">
-                                                <div class="card payment-method-card">
+                                                <label class="card payment-method-card">
+                                                <input type="radio" name="metode_pembayaran" value="<?= $de['nama_ewallet']; ?>" hidden>
                                                     <div class="card-body">
                                                         <div class="d-flex align-items-center justify-content-between">
                                                             <div>
@@ -155,7 +156,7 @@
                                                             <img src="<?= base_url('assets/img/e-wallet/' . $de['gambar']); ?>" alt="Gopay Logo" class="ewallet-logo" style="max-width: 100px;">
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </label>
                                             </div>
                                         <?php endforeach; ?>
                                     </div>
@@ -229,7 +230,7 @@
 
                                     <div class="mt-4">
                                         <button type="submit" class="btn btn-primary w-100 py-3">Bayar Sekarang</button>
-                                        <button class="btn btn-outline-secondary w-100 mt-2">Kembali ke Keranjang</button>
+                                        <button type="button" class="btn btn-outline-secondary w-100 mt-2" onclick="window.location.href='<?= base_url('keranjang'); ?>'">Kembali ke Keranjang</button>
                                     </div>
 
                                 </div>

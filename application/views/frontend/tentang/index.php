@@ -23,8 +23,10 @@
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                 <p class="d-inline-block border rounded-pill py-1 px-4">Tentang Kami</p>
                 <h1 class="mb-4">Kenapa Anda Harus Percaya Kami? Ketahui Tentang Kami!</h1>
-                <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam rebum amet diam ipsum. Clita clita labore, dolor duo nonumy clita sit at, sed sit sanctus dolor eos.</p>
+                <p>Selamat datang di Klinik CI Klinik, pusat layanan kesehatan yang berdedikasi untuk memberikan perawatan terbaik bagi Anda dan keluarga. Sejak berdiri, kami telah berkomitmen untuk menghadirkan layanan kesehatan yang profesional, ramah, dan berkualitas tinggi.
+
+                    Visi Kami:
+                    Menjadi klinik pilihan utama yang memberikan pelayanan kesehatan holistik, terpercaya, dan terjangkau bagi masyarakat.</p>
                 <p><i class="far fa-check-circle text-primary me-3"></i>Pelayanan Kesehatan Yang Berkualitas</p>
                 <p><i class="far fa-check-circle text-primary me-3"></i>Dokter Yang Berpengalaman</p>
                 <p><i class="far fa-check-circle text-primary me-3"></i>Alat Medis Yang Modern</p>
@@ -43,7 +45,7 @@
                 <div class="p-lg-5 ps-lg-0">
                     <p class="d-inline-block border rounded-pill py-1 px-4">Unggulan</p>
                     <h1 class="mb-4">Kenapa Memilih Kami</h1>
-                    <p class="mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo erat amet</p>
+                    <p class="mb-4 pb-2">Di Klinik CI Klinik, kami memahami bahwa kesehatan adalah aset paling berharga. Kami berkomitmen untuk memberikan pelayanan yang terbaik, profesional, dan nyaman bagi setiap pasien. Berikut alasan mengapa Klinik kami menjadi pilihan tepat untuk Anda dan keluarga:</p>
                     <div class="row g-4">
                         <div class="col-6">
                             <div class="d-flex align-items-center">

@@ -38,6 +38,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <link rel="icon" type="image/x-icon" href="assets/img/klinik/logo-klinik-biru-remove-bg.webp">
+
     <title><?= $judul ?></title>
     
 </head>

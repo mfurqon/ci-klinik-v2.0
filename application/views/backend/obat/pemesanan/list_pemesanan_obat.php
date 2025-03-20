@@ -4,44 +4,61 @@
     <div class="row">
         <div class="col-lg">
 
-            <table class="table table-hover table-responsive">
-                <thead class="bg-gradient-primary text-white">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nama Pemesan</th>
-                        <th scope="col">Jenis Obat</th>
-                        <th scope="col">Harga</th>
-                        <th scope="col">Stok</th>
-                        <th scope="col">Kadaluwarsa</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $a = 1;
-                    foreach ($obat as $o) : ?>
-                        <tr>
-                            <th scope="row"><?= $a++; ?></th>
-                            <td><?= $o['nama_obat']; ?></td>
-                            <td><?= $o['nama_jenis_obat']; ?></td>
-                            <td><?= $o['harga']; ?></td>
-                            <td><?= $o['stok']; ?></td>
-                            <td><?= $o['tanggal_kadaluwarsa']; ?></td>
-                            <td>
-                                <a href="<?= base_url('obat/detailObat/') . $o['id']; ?>" class="badge bg-gradient-light p-2" title="Lihat">
-                                    <i class="fas fa-fw fa-search"></i>
-                                </a>
-                                <a href="<?= base_url('obat/ubahObat/') . $o['id']; ?>" class="badge bg-gradient-light text-success p-2" title="Ubah">
-                                    <i class="fas fa-fw fa-pen"></i>
-                                </a>
-                                <a href="<?= base_url('obat/hapusObat/') . $o['id']; ?>" class="badge bg-gradient-light text-danger p-2" title="Hapus" onclick="return confirm('Kamu yakin akan menghapus <?= $o['nama_obat']; ?> ?');">
-                                    <i class="fas fa-fw fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <?php if (validation_errors()) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= validation_errors(); ?>
+                </div>
+            <?php endif; ?>
+
+            <?= $this->session->flashdata('pesan'); ?>
+
+            <!-- DataTales Pemesanan Obat -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex justify-content-between">
+                    <h5 class="font-weight-bold text-primary d-inline-block mt-2"><?= $judul; ?></h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th nowrap>Nama Pengguna</th>
+                                    <th nowrap>No Invoice</th>
+                                    <th nowrap>Tanggal Pemesanan</th>
+                                    <th nowrap>Jam Pemesanan</th>
+                                    <th nowrap>Status Pembayaran</th>
+                                    <th nowrap>Total Pembayaran (Rp)</th>
+                                    <th nowrap>Metode Pemesanan</th>
+                                    <th nowrap>Pilihan Pembayaran</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $no = 1;
+                                foreach ($pemesanan_obat as $po) : ?>
+                                    <tr class="text-center">
+                                        <td><?= $no++; ?></td>
+                                        <td><?= $po['nama']; ?></td>
+                                        <td><?= $po['no_invoice']; ?></td>
+                                        <td><?= $po['tanggal']; ?></td>
+                                        <td><?= $po['jam']; ?></td>
+                                        <td><?= $po['status_pembayaran']; ?></td>
+                                        <td><?= number_format($po['total_pembayaran'], 0, ',', '.'); ?></td>
+                                        <td><?= $po['metode_pembelian']; ?></td>
+                                        <td><?= $po['metode_pembayaran']; ?></td>
+                                        <td>
+                                            <a href="<?= base_url('admin/pemesanan-obat/hapus/') . $po['id_pemesanan']; ?>" class="btn btn-sm btn-danger" title="Hapus Data Pemesanan Obat" onclick="return confirm('Apakah anda yakin ingin menghapus data Pemesanan Obat dengan ID <?= $po['id_pemesanan'] ?>')">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

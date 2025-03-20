@@ -30,43 +30,63 @@
                 <span>Dashboard</span>
             </a>
         </li>
-        <li class="nav-item <?= ($judul == "Data Obat") ? 'active' : ''; ?>">
-            <a href="<?= base_url('admin/obat'); ?>" class="nav-link pb-0">
-                <i class="fas fa-fw fa-capsules"></i>
-                <span>Data Obat</span>
-            </a>
-        </li>
-        <li class="nav-item <?= ($judul == "Data Jenis Obat") ? 'active' : ''; ?>">
-            <a href="<?= base_url('admin/jenis-obat'); ?>" class="nav-link pb-0">
-                <i class="fas fa-fw fa-tablets"></i>
-                <span>Data Jenis Obat</span>
-            </a>
-        </li>
-        <li class="nav-item <?= ($judul == "Data Dokter") ? 'active' : ''; ?>">
-            <a href="<?= base_url('admin/dokter'); ?>" class="nav-link pb-0">
+        <li class="nav-item">
+            <a class="nav-link pb-0 collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                 <i class="fas fa-fw fa-user-doctor"></i>
                 <span>Data Dokter</span>
             </a>
+            <div id="collapseOne" class="collapse mt-2" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Pengolahan Data Dokter</h6>
+                    <a href="<?= base_url('admin/dokter'); ?>" class="nav-link pb-0 text-primary">
+                        <i class="fas fa-fw fa-user-doctor text-primary"></i>
+                        <span>Data Dokter</span>
+                    </a>
+                    <a href="<?= base_url('admin/spesialisasi'); ?>" class="nav-link pb-0 text-primary">
+                        <i class="fas fa-fw fa-stethoscope text-primary"></i>
+                        <span>Data Spesialisasi Dokter</span>
+                    </a>
+                </div>
+            </div>
         </li>
-        <li class="nav-item <?= ($judul == "Data Spesialisasi Dokter") ? 'active' : ''; ?>">
-            <a href="<?= base_url('admin/spesialisasi'); ?>" class="nav-link pb-0">
-                <i class="fas fa-fw fa-stethoscope"></i>
-                <span>Data Spesialisasi Dokter</span>
+        <li class="nav-item">
+            <a class="nav-link collapsed pb-0" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-capsules"></i>
+                <span>Data Obat</span>
             </a>
+            <div id="collapseTwo" class="collapse mt-2" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Pengolahan Data Obat</h6>
+                    <a href="<?= base_url('admin/obat'); ?>" class="nav-link pb-0 text-primary">
+                        <i class="fas fa-fw fa-capsules text-primary"></i>
+                        <span>Data Obat</span>
+                    </a>
+                    <a href="<?= base_url('admin/jenis-obat'); ?>" class="nav-link pb-0 text-primary">
+                        <i class="fas fa-fw fa-tablets text-primary"></i>
+                        <span>Data Jenis Obat</span>
+                    </a>
+                </div>
+            </div>
         </li>
-        <li class="nav-item <?= ($judul == "Data Anggota") ? 'active' : ''; ?>">
-            <a href="<?= base_url('admin/users'); ?>" class="nav-link pb-0">
+        <li class="nav-item">
+            <a class="nav-link collapsed pb-0" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                 <i class="fas fa-fw fa-user"></i>
-                <span>Data Anggota</span>
+                <span>Data User</span>
             </a>
+            <div id="collapseThree" class="collapse mt-2" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Pengolahan Data User</h6>
+                    <a href="<?= base_url('admin/users'); ?>" class="nav-link pb-0 text-primary">
+                        <i class="fas fa-fw fa-user text-primary"></i>
+                        <span>Data Anggota</span>
+                    </a>
+                    <a href="<?= base_url('admin/role'); ?>" class="nav-link pb-0 text-primary">
+                        <i class="fas fa-fw fa-user-tie text-primary"></i>
+                        <span>Data Role</span>
+                    </a>
+                </div>
+            </div>
         </li>
-        <li class="nav-item <?= ($judul == "Data Role") ? 'active' : ''; ?>">
-            <a href="<?= base_url('admin/role'); ?>" class="nav-link pb-0">
-                <i class="fas fa-fw fa-user-tie"></i>
-                <span>Data Role</span>
-            </a>
-        </li>
-    <?php endif; ?>
 
     <!-- Divider -->
     <hr class="sidebar-divider mt-3">
@@ -95,36 +115,39 @@
         Laporan
     </div>
 
-    <li class="nav-item <?= ($judul == "Laporan Data Obat") ? 'active' : ''; ?>">
-        <a href="<?= base_url('admin/laporan/obat'); ?>" class="nav-link pb-0">
-            <i class="fa-fw fa-solid fa-clipboard"></i>
-            <span>Laporan Data Obat</span>
+    <li class="nav-item">
+        <a class="nav-link collapsed pb-0" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            <i class="fas fa-fw fa-clipboard"></i>
+            <span>Data Laporan</span>
         </a>
+        <div id="collapseFour" class="collapse mt-2" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded overflow-auto">
+                <h6 class="collapse-header">Pengolahan Data Laporan</h6>
+                <a href="<?= base_url('admin/laporan/obat'); ?>" class="nav-link pb-0 text-primary">
+                    <i class="fa-fw fa-solid fa-clipboard text-primary"></i>
+                    <span>Laporan Data Obat</span>
+                </a>
+                <a href="<?= base_url('admin/laporan/dokter'); ?>" class="nav-link pb-0 text-primary">
+                    <i class="fa-fw fa-solid fa-clipboard text-primary"></i>
+                    <span>Laporan Data Dokter</span>
+                </a>
+                <a href="<?= base_url('admin/laporan/user'); ?>" class="nav-link pb-0 text-primary">
+                    <i class="fa-fw fa-solid fa-clipboard text-primary"></i>
+                    <span>Laporan Data User</span>
+                </a>
+                <a href="<?= base_url('admin/laporan/janji-temu'); ?>" class="nav-link pb-0 text-primary">
+                    <i class="fa-fw fa-solid fa-clipboard text-primary"></i>
+                    <span>Laporan Janji Temu</span>
+                </a>
+                <a href="<?= base_url('admin/laporan/pemesanan-obat'); ?>" class="nav-link pb-0 text-primary">
+                    <i class="fa-fw fa-solid fa-clipboard text-primary"></i>
+                    <span>Laporan Pemesanan Obat</span>
+                </a>
+            </div>
+        </div>
     </li>
-    <li class="nav-item <?= ($judul == "Laporan Data Dokter") ? 'active' : ''; ?>">
-        <a href="<?= base_url('admin/laporan/dokter'); ?>" class="nav-link pb-0">
-            <i class="fa-fw fa-solid fa-clipboard"></i>
-            <span>Laporan Data Dokter</span>
-        </a>
-    </li>
-    <li class="nav-item <?= ($judul == "Laporan Data User") ? 'active' : ''; ?>">
-        <a href="<?= base_url('admin/laporan/user'); ?>" class="nav-link pb-0">
-            <i class="fa-fw fa-solid fa-clipboard"></i>
-            <span>Laporan Data User</span>
-        </a>
-    </li>
-    <li class="nav-item <?= ($judul == "Laporan Janji Temu") ? 'active' : ''; ?>">
-        <a href="<?= base_url('admin/laporan/janji-temu'); ?>" class="nav-link pb-0">
-            <i class="fa-fw fa-solid fa-clipboard"></i>
-            <span>Laporan Janji Temu</span>
-        </a>
-    </li>
-    <li class="nav-item <?= ($judul == "Laporan Pemesanan Obat") ? 'active' : ''; ?>">
-        <a href="<?= base_url('admin/laporan/pemesanan-obat'); ?>" class="nav-link pb-0">
-            <i class="fa-fw fa-solid fa-clipboard"></i>
-            <span>Laporan Pemesanan Obat</span>
-        </a>
-    </li>
+
+    <?php endif; ?>
 
     <!-- Divider -->
     <hr class="sidebar-divider mt-3">

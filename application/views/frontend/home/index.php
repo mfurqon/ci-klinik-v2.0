@@ -97,8 +97,8 @@
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <p class="d-inline-block border rounded-pill py-1 px-4">Janji Temu</p>
                             <h1 class="mb-4">Buat Janji Temu Dengan Dokter Kami</h1>
-                            <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                            <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam rebum amet diam ipsum. Clita clita labore, dolor duo nonumy clita sit at, sed sit sanctus dolor eos.</p>
+                            <p>Pada menu janji temu, Anda dapat mengatur jadwal konsultasi atau pertemuan dengan mudah dan nyaman. Pilih waktu yang sesuai, dan kami akan memastikan layanan terbaik untuk Anda.</p>
+                            <p class="mb-4">Janji temu dirancang untuk mempermudah Anda dalam mengatur jadwal konsultasi atau layanan secara langsung melalui website utama kami. Dengan fitur ini, Anda dapat memilih waktu yang sesuai tanpa perlu antre atau menunggu lama.</p>
                             <p><i class="far fa-check-circle text-primary me-3"></i>Quality health care</p>
                             <p><i class="far fa-check-circle text-primary me-3"></i>Only Qualified Doctors</p>
                             <p><i class="far fa-check-circle text-primary me-3"></i>Medical Research Professionals</p>
