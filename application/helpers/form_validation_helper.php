@@ -135,6 +135,22 @@ if (!function_exists('set_buat_pemesanan_obat_rules')) {
 
 
 // Form validation user
+if (!function_exists('set_buat_akun_user')) {
+    function set_buat_akun_user()
+    {
+        $CI = get_instance();
+
+        $CI->form_validation->set_rules('nama', 'Nama Anggota', 'required|trim');
+        $CI->form_validation->set_rules('email', 'Alamat Email', 'required|trim|valid_email|is_unique[user.email]');
+        $CI->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric|min_length[5]');
+        $CI->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
+        $CI->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required|trim');
+        $CI->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $CI->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]');
+        $CI->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|trim|min_length[3]|matches[password1]');
+    }
+}
+
 if (!function_exists('set_tambah_user_rules')) {
     function set_tambah_user_rules()
     {
@@ -144,6 +160,8 @@ if (!function_exists('set_tambah_user_rules')) {
         $CI->form_validation->set_rules('email', 'Alamat Email', 'required|trim|valid_email|is_unique[user.email]');
         $CI->form_validation->set_rules('role', 'Role', 'required');
         $CI->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric|min_length[5]');
+        $CI->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
+        $CI->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required|trim');
         $CI->form_validation->set_rules('alamat', 'Alamat', 'required');
         $CI->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]');
         $CI->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|trim|min_length[3]|matches[password1]');
@@ -157,6 +175,8 @@ if (!function_exists('set_ubah_user_rules')) {
 
         $CI->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim');
         $CI->form_validation->set_rules('telepon', 'Nomor Telepon', 'required|trim|numeric|min_length[5]');
+        $CI->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
+        $CI->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required|trim');
         $CI->form_validation->set_rules('alamat', 'Alamat', 'required|trim|min_length[7]');
     }
 }
