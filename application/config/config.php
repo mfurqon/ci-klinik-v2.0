@@ -504,6 +504,7 @@ $config['compress_output'] = FALSE;
 // $config['time_reference'] = 'local';
 $config['time_reference'] = 'Asia/Jakarta';
 date_default_timezone_set('Asia/Jakarta');
+setlocale(LC_TIME, 'id_ID.UTF-8', 'id_ID', 'ind', 'indonesia');
 
 /*
 |--------------------------------------------------------------------------
