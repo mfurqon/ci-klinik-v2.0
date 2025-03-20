@@ -74,12 +74,14 @@ $route['janji-temu/batalkan-janji-temu/(:num)'] = 'user/riwayat/batalkanjanjitem
 
 // routes untuk riwayat
 $route['riwayat/janji-temu'] = 'user/riwayat/janjitemu';
+$route['riwayat/detail-janji-temu/(:num)'] = 'user/riwayat/detailjanjitemu/$1';
 $route['riwayat/pemesanan-obat'] = 'user/riwayat/pemesananobat';
 $route['riwayat/pemesanan-obat/print/(:num)'] = 'user/riwayat/printinvoice/$1';
 $route['riwayat/pemesanan-obat/export-pdf/(:num)'] = 'user/riwayat/exportpdfinvoice/$1';
 
 // routes untuk keranjang
 $route['keranjang'] = 'user/keranjang';
+$route['update-keranjang'] = 'user/keranjang/update';
 $route['keranjang/(:any)/(:num)'] = 'user/keranjang/$1/$2';
 
 // routes untuk pemesanan obat
@@ -97,9 +99,13 @@ $route['auth/blok'] = 'user/auth/blok';
 
 
 // routes untuk halaman admin/backend
+// routes untuk jenis obat admin
 $route['admin/jenis-obat'] = 'admin/jenisobat/index';
 $route['admin/jenis-obat/(:any)/(:num)'] = 'admin/jenisobat/$1/$2';
+
+// routes untuk pemesanan obat admin
 $route['admin/pemesanan-obat'] = 'admin/pemesananobat/index';
+$route['admin/pemesanan-obat/hapus/(:num)'] = 'admin/pemesananobat/hapus/$1';
 
 // routes untuk janji temu admin
 $route['admin/janji-temu'] = 'admin/janjitemu/index';
@@ -133,3 +139,9 @@ $route['admin/laporan/janji-temu'] = 'admin/laporan/laporanjanjitemu';
 $route['admin/laporan/print-janji-temu'] = 'admin/laporan/laporanjanjitemu/print';
 $route['admin/laporan/export-pdf-janji-temu'] = 'admin/laporan/laporanjanjitemu/exportpdf';
 $route['admin/laporan/export-excel-janji-temu'] = 'admin/laporan/laporanjanjitemu/exportexcel';
+
+// routes untuk laporan pemesanan obat
+$route['admin/laporan/pemesanan-obat'] = 'admin/laporan/laporanpemesananobat';
+$route['admin/laporan/print-pemesanan-obat'] = 'admin/laporan/laporanpemesananobat/print';
+$route['admin/laporan/export-pdf-pemesanan-obat'] = 'admin/laporan/laporanpemesananobat/exportpdf';
+$route['admin/laporan/export-excel-pemesanan-obat'] = 'admin/laporan/laporanpemesananobat/exportexcel';
