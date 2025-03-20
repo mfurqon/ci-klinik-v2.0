@@ -22,8 +22,9 @@ function cek_belum_login_admin()
 function cek_sudah_login_admin()
 {
     $ci = get_instance();
+    $role_id = $ci->session->userdata('role_id');
 
-    if ($ci->session->userdata('email')) {
+    if ($ci->session->userdata('email') && $role_id == 1) {
         $ci->session->set_flashdata(
             'pesan',
             '<div class="alert alert-danger" role="alert">
@@ -31,6 +32,8 @@ function cek_sudah_login_admin()
             </div>'
         );
         redirect('admin/dashboard');
+    } elseif ($ci->session->userdata('email') && $role_id == 2) {
+        redirect(base_url());
     }
 }
 
